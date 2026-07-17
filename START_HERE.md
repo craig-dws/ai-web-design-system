@@ -181,8 +181,102 @@ She does not use Claude Code. Work through this with her once.
 
 ---
 
-## What to do after the system is up
+---
 
-1. **Run the 15-minute Breakdance write test** (`docs/24`, Section C). On a disposable staging site, have Claude Code build a real multi-section page via Novamira Pro, then open it in the Breakdance visual builder. Check it renders, that every element is still natively editable with no "unknown element" errors, and that a forced malformed write is caught. **This decides whether the Target A pipeline is viable at all.** Do it before anything else.
-2. **Capture the baseline** (`docs/20`) from recent projects, so the pilot has something to compare against.
-3. **Pick the pilot** (`docs/10`): a low-risk brochure site, 5 to 8 pages.
+## Prompt 4: Build the agency design system base kit (once, Designer plus Dev Lead)
+
+**This is a prerequisite for the pilot, and it is the one thing the setup prompt cannot do for you.** Prompt 1 scaffolds the repository. It cannot build a design system, because the design system lives in Figma and is a design decision, not a scaffolding task.
+
+Without the base kit there are no token names. Without token names the Figma-to-Breakdance sync has nothing to map, and the AI has no contract to check its own output against. Everything downstream inherits this.
+
+**Set expectations honestly.** Claude will not build this unattended. `use_figma` is beta with a 20kB per-call cap, no image support, and fonts must already exist in the account. It writes to a canvas section by section. The designer designs; Claude accelerates naming, scales, individual components, and auditing. Budget real design time, once, for an asset every future client build reuses.
+
+**Read first:** `docs/22_design_system_reuse_model.md` (the model), `docs/pilot-artefacts/03_figma_component_and_naming_standard.md` (the naming standard), `docs/pilot-artefacts/02_design_system_checklist.md` (the exit gate).
+
+### 4a. The designer, in Claude Cowork (no terminal)
+
+Work through this with Claude in Cowork, with the Figma plugin installed. Do it on a **duplicate file** first; `use_figma` is beta.
+
+```
+I am building our agency's shared design system base kit in Figma. It will be reused
+across every client site, with only a brand theme swapped per client, so the naming is
+more important than the styling.
+
+Read our standard first and follow it exactly:
+- docs/22_design_system_reuse_model.md
+- docs/pilot-artefacts/03_figma_component_and_naming_standard.md
+
+Help me build, in this order, and stop after each step so I can review:
+
+1. THREE VARIABLE COLLECTIONS, in this tier order:
+   - Primitive  (raw values, no meaning: blue-500, space-4, radius-lg)
+   - Semantic   (intent, and the per-client brand knob: color.action.primary, surface.bg)
+   - Component  (usage: button.bg.default, card.border)
+   Semantic aliases Primitive. Component aliases Semantic. Never a raw value above tier 1.
+
+2. THE SCALES:
+   - Type scale in rem at a 16px base, roles for display, body and utility
+   - Spacing scale on a strict 4pt or 8pt grid
+   - Radius and elevation scales
+
+3. THE CORE COMPONENTS, one at a time, every property bound to a token:
+   Button (all states), Input, Card, Section, Container, Nav, Footer.
+   Every component uses Auto Layout. Absolute positioning only for deliberate
+   z-index overlaps.
+
+4. AUDIT: run /design-system over the file and fix everything it flags. A single
+   hardcoded hex or off-scale spacing value is a defect, not a detail.
+
+Rules:
+- Semantic token names are an API. Once a name ships, changing it breaks every client.
+- Do not invent names. Use our standard.
+- Ask me before adding a token that is not in the standard.
+- British and Australian English.
+```
+
+**Then, per client:** create an **Extended Collection** that inherits the base and overrides only colour, typography family and radius. Do not fork the base. That is the whole point of the model.
+
+**Gate:** the Design Lead approves the base kit before any client build uses it. This is the most consequential approval in the system.
+
+### 4b. The Dev Lead, in Claude Code
+
+Once the base kit is approved, mirror it into the build target.
+
+```
+[ROLE: Design systems engineer]
+
+OBJECTIVE: Mirror our approved Figma base kit into the Target A build layer, and record
+the token contract, so the same names exist on both sides.
+
+READ: docs/22_design_system_reuse_model.md, docs/08_breakdance_and_wordpress_plugin_stack.md,
+docs/pilot-artefacts/03_figma_component_and_naming_standard.md
+
+DIRECTIVES:
+1. Extract the resolved SEMANTIC tokens from the approved Figma base kit with
+   get_variable_defs. Scope calls to the collection; do not pull whole files.
+2. Produce a mapping table: Figma semantic token name, resolved value, the Breakdance
+   Global Settings target (Global Colours, Typography Presets), and the CSS custom
+   property name. Names must be IDENTICAL on both sides. The naming bridge is the whole
+   game: it is what lets the agent emit a token reference instead of a literal.
+3. Flag any token with no clean Breakdance home. Do not invent a mapping. Report it.
+4. Write the contract to docs/ as the canonical token reference, and generate the
+   design-system rules file so every future session inherits it.
+5. STOP. Show me the mapping for approval before touching any Breakdance settings.
+6. On approval, apply it as a reviewed DIFFERENTIAL MERGE (never a blind
+   import_settings), then clear cache and verify a page renders with the new tokens.
+
+CONSTRAINTS: staging only; snapshot first; tokens not hex; never total_reset.
+```
+
+**Only build industry starters after the pilot.** A starter is the base kit plus a sector default look. Building starters on an unproven base kit means productionising a guess.
+
+---
+
+## What to do after the system is up, in order
+
+1. **Run the 15-minute Breakdance write test** (`docs/24`, Section C). On a disposable staging site, have Claude Code build a real multi-section page via Novamira Pro, then open it in the Breakdance visual builder. Check it renders, that every element is still natively editable with no "unknown element" errors, and that a forced malformed write is caught. **This decides whether the Target A pipeline is viable at all.** Nothing else is worth doing until it passes.
+2. **Build the agency base kit** (Prompt 4). The pilot cannot start without token names.
+3. **Capture the baseline** (`docs/20`) from recent projects, so the pilot has something to compare against.
+4. **Pick the pilot** (`docs/10`): a low-risk brochure site, 5 to 8 pages.
+
+The order matters. Step 1 can invalidate the whole Target A approach, so do not invest in steps 2 to 4 before it passes.
