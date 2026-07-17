@@ -4,7 +4,9 @@ Status: v0.1 | Date: 14 July 2026 | Owner: Dev Lead | Decision type: adopt with 
 
 ## The decision
 
-Adopt Novamira for the pilot, on staging only, free core edition to start, wrapped in the guardrails below. Do not put it near a production client site. Re-evaluate at pilot close before committing to Novamira Pro or to Novamira as a standing agency dependency.
+Adopt **Novamira Pro** for the pilot, on staging only, wrapped in the guardrails below. Do not put it near a production client site. Re-evaluate at pilot close before treating Novamira as a standing agency dependency.
+
+**Buy Pro, not free core.** The free-first strategy is SUPERSEDED (17 July 2026). It was written while Bricks was still a live option, on the reasoning that Bricks' own MCP might remove the need for Novamira. Once Breakdance was chosen, the Pro Breakdance specialization became the specific thing that must be tested, and free core cannot test it. See 24.
 
 This is a qualified yes, not an endorsement to build the agency's future on it today.
 
@@ -40,7 +42,11 @@ These are the non-negotiable conditions under which we use Novamira. They are al
 
 ## Free vs Pro
 
-Start on free core. Its eight abilities plus WP-CLI are enough to prove the pilot's read-and-scaffold path and to test a supervised write. Move to Novamira Pro (from EUR 49 per year Personal, EUR 129 per year Agency) only if the pilot shows the Breakdance specialization and persistent memory materially improve build reliability. That is a v0.2 decision, made against the scorecard (11), not now.
+**SUPERSEDED (17 July 2026): the previous text said start on free core and defer Pro until after the pilot.**
+
+**Buy Novamira Pro (EUR 129 per year Agency, 1,000 sites) before the write test.** Free core's eight abilities prove a generic PHP write; they do not prove the **Pro Breakdance specialization**, which is the only thing that matters for Target A. Testing free core and concluding anything about Pro would be testing the wrong product. At EUR 129 per year the cost is not worth deliberating over relative to the decision it informs.
+
+Persistent memory remains a separate question, deferred to the scorecard (11). We are buying Pro for the specialization, not the memory.
 
 ## Sequencing note: prove the front-half first
 

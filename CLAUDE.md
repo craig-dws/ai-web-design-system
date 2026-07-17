@@ -64,7 +64,8 @@ Every rule below states which target it applies to. Nothing in this system may s
 | Requirements and scope | The signed brief; changed only by approved change request |
 | Design, before handoff | The approved Figma file |
 | Design tokens | The version-controlled token specification |
-| **Content, after publish** | **The Google Doc.** Once the human editor edits it, the Doc is canonical and the local markdown is stale until pulled |
+| **Content, before launch** | **The Google Doc**, once the human editor has revised it. The local markdown is stale until pulled. This covers design, build, and UAT |
+| **Content, after launch** | **The live Breakdance site.** Authority transfers at launch. New post-launch content restarts the editorial cycle (ZE, Doc, editor, pull) |
 | Implementation, after handoff | The build (Breakdance on staging, or the repository for Target B) |
 | AI instructions | This file plus the project's context pack |
 | Decisions | `docs/24_open_questions_answered.md` and the decision log |
@@ -75,7 +76,11 @@ Every rule below states which target it applies to. Nothing in this system may s
 
 **Content must exist before design**, because content goes into the designs. Designing with placeholder text and pouring content in later breaks layouts, which is exactly what a token system exists to prevent.
 
-Content is either **client-supplied** or **written in ZilvaEdge**. Where ZilvaEdge writes it, the flow is: ZE writes markdown, it is published to a Google Doc, the human editor edits the Doc, and the Doc is **pulled back to markdown before use**. Pull explicitly at two points: before design starts, and before content populates the site. Never sync automatically.
+Content is **written in ZilvaEdge** by default (client-supplied remains possible per engagement). The flow is: ZE writes markdown, it is published to a Google Doc, the human editor edits the Doc, and the Doc is **pulled back to markdown before use**. Pull explicitly at two points: before design starts, and before content populates the site. Never sync automatically.
+
+**"Launch" is the single transfer point. There is no separate "publish" event for authority purposes.** Publishing a Doc does not transfer authority; launching the site does. Before launch the Doc wins; after launch the live site wins.
+
+**This includes UAT.** UAT happens before launch, so **UAT copy fixes go in the Doc and are pulled into staging**, not typed onto the staging site. Typing them onto staging means the next pull silently discards the client's accepted changes. Record the reviewed content revision at the UAT gate.
 
 **ZilvaEdge integration is a content seam, not code coupling.** ZE owns content and its quality gates. This system consumes approved markdown. Neither imports the other.
 

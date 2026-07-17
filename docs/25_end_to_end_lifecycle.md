@@ -158,10 +158,11 @@ An earlier version of this document said copy changes simply happen "on site". T
 
 **Client UAT:** the client reviews the **staging site**, not Figma. By now the design is approved and built; what they are testing is the real thing.
 
-**Where does UAT feedback go?** Triage it on arrival, using the same table above:
-- **Content and copy fixes** → done on site directly. Fast, low risk.
-- **"Can we change the design"** → this is a design change. It goes back to Figma, gets re-approved, and re-syncs. If it is late and large, it is a change request, not a fix.
-- **Bugs** → fixed on site.
+**Where does UAT feedback go?** Triage it on arrival, using the same table above. **UAT happens before launch, so the pre-launch rules still apply.**
+
+- **Content and copy fixes** go **in the Google Doc, then pull into staging.** Not typed onto the staging site. This is the one that catches people out: UAT feels like the end, so typing the client's copy fix straight onto staging feels harmless. It is not. The Doc is still canonical until launch, so the next pull would silently discard the client's accepted change. Record the reviewed content revision at the UAT gate.
+- **"Can we change the design"** is a design change. It goes back to Figma, gets re-approved, and re-syncs. If it is late and large, it is a change request, not a fix.
+- **Bugs** are fixed on site. They are build defects, not content or design decisions.
 
 Do not let a UAT list quietly become a redesign done directly on the site. That is the single most common way a systemised build degrades back into a hand-maintained page.
 
@@ -183,7 +184,7 @@ Being honest about this matters for measuring it (11):
 
 ## Related documents
 
-- [12_ai_web_design_system_v0.1.md](12_ai_web_design_system_v0.1.md) - the governing spec and full gate list
+- [12_ai_web_design_system_v0.1.md](12_ai_web_design_system_v0.1.md) - the full gate list. Partially superseded; CLAUDE.md governs, but the gate model there is still current
 - [22_design_system_reuse_model.md](22_design_system_reuse_model.md) - the base kit and per-client theme model
 - [24_open_questions_answered.md](24_open_questions_answered.md) - decisions behind this workflow
 - [13_source_of_truth_model.md](13_source_of_truth_model.md) - who owns what, and when authority moves

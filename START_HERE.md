@@ -9,7 +9,9 @@ How to stand this system up, and how to bring a team member onto it afterwards.
    - A Figma account with a **Professional Dev seat** (the free tier is too rate-limited to use).
    - Your **Claude Team plan** admin access (for org-wide plugin provisioning).
    - Your **LiteSpeed staging server** details, and a Breakdance Pro licence key.
-   - Nothing else. Do not buy Novamira Pro, Respira, or Breakdance AI yet.
+   - **Novamira Pro** (EUR 129/yr Agency). Buy it at the human purchase step in Prompt 1, not
+     before. It is bought specifically to run the Breakdance write test; free core cannot test
+     the Pro Breakdance specialization. Do not buy Respira or Breakdance AI.
 
 **This prompt does not build a website.** It builds the system that builds websites. Expect it to stop and ask you things. That is the design.
 

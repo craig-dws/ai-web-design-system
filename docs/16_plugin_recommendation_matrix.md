@@ -11,7 +11,7 @@ Recommendations are given as a primary pick and an alternative. Confirm current 
 | Role | Primary pick | Alternative | Notes |
 |------|--------------|-------------|-------|
 | Visual builder | Breakdance Pro | Bricks | Breakdance chosen for Client Mode, WP-CLI, and Global Settings import/export; Novamira has a Breakdance specialization |
-| WP MCP bridge | Novamira (staging only) | InstaMCP | Staging only; see 18. InstaMCP if we adopt InstaWP hosting |
+| WP MCP bridge | **Novamira Pro** (staging only) | mcp-adapter | Staging only; see 18 and 24. Pro, not free core: free core cannot test the Pro Breakdance specialization. mcp-adapter is the governed alternative where raw PHP is not needed |
 | Design tokens | Breakdance Global Settings | none needed | Global Settings JSON is the token layer; no extra plugin |
 
 ## Supporting stack
@@ -19,7 +19,7 @@ Recommendations are given as a primary pick and an alternative. Confirm current 
 | Role | Primary pick | Alternative | Notes |
 |------|--------------|-------------|-------|
 | Forms | Fluent Forms | WS Form | Both integrate with Breakdance; Novamira has form specializations |
-| SEO | The SEO Framework | Rank Math | Lightweight, no upsell noise; Rank Math if the client wants schema depth |
+| SEO | **Rank Math** | The SEO Framework | **Settled, see 24.** Rank Math ships an official MCP server built on mcp-adapter, with documented Claude Code setup. The SEO Framework has no agent story at all, so automating it would mean building and maintaining our own REST layer. Its lighter footprint does not offset that |
 | Caching and performance | WP Rocket | FlyingPress | Server-level caching preferred where available; pair with Breakdance clear_cache |
 | Security | Solid Security or Wordfence | Patchstack | See warning below: these can block Application Passwords |
 | Backup | UpdraftPlus | Jetpack VaultPress Backup | Pre-execution backups are mandatory before AI writes |
@@ -43,4 +43,6 @@ Recommendations are given as a primary pick and an alternative. Confirm current 
 
 ## Minimum viable set for the pilot
 
-For the low-risk pilot, install only: Breakdance Pro, Novamira (free, staging), Fluent Forms, The SEO Framework, a caching plugin, a security plugin (with the Application Password exception handled), and UpdraftPlus. Add anything else only when a specific requirement demands it.
+For the low-risk pilot, install only: Breakdance Pro, **Novamira Pro** (staging only), Fluent Forms, **Rank Math**, LiteSpeed Cache, a security plugin (with the Application Password exception handled), and UpdraftPlus. Add anything else only when a specific requirement demands it.
+
+**Two corrections from earlier drafts (17 July 2026):** this list previously said Novamira *free* and *The SEO Framework*. Both were superseded by 24. Novamira free core cannot test the Pro Breakdance specialization, which is the whole point of the write test. Rank Math is settled over The SEO Framework because it ships an official MCP server and TSF has no agent story.

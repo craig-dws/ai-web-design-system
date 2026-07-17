@@ -49,9 +49,9 @@ If no external low risk client is available, run the pilot on an agency marketin
 
 ## Pilot artefacts folder
 
-All pilot inputs and outputs live in a single folder so the review has one source of truth.
+The **templates** live in `docs/pilot-artefacts/` in this repository. The **filled-in copies** for a real pilot live in the client's own project, never here, because this repository holds no client work (see CLAUDE.md).
 
-`docs/systems/ai-web-design-system-v0.1/pilot-artefacts/`
+Copy the templates you need into the client project at the start of the pilot, so the review has one source of truth per engagement.
 
 Expected contents:
 

@@ -104,9 +104,9 @@ Key point: production never carries Novamira. The AI pipeline lives entirely on 
 
 - **Figma**: one Professional Dev seat (roughly US$12 per month) per person who runs the MCP. The free tier is too rate-limited to be usable.
 - **Breakdance Pro**: agency licence covering staging and production sites.
-- **Novamira**: free core is enough to start; Novamira Pro (from EUR 49 per year) adds memory and the Breakdance specialization if the pilot proves value.
+- **Novamira Pro**: EUR 129 per year (Agency, 1,000 sites). Bought for the Breakdance write test, not deferred. The free-first strategy is SUPERSEDED (17 July 2026). It was written while Bricks was still a live option, on the reasoning that Bricks' own MCP might remove the need for Novamira. Once Breakdance was chosen, the Pro Breakdance specialization became the specific thing that must be tested, and free core cannot test it. See 24.
 - **Claude Code**: standard subscription per operator.
 
 ## When to expand beyond the minimum
 
-Only after the pilot (see 10 and 11) proves the write path is reliable enough. Candidate expansions, in order: Novamira Pro Breakdance specialization; the WordPress native AI Client for content generation; InstaWP for faster staging provisioning; a shared component library and Code Connect maturation.
+Only after the pilot (see 10 and 11) proves the write path is reliable enough. Candidate expansions, in order: the WordPress native AI Client for content generation; InstaWP for faster staging provisioning; a shared component library. (Novamira Pro is no longer an expansion; it is bought up front for the write test, see 24.)

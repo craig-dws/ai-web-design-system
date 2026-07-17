@@ -49,7 +49,7 @@ The user asked for a full investigation and a complete, versioned system split i
 
 | File | Purpose |
 |------|---------|
-| 12_ai_web_design_system_v0.1.md | The governing spec: scope, gates, roles, source of truth, security, rollback |
+| 12_ai_web_design_system_v0.1.md | **Partially superseded; CLAUDE.md governs.** Retained for its gate model, roles and decision rights, artefacts per stage, acceptance criteria, and rollback procedures, which remain current and target-neutral |
 | 13_source_of_truth_model.md | Which system owns each class of information, and when authority moves |
 | 16_plugin_recommendation_matrix.md | Recommended WordPress plugin stack (Breakdance target) |
 | 17_server_requirements.md | Staging and production server requirements (update for the Payload Node plus database backend) |

@@ -25,11 +25,11 @@ Confirm all of the following before Step 1.
 - [ ] Node.js LTS installed (`node -v`, `npm -v` return versions).
 - [ ] Staging host available with HTTPS, PHP 8.3, WP CLI and MySQL access.
 - [ ] Breakdance Pro licence key to hand.
-- [ ] Novamira Pro licence key to hand (or accept free tier limits for the pilot).
+- [ ] **Novamira Pro** licence key to hand. Not free core: free core cannot test the Pro Breakdance specialization, which is the point of the test. See 24.
 - [ ] Figma account with a Professional Dev seat (about US$12 per operator per month) and the pilot Figma file created with named frames.
 - [ ] Anthropic account and Claude Code access.
 - [ ] Baseline captured (document 20) and scorecard prepared (document 11).
-- [ ] Pilot artefacts folder created: `docs/systems/ai-web-design-system-v0.1/pilot-artefacts/`.
+- [ ] Pilot artefacts to hand: `docs/pilot-artefacts/` (in this repository).
 - [ ] A full backup of the staging site taken (database and files).
 
 ## Step 1: Provision WordPress staging

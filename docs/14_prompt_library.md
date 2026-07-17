@@ -384,5 +384,5 @@ Finish with: ready or not ready, and any drift from the reference machine.
 - **Replace placeholders before sending**. Never send a prompt with a bracket still in it.
 - **Tighten, do not loosen, the constraints**. If a client build has extra rules (a fixed grid, a mandated plugin), add them as numbered directives rather than relaxing existing ones.
 - **Preserve the safety directives verbatim**: scope to frames, tokens not hex, differential merge not overwrite, no raw PHP, one page at a time. These are the guardrails, not decoration.
-- If a stage keeps producing drift, add a Code Connect mapping (`get_code_connect_map`) for the components involved. It is the single biggest accuracy lever.
+- If a stage keeps producing drift, the fix depends on the target. **Target B (Astro):** add a Code Connect mapping (`get_code_connect_map`) for the components involved; it is the biggest accuracy lever there. **Target A (Breakdance):** Code Connect does not apply, because Breakdance elements are builder nodes, not code components. Use the reviewed Figma-to-Breakdance mapping table instead (see 07).
 - **These prompts are for the web-build system only**. They are separate from the ZilvaEdge content-system prompts and agents.
