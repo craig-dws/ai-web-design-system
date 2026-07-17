@@ -1,0 +1,18 @@
+{
+  "projects": [
+    {
+      "name": "harbourview-general-practice",
+      "date": "2025-11-19",
+      "metaphor_name": "The Safe Harbour",
+      "metaphor_category": "literal",
+      "semantic_keywords": ["patient-centred", "experienced", "accessible", "community", "compassionate", "modern", "multilingual"],
+      "visual_language": {
+        "color": "cool",
+        "typography": "sans-serif",
+        "layout": "asymmetric"
+      },
+      "narrative_template": "problem-first",
+      "section_count": 8
+    }
+  ]
+}

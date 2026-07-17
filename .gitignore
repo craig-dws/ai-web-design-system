@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+.astro/
+.turbo/
+coverage/
+
+# Local Claude config (machine-specific, never shared)
+.claude/settings.local.json
+.claude/.env
+
+# Secrets: never commit credentials, Application Passwords, or licence keys
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# OS and editor
+.DS_Store
+Thumbs.db
+nul
+*.swp
+.vscode/
+.idea/
+
+# Client working material (client sites live in their own repos, not here)
+clients/
+sites/
