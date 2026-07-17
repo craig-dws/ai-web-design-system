@@ -306,6 +306,50 @@ Anthropic's `frontend-design` skill (in `anthropics/claude-code`) frames Claude 
 
 ---
 
+## Section F2: Content (DECISION, 17 July 2026)
+
+### Where content comes from
+
+**DECISION: content is written in ZilvaEdge, not supplied by the client.** Decided by the Dev Lead. Client-supplied content remains possible per engagement, but ZE is the default and the pilot uses it.
+
+### Content must exist before design
+
+**Content is a Stage 0 deliverable, an input to design, not an output of build.** The copy goes into the designs. Designing against placeholder text and pouring real content in later breaks layouts, which is precisely what a token and component system exists to prevent.
+
+This has a consequence worth stating plainly: **ZilvaEdge integration is on the pilot's critical path, not a later-stage nice-to-have.** Earlier drafts of this system treated it as something to wire in afterwards. That was wrong. If ZE writes the content, the content pipeline must work before the first design starts.
+
+### The round trip, and who is canonical
+
+The chain is: **ZE writes markdown, it is published to a Google Doc, the human editor revises the Doc, and the Doc is pulled back to markdown before use.**
+
+**The Google Doc is canonical once a human editor has touched it.** The local markdown is stale until pulled. This is a deliberate change to the source-of-truth model in 13, and it is chosen because it matches what is actually true: the editor is the final say on copy. Modelling markdown as canonical would fight the real workflow and produce drift rather than discipline.
+
+### When the pull happens
+
+**Never automatically.** An unattended sync could silently overwrite local work. It is an explicit step at exactly two points:
+
+1. **Before design starts.** The designer needs the editor's final copy, not a draft.
+2. **Before content populates the site.** The editor may have revised it again during the build.
+
+The `stage-gate` skill checks Drive's `modifiedTime` against the manifest and reports ("the Doc changed 2 days ago, pull?") rather than asking blindly. An on-demand pull is also available.
+
+### Tooling status
+
+`drive_sync.py --pull-docs` was built in ZilvaEdge (commit `0680b1f`) to close this gap. `--pull` deliberately skips Google native files, so there was previously **no path back from a Doc at all**. It exports the Doc to markdown, undoes Google's escaping, splits tabbed Docs by tab, **preserves the local frontmatter** (the Doc never had it), archives before every overwrite, and refuses an empty export.
+
+**A caution learned the hard way.** Testing it against real data exposed a defect in ZilvaEdge's `update_manifest()`: it matched deliverables on **bare filename**, so pushing one client's Doc stamped that Doc's ID onto every client sharing the filename. All six existing mappings were wrong, four clients pointed at a single Doc, and a pull wrote one client's report into another client's file. Fixed at root cause (path-based matching, commit `1065222`) and the poisoned data cleared.
+
+Two things carry forward from that:
+
+1. **`--pull-docs` verifies the Doc belongs to the client before writing, and refuses otherwise.** Keep that gate. It is what turned a client-data bleed into a refusal.
+2. **The dry run looked perfect.** The fault only appeared against real data. Apply the same scepticism to the Breakdance write test: a passing dry run proves nothing.
+
+### What still needs proving
+
+The round trip has not yet been verified end to end on a real client Doc pushed with the fixed mapping. Until it has, treat the ZE content path as **built but unproven**, exactly as we treat the Breakdance write path.
+
+---
+
 ## Section G: What agents, skills and hooks do we actually need
 
 **The most important answer here is: far fewer than your list, and not yet.** You listed roughly 20 agents. Building 20 agents before a pilot is exactly the "magnificent internal knowledge kingdom before the pilot" that doc 12 warns against. Most would be speculative, unmaintained, and would fragment context.

@@ -17,7 +17,7 @@ client-site-build/
 │   ├── settings.local.json      # gitignored: personal overrides, local secrets refs
 │   ├── CLAUDE.md                # committed: project brief and conventions
 │   ├── skills/
-│   │   └── design-sync/
+│   │   └── token-sync/
 │   │       └── SKILL.md         # committed: design sync workflow skill
 │   ├── agents/
 │   │   ├── figma-token-extractor.md    # committed

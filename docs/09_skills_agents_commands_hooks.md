@@ -6,7 +6,7 @@ This document defines the Skills, Subagents, Slash commands and Hooks the web-bu
 
 These are **web-build** automations. They are separate from the existing ZilvaEdge content-system agents and skills. They live in the client site build project (see [06_claude_code_project_structure.md](06_claude_code_project_structure.md)), not in the ZilvaEdge repository.
 
-**Two build targets, two automation sets.** The first half of this document (design-sync, breakdance-builder, wp-security-auditor, the WordPress hooks) is for **Target A: WordPress plus Breakdance**. The section "Astro plus Payload automations" is for **Target B**. A project installs only the set for its chosen target. The `figma-token-extractor` subagent is shared, since token extraction from Figma is target-neutral.
+**Two build targets, two automation sets.** The first half of this document (token-sync, breakdance-builder, wp-security-auditor, the WordPress hooks) is for **Target A: WordPress plus Breakdance**. The section "Astro plus Payload automations" is for **Target B**. A project installs only the set for its chosen target. The `figma-token-extractor` subagent is shared, since token extraction from Figma is target-neutral.
 
 ## Canonical forms in one line each
 
@@ -15,16 +15,18 @@ These are **web-build** automations. They are separate from the existing ZilvaEd
 - **Slash command**: `.claude/commands/<name>.md`; optional frontmatter `description`, `argument-hint`, `allowed-tools`; body is the prompt; use `$ARGUMENTS` or `$1 $2` for args.
 - **Hook**: configured in `settings.json` under `"hooks"`, keyed by event name, each with a matcher and a command; a hook blocks a call via exit code 2 or a JSON `permissionDecision` of `"deny"` or `"ask"`.
 
-## Skill: design-sync
+## Skill: token-sync
 
-Orchestrates the token extraction and Breakdance sync step. Invoked with `/design-sync`.
+Orchestrates the token extraction and Breakdance sync step. Invoked with `/token-sync`.
 
-File: `.claude/skills/design-sync/SKILL.md`
+**Do not rename this to `design-sync`.** Claude Design ships a first-party `/design-sync` command that uploads a design system to Claude Design (it reads tokens and React components from a code package). A skill of the same name would shadow it and break that upload. Ours syncs Figma tokens into Breakdance, which is a different job.
+
+File: `.claude/skills/token-sync/SKILL.md`
 
 ```markdown
 ---
-name: design-sync
-description: Sync Figma design tokens into Breakdance global variables on staging using a safe differential merge. Use when the design system tokens have changed and need to be reflected in the Breakdance build, or when the operator runs /design-sync. Reads Figma variables, exports current Breakdance settings, merges without overwriting custom CSS or clamp() functions, imports, and clears cache.
+name: token-sync
+description: Sync Figma design tokens into Breakdance global variables on staging using a safe differential merge. Use when the design system tokens have changed and need to be reflected in the Breakdance build, or when the operator runs /token-sync. Reads Figma variables, exports current Breakdance settings, merges without overwriting custom CSS or clamp() functions, imports, and clears cache.
 ---
 
 # Design Sync
@@ -185,7 +187,7 @@ allowed-tools: mcp__figma__get_variable_defs, Bash(wp breakdance export_settings
 Refresh the staging build. Context note: $ARGUMENTS
 
 Steps:
-1. Run the design-sync skill to bring Breakdance global variables in line
+1. Run the token-sync skill to bring Breakdance global variables in line
    with the current Figma tokens (differential merge, human-reviewed diff,
    never a blind overwrite).
 2. After the sync, run wp breakdance clear_cache.
@@ -466,7 +468,7 @@ The `block-secrets-and-prod.sh` hook denies writes to `.env` files and any produ
 
 | Layer | Target | What it does |
 |-------|--------|--------------|
-| Skill `design-sync` | A (Breakdance) | Token extraction and safe Breakdance merge |
+| Skill `token-sync` | A (Breakdance) | Token extraction and safe Breakdance merge |
 | Skill `token-to-code` | B (Astro) | Sync tokens into Tailwind config and CSS vars |
 | Subagent `figma-token-extractor` | Shared | Clean token export and mapping |
 | Subagent `breakdance-builder` | A | Builds one Breakdance page from one frame |

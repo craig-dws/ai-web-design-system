@@ -130,7 +130,9 @@ CONSTRAINTS:
 
 ---
 
-## Prompt 2: Onboard a developer or PM (once per person)
+## Prompt 2: Onboard the team (once per person)
+
+### Prompt 2a: A developer or PM (Claude Code)
 
 ```
 [ROLE: Setup assistant onboarding a team member to an existing AI web design system]
@@ -168,7 +170,7 @@ Finish with: ready or not ready, and any drift.
 
 ---
 
-## Prompt 3: The designer (no terminal, no Git)
+### Prompt 2b: The designer (Cowork only, no terminal, no Git)
 
 She does not use Claude Code. Work through this with her once.
 
@@ -183,7 +185,7 @@ She does not use Claude Code. Work through this with her once.
 
 ---
 
-## Prompt 4: Build the agency design system base kit (once, Designer plus Dev Lead)
+## Prompt 3: Build the agency design system base kit (once, Designer plus Dev Lead)
 
 **This is a prerequisite for the pilot, and it is the one thing the setup prompt cannot do for you.** Prompt 1 scaffolds the repository. It cannot build a design system, because the design system lives in Figma and is a design decision, not a scaffolding task.
 
@@ -193,7 +195,7 @@ Without the base kit there are no token names. Without token names the Figma-to-
 
 **Read first:** `docs/22_design_system_reuse_model.md` (the model), `docs/pilot-artefacts/03_figma_component_and_naming_standard.md` (the naming standard), `docs/pilot-artefacts/02_design_system_checklist.md` (the exit gate).
 
-### 4a. The designer, in Claude Cowork (no terminal)
+### 3a. The designer builds it, in Claude Cowork
 
 Work through this with Claude in Cowork, with the Figma plugin installed. Do it on a **duplicate file** first; `use_figma` is beta.
 
@@ -238,7 +240,7 @@ Rules:
 
 **Gate:** the Design Lead approves the base kit before any client build uses it. This is the most consequential approval in the system.
 
-### 4b. The Dev Lead, in Claude Code
+### 3b. The Dev Lead mirrors it into Breakdance, in Claude Code
 
 Once the base kit is approved, mirror it into the build target.
 
@@ -268,6 +270,25 @@ DIRECTIVES:
 CONSTRAINTS: staging only; snapshot first; tokens not hex; never total_reset.
 ```
 
+### 3c. Teach Claude Design the base kit (org-wide)
+
+Claude Design can be taught a design system, so that concepting uses **our brand and our tokens** instead of generic defaults. This is the cheapest available fix for AI-looking output, and it applies to everyone: once uploaded, the system appears under **Design systems for everyone in your org**, which is exactly what the Team plan is for.
+
+In Claude Design: **Add a design system**. Two routes are offered:
+
+| Route | What it reads | Use it? |
+|-------|---------------|---------|
+| **Create here** | Connect to **Figma** or GitHub, or upload slides and assets | **Yes, via Figma.** Our source of truth is Figma |
+| **Create using Claude Code** (labelled BEST FIDELITY) | Runs `/design-sync` against a code package; reads tokens and **React components** | **No, not for Target A.** We have no React components. Breakdance is not a React codebase |
+
+**Take the Figma route.** The "BEST FIDELITY" label is real but conditional: it is best *if you have React components*, and for the Breakdance target we do not. Connecting Figma gives Claude Design the same tokens the rest of the pipeline uses, which is the point.
+
+**Revisit for Target B.** An Astro plus Payload project has a real code token layer, so the Claude Code route may genuinely be better there. Evaluate it when the first Target B build exists, not before.
+
+**A naming trap, already handled:** Anthropic's first-party command is `/design-sync`. Our Breakdance token skill is deliberately called **`token-sync`**. Do not rename it to `design-sync` or it will shadow Anthropic's command and break this upload. See `docs/09`.
+
+**Re-upload when the base kit changes.** This is a snapshot, not a live link. A stale design system in Claude Design is worse than none, because it produces confidently off-brand work. Make re-upload part of the base kit's change process.
+
 **Only build industry starters after the pilot.** A starter is the base kit plus a sector default look. Building starters on an unproven base kit means productionising a guess.
 
 ---
@@ -275,7 +296,7 @@ CONSTRAINTS: staging only; snapshot first; tokens not hex; never total_reset.
 ## What to do after the system is up, in order
 
 1. **Run the 15-minute Breakdance write test** (`docs/24`, Section C). On a disposable staging site, have Claude Code build a real multi-section page via Novamira Pro, then open it in the Breakdance visual builder. Check it renders, that every element is still natively editable with no "unknown element" errors, and that a forced malformed write is caught. **This decides whether the Target A pipeline is viable at all.** Nothing else is worth doing until it passes.
-2. **Build the agency base kit** (Prompt 4). The pilot cannot start without token names.
+2. **Build the agency base kit** (Prompt 3). The pilot cannot start without token names.
 3. **Capture the baseline** (`docs/20`) from recent projects, so the pilot has something to compare against.
 4. **Pick the pilot** (`docs/10`): a low-risk brochure site, 5 to 8 pages.
 
