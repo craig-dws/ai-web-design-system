@@ -254,7 +254,9 @@ Then run prompt (e) as written, with `[STAGING_URL]` set to the Astro preview UR
 
 ## System setup prompts
 
-These two are different from the build prompts above. They set the system up rather than use it. Run (f) once on the first machine, then (g) on each additional team member's machine.
+**These have moved to `START_HERE.md` in the repository root, which is the maintained copy.**
+
+They are kept below as reference only and may drift. If the two disagree, START_HERE wins. Do not paste from here without checking it against START_HERE first: the paths in this file were stale for a period because the docs moved when the system got its own repository.
 
 ### (f) Initial system setup prompt (run once, by the Dev Lead)
 
@@ -268,15 +270,15 @@ can automatically. Where a step needs a human (a purchase, an OAuth click, a lic
 key, a server action), STOP, tell me exactly what to do, and wait.
 
 READ FIRST, in this order, and treat them as the specification:
-- docs/ai-web-design-system-v0.2/00_README_and_index.md
-- docs/ai-web-design-system-v0.2/01_current_state_findings_and_claims_to_verify.md
-- docs/ai-web-design-system-v0.2/02_recommended_minimum_architecture.md
-- docs/ai-web-design-system-v0.2/06_claude_code_project_structure.md
-- docs/ai-web-design-system-v0.2/09_skills_agents_commands_hooks.md
-- docs/ai-web-design-system-v0.2/15_claude_code_setup_and_mcp_config.md
-- docs/ai-web-design-system-v0.2/19_implementation_runbook.md   (WordPress target)
-- docs/ai-web-design-system-v0.2/19b_astro_payload_implementation_runbook.md  (Astro target)
-- docs/ai-web-design-system-v0.2/24_open_questions_answered.md  (current decisions)
+- docs/00_README_and_index.md
+- docs/01_current_state_findings_and_claims_to_verify.md
+- docs/02_recommended_minimum_architecture.md
+- docs/06_claude_code_project_structure.md
+- docs/09_skills_agents_commands_hooks.md
+- docs/15_claude_code_setup_and_mcp_config.md
+- docs/19_implementation_runbook.md   (WordPress target)
+- docs/19b_astro_payload_implementation_runbook.md  (Astro target)
+- docs/24_open_questions_answered.md  (current decisions)
 
 DIRECTIVES:
 1. Report the environment first: OS, node -v, npm -v, git --version, python --version,
@@ -331,11 +333,11 @@ OBJECTIVE: Configure THIS machine to match our agreed system exactly. The system
 exists and is documented. Do not redesign it. Match it.
 
 READ FIRST:
-- docs/ai-web-design-system-v0.2/00_README_and_index.md
-- docs/ai-web-design-system-v0.2/06_claude_code_project_structure.md
-- docs/ai-web-design-system-v0.2/15_claude_code_setup_and_mcp_config.md
-- docs/ai-web-design-system-v0.2/24_open_questions_answered.md
-- docs/ai-web-design-system-v0.2/25_end_to_end_lifecycle.md
+- docs/00_README_and_index.md
+- docs/06_claude_code_project_structure.md
+- docs/15_claude_code_setup_and_mcp_config.md
+- docs/24_open_questions_answered.md
+- docs/25_end_to_end_lifecycle.md
 
 DIRECTIVES:
 1. Ask which role this machine is for (Developer or Project Manager) and tailor the rest.

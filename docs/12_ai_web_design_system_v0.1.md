@@ -1,8 +1,20 @@
 # AI Web Design System v0.1
 
-Status: DRAFT v0.1 | Date: 14 July 2026 | Owner: Dev Lead and Design Lead jointly | Review: at pilot close
+> **STATUS: PARTIALLY SUPERSEDED, 17 July 2026. This is no longer the governing specification. `CLAUDE.md` is.**
+>
+> Written when the system had **one build target**. It predates the two-target architecture, the Breakdance decision, the content-authority model, and several corrections in doc 01.
+>
+> **Where this and `CLAUDE.md` disagree, `CLAUDE.md` wins. Where this and doc 24 disagree on a decision, doc 24 wins.**
+>
+> **Still current and target-neutral:** the gate model, roles and decision rights, artefacts per stage, acceptance criteria, and the exception and rollback procedures. Those are the reason this document still exists.
+>
+> **Out of date:** anything implying WordPress is the only target, and the scope section, which predates Target B.
+>
+> Folding the gate model into a single current specification is outstanding work, recorded rather than done. Rewriting a governance document that is largely correct is lower value than proving the Breakdance write path.
 
-This is the governing specification for how the agency uses AI (Claude Design, Claude Code, Figma MCP, Novamira, Breakdance) to take a website from brief to launch. It is versioned. v0.1 is the pilot version: deliberately minimal, honest about what is unproven, and built to be revised into v0.2 after the pilot.
+Status: SUPERSEDED IN PART | Date: 14 July 2026 | Owner: Dev Lead and Design Lead jointly
+
+This was the governing specification for how the agency uses AI (Claude Design, Claude Code, Figma MCP, Novamira, Breakdance) to take a website from brief to launch. v0.1 was the pilot version: deliberately minimal, honest about what is unproven.
 
 The detailed workflows, prompts, setup, and templates live in the sibling documents in this folder. This document defines the rules those documents operate under.
 

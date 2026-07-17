@@ -61,7 +61,12 @@ Note: `create_design_system_rules` is a bundled SKILL, not one of the read or wr
 
 ### Accuracy and licensing notes
 
-1. **Code Connect is the single biggest accuracy lever**. Mapping Figma components to real code components (via `get_code_connect_map`) is what makes generated output match the intended build, so invest in it.
+1. **Code Connect is the biggest accuracy lever, but only on Target B.** Mapping Figma components to real code components (via `get_code_connect_map`) is what makes generated output reference real implementations instead of inventing them. **It requires code components to map to.**
+
+   **It does not apply to Target A.** Breakdance elements are not code components; they are builder nodes in a serialized JSON tree. There is nothing for Code Connect to bind to unless we author custom code elements in Element Studio, which we do not do by default. Earlier drafts of this document listed Code Connect as a Target A accuracy lever. That was wrong and it is corrected here.
+
+   **What replaces it on Target A:** a reviewed, version-controlled **mapping table** from Figma component names to Breakdance element structures, maintained by hand and treated as part of the handoff contract. It is less elegant and it is the honest option. Do not claim Code Connect parity between the targets.
+
 2. A Professional-plan Dev seat (around US$12 per month) per operator is the realistic minimum. Free and Starter plans are heavily rate-limited and will slow or block real work.
 
 ## Part B: Designer-to-Developer Handoff Contract

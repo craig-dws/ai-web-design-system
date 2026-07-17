@@ -138,14 +138,17 @@ You asked whether changes are done in AI or on site. **It depends on the class o
 
 | Change type | Where it happens | Why |
 |-------------|-----------------|-----|
-| **Copy or content** | On site | Content is a site concern, not a design concern. Figma should not be the copy source of truth |
-| **Image swap** | On site | Same reason |
+| **Copy or content**, pre-launch | **In the Google Doc, then pull** | The Doc is canonical until launch (13). Copy typed into Breakdance is silently overwritten by the next pull |
+| **Copy or content**, post-launch | On site, in Client Mode | Authority transferred to the live site at launch |
+| **Image swap** | On site | Images are not carried by the content round-trip |
 | **Design change** (layout, spacing scale, colour, component anatomy) | **Back in Figma**, then re-sync | Figma leads until launch (13). Fixing it only on the site guarantees drift |
 | **Token value change** | Figma, then differential merge | Central by definition |
 | **Small CSS nudge** for a technical constraint | On site, **and logged** | Record it in the deviation register with a rationale, or reflect it back to Figma |
 | **Bug** | On site | It is a build defect, not a design decision |
 
-**The rule: if it changes the design, it goes back to Figma. If it changes the content, it happens on the site.**
+**The rule: if it changes the design, it goes back to Figma. If it changes the copy, it goes back to the Google Doc, until launch transfers content authority to the site.**
+
+An earlier version of this document said copy changes simply happen "on site". That was wrong, and it contradicted 13 and the constitution. It is only true after launch. Before launch it would lose the editor's work at the next pull.
 
 ---
 

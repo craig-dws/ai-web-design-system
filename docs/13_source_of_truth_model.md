@@ -11,7 +11,8 @@ This defines which system owns each class of information, and exactly when autho
 | Brand and visual direction | Approved Figma library | Design Lead, with client sign-off |
 | Design tokens | Version-controlled token spec and DESIGN.md | Design Lead, synced to Breakdance |
 | Component behaviour | Component specification (Figma plus notes) | Designer, reviewed by Dev |
-| Page content | Approved content repository or CMS | PM and content owner |
+| Page content, before launch | The Google Doc, once the human editor has revised it | The editor; pulled to markdown before use |
+| Page content, after launch | The live Breakdance site | The client, in Client Mode |
 | Production implementation | Breakdance and the site database | Dev Lead, post-launch |
 | AI instructions | Version-controlled project context (CLAUDE.md, AI context pack) | Dev Lead |
 | Decisions and exceptions | Project decision log | Whoever makes the decision |
@@ -26,6 +27,22 @@ Authority is not fixed. It moves at defined gates and never silently.
 3. **Token layer**. The token specification (mirrored into Breakdance global settings) is the translation layer. Figma token values and the code or Breakdance values must stay in lockstep, kept aligned by differential merge, never blind import.
 4. **Build stage**. During the build, the version-controlled project files and Breakdance settings on staging become authoritative for implementation detail.
 5. **Production stage**. After launch, the live Breakdance site and its database are the source of truth for content and functionality. Post-launch content edits happen in Breakdance (Client Mode for clients). Major design changes go back up to the Figma and token layer first, then flow down again.
+
+## Content authority, stated precisely
+
+Content authority moves once, at launch, and stating it flatly is what previously made this document contradict CLAUDE.md and 25. Phased, there is no conflict:
+
+| Stage | Who is canonical | Where a copy change is made |
+|-------|------------------|------------------------------|
+| Written in ZilvaEdge | The markdown ZE produced | In ZE |
+| Published to a Google Doc, editor revising | **The Google Doc** | In the Doc, then pull to markdown |
+| Design and build (pre-launch) | **The Google Doc** | **In the Doc, then pull.** Not typed into Breakdance |
+| At launch | Authority transfers | Recorded as a gate |
+| After launch | **The live Breakdance site** | In Breakdance, by the client in Client Mode |
+
+**The rule that matters during the build: do not type copy directly into Breakdance before launch.** The next pull from the Doc would overwrite it, and the loss would be silent. Fix it in the Doc and pull. This is the opposite of the post-launch rule, which is why the stage matters more than the instinct.
+
+**After launch, new content restarts the cycle.** A new blog post written in ZE goes ZE, Doc, editor, pull, publish. It does not get typed into the site first.
 
 ## Transfer rules
 

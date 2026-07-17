@@ -39,7 +39,9 @@ Answers to the open question set, each with a decision and a confidence note. Fa
 
 **No.** Free core (nine abilities plus WP-CLI) is enough to prove the pilot's read-and-scaffold path and a supervised write. Pro (from EUR 49 per year) buys the builder specialization and memory.
 
-**Decision: start on free core. Do not buy Pro yet.** Make it a post-pilot decision against the scorecard (11). If we move to Bricks 2.4, we may never need Pro at all.
+**Decision (SUPERSEDED 17 July 2026): start on free core, do not buy Pro yet.** This was written while Bricks 2.4 was still a live option, on the reasoning that Bricks' own MCP might remove the need for Novamira entirely.
+
+**Current decision: buy Novamira Pro for the write test.** Once Breakdance was chosen (Section C), that reasoning expired. Breakdance has no sanctioned layout path, so the Pro Breakdance specialization is the specific thing that has to be tested, and at EUR 129 per year for 1,000 sites the cost is not a factor worth deliberating over. Buy it, run the 15-minute write test, and let the result decide whether it stays.
 
 ---
 
@@ -391,6 +393,8 @@ Documentation, planner, orchestrators, strategists, analysts, code archaeologist
 | `block-protected-paths` | PreToolUse | Deny writes to `wp-config.php`, `wp-settings.php`, production paths |
 | `scan-dangerous-php` | PreToolUse | Block `eval`, `exec`, `shell_exec`, `system`, `passthru` before a write lands |
 | `litespeed-purge` | PostToolUse | **New and important.** After any `wp post meta update` or DB-affecting command, run `wp litespeed-purge post_id <id>`. Postmeta writes do not fire `save_post`, so LSCache will not purge itself and the site silently serves stale values |
+
+**Correction (17 July 2026): hooks are not a security boundary, and this table previously implied they were.** They match `Write|Edit|Bash` and therefore never fire on `mcp__novamira__execute-php`, which is the actual risk. They also cannot inspect code executed on a remote server. The real controls are staging-only with no production credentials in the environment, disposable environments, snapshot-before-write, permission deny rules, a pinned Breakdance version, and human review. Hooks catch honest mistakes. See doc 09 for the full statement.
 | `builder-cache-clear` | PostToolUse | `wp breakdance clear_cache` (or the Bricks equivalent) after DB writes |
 | `theme-or-lint-check` | PostToolUse | Lint changed PHP or run the builder's own checks |
 
@@ -406,11 +410,19 @@ Documentation, planner, orchestrators, strategists, analysts, code archaeologist
 - **"MCPs for cross-browser and responsiveness"**: we already have **Chrome DevTools MCP** (house rule: it is primary for verification and must run headless). Add Playwright only if we need a browser matrix Chrome DevTools cannot cover. Do not add tools we do not need.
 - **"Creative research for the designer"**: `/competitive-brief` and `/research-synthesis` from the Anthropic plugins, plus our `research-planner`. Do not build a new one.
 - **"The team may need help with Git"**: real, and it mostly affects the developer. Claude Code's desktop app has Git integration and can explain and perform commits. The **designer should not need Git at all**; she lives in Figma and Cowork. Keep it that way.
-- **"The system should work without Novamira"**: achievable, and Bricks 2.4 plus mcp-adapter plus Rank Math's MCP is the route. Design every skill to call *capabilities*, not Novamira tools, so the bridge is swappable.
+- **"The system should work without Novamira"**: harder now that Breakdance is chosen, but the discipline still holds. Design every skill to call *capabilities*, not Novamira tools, so the bridge (Novamira, Respira, or manual) is swappable. Note honestly that with Breakdance there is no sanctioned bridge to swap to, only another third party.
 
-## What I recommend you decide first
+## Decision status (17 July 2026)
 
-1. **Bricks or Breakdance for Target A.** Everything else in Target A depends on it, and the evidence favours Bricks.
-2. **Claude Team plan**, so the toolset can be provisioned once and stay consistent.
-3. **Do not buy** Novamira Pro or Breakdance AI.
-4. **Confirm the pilot scope** so we build the five skills and two subagents against a real job, not in the abstract.
+**Settled. Do not reopen without new evidence:**
+
+1. **Target A is WordPress plus Breakdance.** Bricks was analysed and declined (Section C).
+2. **Claude Team plan**, so the toolset is provisioned once and stays consistent.
+3. **Content is written in ZilvaEdge**, and must exist before design (Section F2).
+4. **Buy Novamira Pro** for the write test. Do not buy Breakdance AI (Section D) or Respira yet.
+
+**Open, in priority order:**
+
+1. **Run the 15-minute Breakdance write test** (Section C). It can invalidate Target A, so nothing else in Target A should be built before it passes.
+2. **Get one real Breakdance settings export.** Five minutes, and it replaces our assumptions about the format with the format.
+3. **Confirm the pilot scope**, so the skills are built against a real job rather than in the abstract.

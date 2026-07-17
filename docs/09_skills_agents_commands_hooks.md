@@ -199,6 +199,26 @@ total_reset.
 
 ## Hooks
 
+### What hooks are, and what they are not
+
+**Hooks are a speed bump, not a security boundary. Do not attribute protection to them that they do not provide.** Three limits, all real:
+
+1. **They do not fire on the operation that actually matters.** The matchers below are `Write|Edit|Bash`. Novamira's danger is `mcp__novamira__execute-php`, an **MCP tool call**, which those matchers never see. A hook that scans a file being written cannot inspect PHP that the agent asks a remote server to run.
+2. **They cannot see inside a remote execution.** Once a call reaches Novamira, our hooks are out of the loop. The vendor states plainly that its sandbox is not a security boundary.
+3. **The examples below parse JSON with grep and sed.** That is fragile against nesting, escaping and Windows paths. If a hook is ever load-bearing, parse JSON properly in a small tested program, not a shell one-liner.
+
+**The controls that actually protect us**, in order of effectiveness:
+
+- **Staging only, with no production credentials present in the environment.** An agent cannot damage what it cannot reach. This is the real control.
+- **Disposable environments and a snapshot before every write.** Here, recovery beats prevention.
+- **Permission deny rules** in settings.json, enforced by Claude Code rather than by our shell scripts.
+- **A pinned Breakdance version**, so an update cannot silently break the write path.
+- **Human review at every gate.**
+
+Hooks catch honest mistakes. They do not stop a badly-scoped agent, and they are not what stands between us and a client's data. Treat them as convenience, and put the trust in the list above.
+
+### The hooks
+
 Four hooks in `.claude/settings.json`. They block edits to protected paths, scan for dangerous PHP before writes, lint changed PHP, and clear the Breakdance cache after database-affecting operations.
 
 The hook scripts live in `.claude/hooks/`. A `PreToolUse` hook blocks a call by exiting with code 2 (or by returning JSON with `permissionDecision` of `"deny"`).

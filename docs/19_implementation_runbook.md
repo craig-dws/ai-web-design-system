@@ -16,7 +16,7 @@ This runbook stands up the whole pipeline once, end to end, on a staging environ
 - `import_settings` and `export_settings` are Breakdance Pro only. `total_reset` is destructive; never run it on a populated site.
 - Figma `get_design_context` can exceed token limits on large pages. Always scope it to individual frames.
 - Application Passwords require HTTPS, or `define('WP_ENVIRONMENT_TYPE','local')` for a local build.
-- Novamira has a 30 second PHP limit, supports domain locking and has a safe mode kill switch. It is very young (about 3 to 4 months old); treat it as early stage.
+- Novamira supports domain locking and has a URL safe-mode kill switch. It is very young (about 3 to 4 months old); treat it as early stage. **Do not rely on the widely-cited 30 second PHP execution limit.** It appears only in third-party summaries, not in Novamira's own docs or changelog, and doc 01 records it as unverified. Assume no execution ceiling until we have measured one ourselves. Our real controls are backups, staging-only, and disposable environments, not a vendor limit that may not exist.
 
 ## Pre flight checklist
 

@@ -19,12 +19,21 @@ Use one of these fixed types in the Type column.
 
 ## Log
 
+**This table starts empty and stays empty until the pilot is actually running.** Illustrations live in Worked examples at the bottom, kept separate so a sample is never mistaken for evidence.
+
 | ID | Date | Type | Description | Impact | Resolution | Owner |
 |----|------|------|-------------|--------|------------|-------|
-| 001 | 2026-07-14 | AI lacked context | Build agent used wrong brand colour, token not in context pack | Rework on hero section, about 30 min | Added token reference to 05 context pack | [Name] |
-| 002 | 2026-07-14 | Big time saving | Component build from Figma completed in one pass | Saved roughly half a day vs manual | Noted as pattern to reuse | [Name] |
-| 003 | 2026-07-14 | Breakdance manual correction | Post Loop spacing needed manual tweak | Minor, about 15 min | Logged as design-system spacing gap to review | [Name] |
 | [ID] | [YYYY-MM-DD] | [Type] | [Description] | [Impact] | [Resolution] | [Name] |
+
+## Worked examples
+
+**Illustrative only. Nothing below happened.** They show the level of detail an entry needs. Do not copy the dates, times or outcomes into the log above.
+
+| ID | Date | Type | Description | Impact | Resolution | Owner |
+|----|------|------|-------------|--------|------------|-------|
+| (example) | (date) | AI lacked context | Build agent used wrong brand colour, token not in context pack | Rework on hero section, about 30 min | Added token reference to 05 context pack | (name) |
+| (example) | (date) | Big time saving | Component build from Figma completed in one pass | Saved roughly half a day vs manual | Noted as pattern to reuse | (name) |
+| (example) | (date) | Breakdance manual correction | Post Loop spacing needed manual tweak | Minor, about 15 min | Logged as design-system spacing gap to review | (name) |
 
 ## Notes
 
