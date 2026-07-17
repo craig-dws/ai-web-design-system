@@ -60,6 +60,7 @@ The user asked for a full investigation and a complete, versioned system split i
 | 23_best_practices.md | Web design, web dev, and AI-for-web-dev best practices, for both targets |
 | 24_open_questions_answered.md | Answers and decisions: Novamira vs alternatives, Bricks vs Breakdance, the WP MCPs, webMCP, the SEO stack, LiteSpeed, the agent/skill/hook triage |
 | 25_end_to_end_lifecycle.md | The team-facing life cycle: PM, Design, Develop, UAT, with gates and where changes happen |
+| 26_vendor_capability_matrix.md | **The single home for volatile vendor facts**, dated and sourced. Never restate a vendor limit in another document; link here instead |
 
 ### Pilot and measurement
 

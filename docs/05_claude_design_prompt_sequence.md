@@ -16,7 +16,7 @@ The build moves through six stages: creative research, design-system scaffolding
 
 - The **Claude Design product** (Anthropic Labs canvas) is an option for stages 1 to 3, the generative creative work, and can hand a design bundle to Claude Code afterwards.
 - **Claude Code plus the Figma MCP** is the surface for stages 4 to 6, the token extraction and the build. This is where the read tools (`get_variable_defs`, `get_design_context`, `get_screenshot`, `get_code_connect_map`) do the reliable work.
-- Do not lean the creative front-half on the Figma MCP write tool. `use_figma` is beta quality with a 20kB per-call cap and no image support. If the design system and homepage are authored into Figma, prefer the Claude Design product or a designer working in Figma with AI assistance over driving `use_figma` to build the design for you. Reserve `use_figma` for small, duplicate-file experiments, as 02 requires.
+- Do not lean the creative front-half on the Figma MCP write tool. `use_figma` is still beta by Figma's own labelling (see 26 for current capabilities and limits). If the design system and homepage are authored into Figma, prefer the Claude Design product or a designer working in Figma with AI assistance over driving `use_figma` to build the design for you. The reason is judgement, not a byte limit: design decisions are the designer's. Reserve `use_figma` for duplicate-file experiments, as 02 requires.
 
 ## Prompting principles
 

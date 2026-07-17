@@ -191,7 +191,7 @@ She does not use Claude Code. Work through this with her once.
 
 Without the base kit there are no token names. Without token names the Figma-to-Breakdance sync has nothing to map, and the AI has no contract to check its own output against. Everything downstream inherits this.
 
-**Set expectations honestly.** Claude will not build this unattended. `use_figma` is beta with a 20kB per-call cap, no image support, and fonts must already exist in the account. It writes to a canvas section by section. The designer designs; Claude accelerates naming, scales, individual components, and auditing. Budget real design time, once, for an asset every future client build reuses.
+**Set expectations honestly.** Claude will not build this unattended, and the reason is judgement rather than tooling limits. `use_figma` is more capable than an earlier draft of this file claimed (see 26 for current, dated capabilities), but a design system is a set of decisions about a brand, and those are the designer's to make. Claude accelerates naming, scales, individual components, and auditing. Budget real design time, once, for an asset every future client build reuses.
 
 **Read first:** `docs/22_design_system_reuse_model.md` (the model), `docs/pilot-artefacts/03_figma_component_and_naming_standard.md` (the naming standard), `docs/pilot-artefacts/02_design_system_checklist.md` (the exit gate).
 

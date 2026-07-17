@@ -53,7 +53,7 @@ Remote-only write and canvas tools:
 
 | Tool | Purpose and constraints |
 |------|-------------------------|
-| `use_figma` | The real write-back tool. BETA. 20kB per-call cap. No image or asset support yet. Fonts must already exist in the file. Always test on a duplicate file first. |
+| `use_figma` | The real write-back tool. Works with frames, components, variables, styles, text and images. Still beta by Figma's labelling, so test on a duplicate file first. For current limits see 26, the capability matrix; do not restate them here. |
 | `generate_figma_design` | Code to canvas. Turns rendered UI into flat Figma frames. |
 | `create_new_file` | Creates a new Figma file. |
 

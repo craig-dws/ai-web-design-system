@@ -68,13 +68,14 @@ Steps:
 4. Use **Copy prompt** to copy Novamira's generated setup prompt.
 5. **Paste that prompt into Claude Code**. The agent uses it to write its own MCP configuration for the Novamira server.
 
-Novamira's nine core abilities: Execute PHP, Read File, Write File, Edit File, Delete File, Disable File, Enable File, List Directory, and Create Upload Link.
+Novamira's **eight confirmed** core abilities: Execute PHP, Read File, Write File, Edit File, Delete File, Disable File, Enable File, and List Directory. ("Create Upload Link" appears on marketing pages and is often counted as a ninth, but doc 01 records it as unconfirmed as a distinct free ability. Do not plan around it.)
 
 Guardrails to respect:
 
 - **Development and staging only.** This is policy, not enforced by the plugin. Never point Novamira at production.
 - The sandbox is **not** a security boundary. Treat every ability as if it runs with full site privileges.
-- There is a **30 second PHP execution limit**, **domain-locking**, and a **URL safe-mode kill-switch**. Know where the kill-switch is before you start.
+- **Domain-locking** and a **URL safe-mode kill-switch** are confirmed. Know where the kill-switch is before you start.
+- **Do not rely on the widely-cited 30 second PHP execution limit.** It appears only in third-party summaries, not in Novamira's own docs or changelog, and doc 01 records it as unverified. Assume there is no execution ceiling until we have measured one. Our real controls are backups, staging-only, and disposable environments, not a vendor limit that may not exist.
 
 ## 4. Verify the MCP servers
 

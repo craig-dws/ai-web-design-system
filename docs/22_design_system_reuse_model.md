@@ -12,7 +12,23 @@ Maintain one shared agency base kit and layer a per-client brand theme on top of
 
 ## The three-tier token model
 
-Use a three-tier token model as the spine. It maps cleanly across Figma variables, Breakdance Global Settings, and Astro code, which is exactly what lets one kit serve many clients.
+Use a three-tier token model as the spine. It is what lets one kit serve many clients.
+
+**How cleanly it maps depends on the target, and an earlier draft of this document overstated it by claiming it "maps cleanly" everywhere. It does not.**
+
+| Tier | Target B (Astro) | Target A (Breakdance) |
+|------|------------------|------------------------|
+| Primitive | Clean. Code variables | Partial. No true primitive layer; folded into globals |
+| Semantic | Clean. Named CSS custom properties | **The usable layer.** Global Colours and Typography Presets map to semantic names |
+| Component | Clean. Component-scoped tokens | **No clean home.** Breakdance has no component-token concept |
+
+**The honest position for Target A: colour and typography map well at the semantic tier. Spacing maps partially. The component tier does not map at all** without custom CSS the builder does not manage for us.
+
+What follows:
+
+1. **Scope the initial Breakdance contract to colour, typography, and whatever spacing we prove.** Do not promise component-tier parity.
+2. **Prototype before promising.** The component tier needs a spike against a real settings export before it appears in any client-facing claim.
+3. **Keep all three tiers in Figma regardless.** They cost nothing there, they serve Target B fully, and they keep the naming honest. A tier that cannot cross into Breakdance simply does not cross; that does not break the model.
 
 ```
 Tier 1  PRIMITIVE   raw values, no meaning        blue-500, space-4, radius-lg
