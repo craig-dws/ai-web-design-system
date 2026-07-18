@@ -312,13 +312,15 @@ Anthropic's `frontend-design` skill (in `anthropics/claude-code`) frames Claude 
 
 ### Where content comes from
 
-**DECISION: content is written in ZilvaEdge, not supplied by the client.** Decided by the Dev Lead. Client-supplied content remains possible per engagement, but ZE is the default and the pilot uses it.
+**CORRECTED (18 July 2026): content is a pluggable input from any source. It does not block anything, and no single source is mandated.** An earlier draft made ZE the required source and put its integration on the critical path. That was wrong on both counts.
 
-### Content must exist before design
+Content can come from: the client, ZilvaEdge, or realistic placeholder for a pilot. The build accepts whichever is provided. ZE is the source we will most often reach for once it is wired up, but the system does not depend on it, and a build never waits on it.
 
-**Content is a Stage 0 deliverable, an input to design, not an output of build.** The copy goes into the designs. Designing against placeholder text and pouring real content in later breaks layouts, which is precisely what a token and component system exists to prevent.
+### Design against real content where you have it (advice, not a gate)
 
-This has a consequence worth stating plainly: **ZilvaEdge integration is on the pilot's critical path, not a later-stage nice-to-have.** Earlier drafts of this system treated it as something to wire in afterwards. That was wrong. If ZE writes the content, the content pipeline must work before the first design starts.
+Designing against final or realistic content beats lorem ipsum, because pouring real copy into a placeholder layout can break it, and a token and component system is what limits that damage. So **where content exists, use it; where it does not, placeholder is fine.** This is a quality recommendation, not a blocker. A pilot with placeholder content is valid.
+
+**ZilvaEdge integration is therefore optional and can come whenever it suits, not a critical-path dependency.** An earlier draft said the opposite; this supersedes it. If and when we use ZE for content, the round-trip below applies. If we do not, nothing is missing.
 
 ### The round trip, and who is canonical
 
@@ -418,7 +420,7 @@ Documentation, planner, orchestrators, strategists, analysts, code archaeologist
 
 1. **Target A is WordPress plus Breakdance.** Bricks was analysed and declined (Section C).
 2. **Claude Team plan**, so the toolset is provisioned once and stays consistent.
-3. **Content is written in ZilvaEdge**, and must exist before design (Section F2).
+3. **Content is a pluggable input from any source (client, ZilvaEdge, or placeholder). It never blocks a build.** ZE is optional, not on the critical path (Section F2).
 4. **Buy Novamira Pro** for the write test. Do not buy Breakdance AI (Section D) or Respira yet.
 
 **Open, in priority order:**

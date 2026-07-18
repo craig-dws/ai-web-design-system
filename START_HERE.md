@@ -48,7 +48,7 @@ KEY DECISIONS ALREADY MADE. Do not relitigate them:
   reverse-engineering via a third party. Trial Novamira Pro before Respira. Keep the
   layout-write step swappable: skills call a CAPABILITY, never a vendor tool name.
 - The designer never uses Claude Code. She uses Claude Cowork plus Figma.
-- Content must exist BEFORE design. Content is client-supplied or written in ZilvaEdge.
+- Content is a pluggable input from any source (client, ZilvaEdge, or placeholder). It never blocks a build. Design against real content where you have it; placeholder is fine otherwise.
 - Adopt Anthropic's plugins rather than rebuilding them.
 
 DIRECTIVES:

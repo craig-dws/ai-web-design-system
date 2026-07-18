@@ -74,9 +74,11 @@ Every rule below states which target it applies to. Nothing in this system may s
 
 ## Content
 
-**Content must exist before design**, because content goes into the designs. Designing with placeholder text and pouring content in later breaks layouts, which is exactly what a token system exists to prevent.
+**Content is a pluggable input from any source. It does not block anything.** The system accepts content from wherever it comes: client-supplied, written in ZilvaEdge, or realistic placeholder for a pilot. No source is required, and no content source is a dependency of the build.
 
-Content is **written in ZilvaEdge** by default (client-supplied remains possible per engagement). The flow is: ZE writes markdown, it is published to a Google Doc, the human editor edits the Doc, and the Doc is **pulled back to markdown before use**. Pull explicitly at two points: before design starts, and before content populates the site. Never sync automatically.
+**Recommended, not required: design against real or realistic content where you have it.** Designing against final content beats lorem ipsum, because pouring real copy into a placeholder layout later can break it. This is advice that improves quality, not a gate that stops work. A pilot with placeholder content is perfectly valid.
+
+**ZilvaEdge is one optional content source, not part of the pipeline.** If you choose to source content from ZE, the flow is: ZE writes markdown, it is published to a Google Doc, the human editor edits the Doc, and the Doc is pulled back to markdown before use (see 13, 24). If you do not use ZE, none of that applies and nothing is missing. The content round-trip is a convenience for the ZE path only; it is never a prerequisite for building.
 
 **"Launch" is the single transfer point. There is no separate "publish" event for authority purposes.** Publishing a Doc does not transfer authority; launching the site does. Before launch the Doc wins; after launch the live site wins.
 
