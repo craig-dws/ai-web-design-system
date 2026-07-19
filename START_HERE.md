@@ -2,6 +2,11 @@
 
 How to stand this system up, and how to bring a team member onto it afterwards.
 
+Each prompt below is also available as its own copy-paste file in `prompts/`,
+labelled by who runs it and when. See `prompts/README.md` for the index. There is
+one extra file with no equivalent here: `prompts/02c_connect_verify_mcps_developer.md`,
+a focused helper for developers who need to connect and verify the MCP servers.
+
 ## Before you paste anything
 
 1. Open a terminal in this repository (`C:\Apps\Websites\ai-web-design-system`) and run `claude`.
