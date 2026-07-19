@@ -1,0 +1,2 @@
+# Shell hook scripts must stay LF, or bash breaks on carriage returns across systems.
+*.sh text eol=lf
