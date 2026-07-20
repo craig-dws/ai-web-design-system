@@ -1,19 +1,57 @@
 # Developer 01: Set up your machine and a client project
 
-- **Who:** the developer.
+- **Who:** the developer (or a PM who needs Claude Code).
 - **Tool:** Claude Code.
 - **How often:** machine setup once; project setup once per client site.
 
-## A. Your machine (once)
-
-1. `prompts/02a_onboard_developer_or_pm.md` for the general onboarding.
-2. `prompts/02c_connect_verify_mcps_developer.md` to connect and verify the MCP
-   servers. Do not skip the read-only verification.
-
 You inherit the shared system from version control: all skills, subagents,
-commands, hooks and permissions arrive with the clone. Do not recreate them.
+commands, hooks and permissions arrive with the clone. **Do not recreate them.**
+Prompt `00_system_setup/01_stand_up_system.md` was run once for the whole
+repository and is not a per-person step.
 
-## B. A new client project (once per site)
+---
+
+## Part A. Your machine (once)
+
+```
+[ROLE: Setup assistant onboarding a team member to an existing AI web design system]
+
+OBJECTIVE: Configure THIS machine to match our agreed system exactly. The system already
+exists and is documented. Do not redesign it. Match it.
+
+READ FIRST: CLAUDE.md, docs/00_README_and_index.md, docs/25_end_to_end_lifecycle.md,
+docs/06_claude_code_project_structure.md, docs/24_open_questions_answered.md
+
+DIRECTIVES:
+1. Ask which role this machine is for (Developer or Project Manager) and tailor the rest.
+2. Report the environment (OS, node, npm, git, Git Bash or WSL). Flag anything missing.
+3. Confirm the repo is cloned and current, and that .claude/ and .mcp.json are present from
+   version control. Do NOT recreate them; they are shared and committed.
+4. Create only the LOCAL, uncommitted pieces: settings.local.json and required environment
+   variables. Confirm .gitignore excludes them.
+5. Give me a numbered MANUAL STEPS list, then wait:
+   - Claude Team seat confirmed
+   - claude plugin marketplace add anthropics/knowledge-work-plugins
+   - claude plugin install design@knowledge-work-plugins
+   - claude plugin install product-management@knowledge-work-plugins
+   - Figma Professional Dev seat, needed to authenticate the Figma MCP
+6. Verify with /mcp and one read-only test each. Report any difference from the reference
+   machine as DRIFT. Do not fix drift by editing shared committed config.
+7. Brief them in five lines on the lifecycle (docs/25): what their role owns, which gate they
+   approve, and which skill they trigger first.
+
+CONSTRAINTS: match the system, do not change shared config unilaterally. Staging only.
+British and Australian English, no em dashes.
+
+Finish with: ready or not ready, and any drift.
+```
+
+Then run `02_connect_mcps.md` to connect and verify the MCP servers. Do not skip
+the read-only verification.
+
+---
+
+## Part B. A new client project (once per site)
 
 **One Claude Code project per client site. Never share a project across clients.**
 The isolation is the point: a prompt written for one client must never be able to
@@ -56,6 +94,8 @@ CONSTRAINTS:
 - No secrets in committed files. Environment references only.
 - British and Australian English. No em dashes, no en dashes, no emojis.
 ```
+
+---
 
 ## Before you build anything
 

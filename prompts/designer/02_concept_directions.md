@@ -86,4 +86,5 @@ Ask me anything you need before starting. Then show me Pass 1 and stop.
    sign-off on one** before building full layouts. That is **Gate 1a**.
 2. Then move to Figma and build the approved direction properly, starting from the
    agency base kit. The concept is a reference, not an asset to import.
-3. The design system comes next, not the pages. See `03_build_design_system.md`.
+3. The design system comes next, not the pages. See `04_client_design_system.md`
+   (or `03_build_agency_base_kit.md` if the shared base kit does not exist yet).

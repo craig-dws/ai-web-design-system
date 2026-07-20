@@ -1,30 +1,17 @@
-# Designer 03: Build the design system
+# Designer 04: The client's design system
 
 - **Who:** the designer, with the Design Lead approving.
-- **Tool:** Claude Cowork with the Figma plugin. Work on a duplicate file first;
-  `use_figma` is beta.
-- **How often:** the agency base kit is built **once, ever**. After that, each
-  client gets an Extended Collection, which is a much smaller job.
+- **Tool:** Claude Cowork with the Figma plugin.
+- **How often:** once per client, after the agency base kit exists.
 
-This is the most consequential work in the whole process. **Gate 1b, the Design
-Lead approving the design system, is the gate everything downstream inherits.**
-If the tokens are wrong or unnamed here, the AI will emit wrong values on every
-page and no amount of later review fixes it economically.
+The agency base kit is built **once, ever** (`03_build_agency_base_kit.md`). Every
+client after that gets an **Extended Collection** that inherits the base and
+overrides only what makes this brand different. **Do not fork the base.** That is
+the whole point of the model: fix the base once and every client inherits the fix.
 
 The design system is identical regardless of whether the site is built in
-WordPress plus Breakdance or Astro plus Payload. Do not design differently for a
+WordPress plus Breakdance or Astro plus Payload. Never design differently for a
 build target.
-
-## A. The agency base kit (once, ever)
-
-Use `prompts/03a_base_kit_designer_cowork.md`. It is the full prompt for building
-the three variable collections, the scales, and the core components, with the
-Design Lead approving at the end.
-
-## B. Per client, after the base kit exists
-
-For each new client, do **not** fork the base kit. Create an Extended Collection
-that inherits it and overrides only what makes this brand different.
 
 ```
 I am setting up the design system for a new client on our agency base kit. I have given
@@ -65,8 +52,10 @@ Rules:
 - British and Australian English. No em dashes, no en dashes, no emojis.
 ```
 
-## C. Before you call it done
+## Before you call it done
 
 Run `05_design_system_checklist.md` in full and hand it to the **Design Lead for
-Gate 1b**. Do not start the homepage until that approval is recorded. Everything
-after this point assumes the system is right.
+Gate 1b**. This is the most consequential approval in the system: everything
+downstream inherits it, and if the tokens are wrong or unnamed here the AI will
+emit wrong values on every page and no amount of later review fixes it
+economically. Do not start the homepage until that approval is recorded.

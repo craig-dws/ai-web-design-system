@@ -1,21 +1,41 @@
 # Designer 01: Get set up
 
-- **Who:** the designer, herself.
-- **Tool:** Claude Cowork, in the Claude Desktop app.
+- **Who:** the designer, with the PM or Dev Lead doing the prep first.
+- **Tool:** Claude Cowork, in the Claude Desktop app. No terminal, no Git, no
+  Claude Code.
 - **How often:** once, when she joins the system.
 
-Before she runs this, someone must give her the documents. From the repository
-root, run `bash designer-pack/assemble.sh` and share the resulting
-`designer-pack/documents/` folder with her (shared Drive, or a folder on her
-machine). She has no repository, so this folder is the only way she can read the
-standard.
+---
 
-She also needs, from claude.com/plugins, in **Cowork** (not Claude Code):
-- the **Design** plugin (`/design-critique`, `/accessibility-review`,
-  `/design-handoff`, `/design-system`, `/ux-copy`),
-- the **Figma** plugin (needs a paid Figma Dev or Full seat).
+## Part A. Prep, done by the PM or Dev Lead before she starts
 
-Then she pastes this into Cowork, with her documents folder attached or pointed at.
+She has **no repository**, so she cannot open anything at a `docs/...` path.
+Produce her documents and hand them over:
+
+1. From the repository root, run `bash designer-pack/assemble.sh`.
+2. Share the resulting `designer-pack/documents/` folder with her: her shared
+   Google Drive, or a folder on her machine.
+3. Re-run the script and re-share whenever a source document changes. The pack is
+   a snapshot, not a live link. A stale pack is worse than none, because she will
+   follow an old standard confidently.
+
+She also installs, from claude.com/plugins, **in Cowork** (not Claude Code):
+
+- the **Design** plugin: `/design-critique`, `/accessibility-review`,
+  `/design-handoff`, `/design-system`, `/ux-copy`, `/user-research`,
+  `/research-synthesis`,
+- the **Figma** plugin, which needs a paid Figma Dev or Full seat. This is how
+  Claude works on her canvas (`figma-use`, `figma-generate-design`,
+  `figma-generate-library`).
+
+Confirm she is signed into **Claude Desktop on the Team seat** and works in the
+**Cowork** tab, never Code.
+
+---
+
+## Part B. Her prompt
+
+She pastes this into Cowork, with her documents folder attached or pointed at.
 
 ```
 I am the designer at our agency. I am setting myself up on our AI web design system for
@@ -52,9 +72,22 @@ Rules for you:
 - Ask me rather than assume.
 ```
 
-## Her first practice task, after the above
+---
+
+## Part C. Her first practice task
 
 Half a day in Figma on tokens: Variables and collections, primitive versus
 semantic, aliasing, Extended Collections, and Auto Layout. Then run
 `/design-system` over a real file and fix everything it flags. A single hardcoded
 hex or off-scale spacing value is a defect, not a detail.
+
+## What she owns
+
+Stage 1, Design. She produces the visual direction, the design system, the
+homepage, the internal pages, and the dev-ready handoff. Her gates are **1a**
+visual direction (client), **1b design system (Design Lead, the important one)**,
+**1c** homepage (client), and **1d** handoff accepted (Dev Lead). She does not
+touch the build or staging.
+
+**The design is the same regardless of build target.** She never designs
+differently for WordPress plus Breakdance versus Astro plus Payload.

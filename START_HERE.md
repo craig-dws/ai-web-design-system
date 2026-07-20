@@ -2,10 +2,14 @@
 
 How to stand this system up, and how to bring a team member onto it afterwards.
 
-Each prompt below is also available as its own copy-paste file in `prompts/`,
-labelled by who runs it and when. See `prompts/README.md` for the index. There is
-one extra file with no equivalent here: `prompts/02c_connect_verify_mcps_developer.md`,
-a focused helper for developers who need to connect and verify the MCP servers.
+**The prompts now live in `prompts/`, arranged by who runs them:**
+`prompts/00_system_setup/` (once ever), `prompts/pm/`, `prompts/designer/` and
+`prompts/developer/`. See `prompts/README.md` for the index. That folder is the
+working copy; the versions below are retained for their reasoning and context.
+
+It also carries prompts with no equivalent here: connecting and verifying the MCP
+servers, accepting a handoff, syncing tokens, building a page, QA and launch, the
+PM's Stage 0 brief, and the designer's Claude Design concept template.
 
 ## Before you paste anything
 
