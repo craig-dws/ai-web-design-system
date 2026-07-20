@@ -11,18 +11,22 @@ the base kit there are no token names, and without token names the token sync ha
 nothing to map and the AI has no contract to check its output against. Everything
 downstream inherits this.
 
-Read first: `docs/22_design_system_reuse_model.md` (the model),
-`docs/pilot-artefacts/03_figma_component_and_naming_standard.md` (the naming
-standard), `docs/pilot-artefacts/02_design_system_checklist.md` (the exit gate).
+**Give her the files first.** She has no repository, so run
+`bash designer-pack/assemble.sh` and share `designer-pack/documents/` with her
+(Drive, or a folder on her machine). Then point Cowork at that folder. The three
+she needs here are `03_design_system_reuse_model.md` (the model),
+`04_figma_naming_standard.md` (the naming standard), and
+`05_design_system_checklist.md` (the exit gate).
 
 ```
 I am building our agency's shared design system base kit in Figma. It will be reused
 across every client site, with only a brand theme swapped per client, so the naming is
 more important than the styling.
 
-Read our standard first and follow it exactly:
-- docs/22_design_system_reuse_model.md
-- docs/pilot-artefacts/03_figma_component_and_naming_standard.md
+Read our standard first, from the designer pack folder I have given you, and follow it
+exactly:
+- 03_design_system_reuse_model.md
+- 04_figma_naming_standard.md
 
 Help me build, in this order, and stop after each step so I can review:
 
