@@ -24,11 +24,13 @@ The cost is honest: **the first page is slower.** You are building the system, n
 
 | Role | Primary tool | Also uses |
 |------|-------------|-----------|
-| **Project Manager** | Claude Cowork (no terminal) | `/write-spec`, `/competitive-brief`, the `site-brief` skill |
+| **Project Manager** | Claude Cowork, and Claude Code where it helps | `/write-spec`, `/competitive-brief` in Cowork; the `site-brief` and `stage-gate` skills in Claude Code |
 | **Designer** | Figma (source of truth) plus Claude Cowork | Claude Design for concepts, Figma skills, `/design-critique`, `/accessibility-review` |
 | **Developer** | Claude Code | Figma MCP, the builder MCP, WP-CLI, Git |
 
 **The designer never needs Claude Code or Git.** Cowork is agentic Claude without a terminal, and the Figma skills let Claude work directly on her canvas. Keep it that way.
+
+**A consequence worth knowing: this repository's skills load in Claude Code only.** Cowork loads plugins from claude.com/plugins, not from `.claude/`. So anyone working in Cowork cannot invoke `site-brief`, `stage-gate`, `web-design` or the rest. Two things follow. The designer is handed her reference documents as a folder (`designer-pack/`, produced by `designer-pack/assemble.sh`) rather than being pointed at `docs/` paths she cannot open. And the PM has the same workflow available both ways: the `site-brief` skill in Claude Code, or the paste-in equivalent in Cowork (`prompts/pm/`).
 
 ## The lifecycle
 

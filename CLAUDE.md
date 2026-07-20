@@ -90,7 +90,7 @@ Every rule below states which target it applies to. Nothing in this system may s
 
 | Role | Tool |
 |------|------|
-| Project Manager | Claude Cowork (no terminal) |
+| Project Manager | Claude Cowork, and Claude Code where it helps. Does not need a terminal, but is not barred from one |
 | Designer | Figma (source of truth) plus Claude Cowork. **Never needs Claude Code or Git** |
 | Developer | Claude Code (CLI or VS Code) |
 
