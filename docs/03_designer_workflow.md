@@ -6,7 +6,8 @@ Companion documents:
 
 - `04_developer_workflow.md` (what happens after handoff)
 - `07_figma_mcp_setup_and_handoff_contract.md` (MCP setup and the formal handoff contract)
-- `08_breakdance_and_wordpress_plugin_stack.md` (the build platform and its limits)
+- `08_breakdance_and_wordpress_plugin_stack.md` (Target A build platform and its limits)
+- `08b_astro_payload_build_target.md` (Target B build platform and its limits)
 
 ## Principle
 
@@ -28,7 +29,7 @@ For a designer, treat the Claude Design product and Figma as the two places desi
 
 1. Read the full brief, the client research pack, and any brand or style guides supplied.
 2. Confirm the deliverable list, page inventory, target audiences, primary conversion goals, and any regulatory constraints (for example AHPRA for medical clients).
-3. **Note technical constraints early**. The site will be built in Breakdance, so plan layouts the Layout Engine can produce natively (see the Breakdance limits section below).
+3. **Note the build target and its constraints early**. Confirm whether the project is Target A (WordPress plus Breakdance) or Target B (Astro plus Payload), then plan layouts that build natively on either (see the build constraints section below). The design itself is the same for both targets.
 4. **Produce a one-page design brief summary**: goals, audiences, tone, must-have sections, references, and open questions.
 
 AI may assist: Claude Design can summarise research, extract page requirements, suggest a page inventory, and draft mood or tone notes.
@@ -37,8 +38,8 @@ Human must decide: whether the interpretation is correct, which conversion goals
 
 ### Step 2: Choose a design-system foundation or starter
 
-1. Decide whether to start from the agency base kit, a Breakdance-compatible starter template, or a blank file.
-2. Prefer the agency base kit so tokens, spacing scales, and component naming stay consistent across projects and translate cleanly to Breakdance Global Settings.
+1. Decide whether to start from the agency base kit, an industry starter, or a blank file.
+2. Prefer the agency base kit so tokens, spacing scales, and component naming stay consistent across projects and translate cleanly into the build target's token layer (Breakdance Global Settings on Target A, the code token layer on Target B).
 3. Record the chosen foundation in the file cover page so developers know the origin.
 
 AI may assist: suggest a suitable starter based on the brief and list what would need to change.
@@ -59,9 +60,9 @@ Human must decide: which direction is presented, and the reading of client feedb
 
 1. Build the approved direction into full page layouts at desktop width first.
 2. Use Figma Variables for every design decision that should become a token: colour, typography (family, size, weight, line height), spacing scale, radius, and effects. Do not hardcode values that belong in a token.
-3. Use Auto Layout on every frame that will stack, wrap, or reflow. This mirrors how Breakdance Section, Div, and Columns behave and makes the developer mapping direct.
+3. Use Auto Layout on every frame that will stack, wrap, or reflow. This mirrors how both build targets lay out (Section, Div and Columns on Target A; flex and grid written in code on Target B) and makes the developer mapping direct.
 4. Build reusable components with variants for anything that repeats (buttons, cards, form fields, navigation items). Name them clearly and consistently.
-5. **Keep structure honest**. If a layout cannot be built with flex or grid, it cannot be built cleanly in Breakdance either, so redesign it.
+5. **Keep structure honest**. If a layout cannot be expressed with flex or grid, it will not build cleanly on either target, so redesign it.
 
 AI may assist: generate first-pass layouts from the approved direction, propose token names, and flag values that should be Variables rather than raw numbers.
 
@@ -94,7 +95,7 @@ Human must decide: whether a borderline contrast result is acceptable, and how e
 
 1. **Assemble a design-system page or file section**: the token list, the type scale, the spacing scale, and the component library with variant names.
 2. **Document each reusable component**: purpose, variants, states, and any content-length assumptions.
-3. Confirm token names are the ones developers will use in Breakdance Global Settings so mapping is one to one.
+3. Confirm token names are the ones developers will use in the build target's token layer, so mapping is one to one. The names must be identical on both sides; that naming bridge is what lets the AI emit a token reference instead of a raw value.
 
 AI may assist: draft component documentation and produce a token table from the Variables.
 
@@ -150,23 +151,38 @@ AI may assist: compare screenshots to Figma frames and list discrepancies.
 
 Human must decide: whether the build is acceptable for launch.
 
-## What designers must know about Breakdance limits
+## Build constraints that apply to both targets
 
-The site is built in Breakdance on WordPress. Design within these limits so the build is clean and stays editable.
+**The design is the same whether the site is built in WordPress plus Breakdance (Target A) or Astro plus Payload (Target B).** The design system, the tokens, the components and their states do not change with the build target. That is the point of the shared front-half: only the build differs.
 
-| Area | What Breakdance can do | Design implication |
-|------|------------------------|--------------------|
-| Layout Engine | Flexbox and CSS grid through Section, Div, and Columns elements | Design every layout as flex or grid. If it cannot be expressed that way, redesign it. |
-| Structure | Nesting of Sections and Divs, standard elements, Post Loops, Global Blocks | Build with reusable, nestable blocks in mind, not one-off pixel placement. |
-| Scripting | No exotic client-side scripts as part of standard build | Avoid designs that depend on bespoke scripting or unusual interactions. |
-| Client Mode (planned) | Will later restrict clients to editing text, images, and links only | Design so clients only ever need to change text, images, and links, never structure. |
+What follows are constraints that hold on **both** targets. Designing to them keeps the work portable either way, and none of them is a compromise; they are simply good practice.
+
+| Area | Constraint on both targets | Design implication |
+|------|---------------------------|--------------------|
+| Layout | Both lay out with flexbox and CSS grid | Design every layout as flex or grid. If it cannot be expressed that way, redesign it. |
+| Structure | Both favour nested, reusable blocks over one-off placement | Build with reusable, nestable components in mind, not pixel placement. |
+| Scripting | Neither includes bespoke client-side scripting as part of a standard build | Avoid designs that depend on custom scripting or unusual interactions. |
+| Client editing | Clients edit content, not structure, on both | Design so a client only ever changes text, images, links, and the order of sections, never structure. |
 
 Practical rules:
 
-1. Every section should be a flex or grid arrangement of Section, Div, and Columns.
+1. Every section should be a flex or grid arrangement.
 2. **Keep structure shallow and predictable**. Deep or clever nesting is harder to build and to maintain.
 3. **Assume clients will edit content, not layout**. Do not design a layout that breaks when text length changes, and always state content-length assumptions.
 4. Avoid animations or interactions that would need custom code outside the platform's native capability.
+
+### How this maps per target, for reference only
+
+You do not design differently for these. They are here so you know what the developer will build your design into.
+
+- **Target A (WordPress plus Breakdance):** flex and grid are produced by the Section, Div, and Columns elements, with the Post Loop Builder for repeating content and Global Blocks for reusable regions. The container element is called Div. Client Mode restricts clients to editing text, images, and links.
+- **Target B (Astro plus Payload):** flex and grid are written directly in code, with one component per reusable design section. Clients edit structured fields and reorder blocks in the Payload admin.
+
+### The one real difference, and it is not yours to solve
+
+The token tiers do not carry equally into the two targets. On Target B all three tiers land cleanly. On Target A colour and typography map at the semantic tier, spacing maps only partially, and **the component tier has no clean home**.
+
+**Keep all three tiers in Figma regardless.** They cost nothing there, they serve Target B fully, and they keep the naming honest. A tier that cannot cross into the build simply does not cross, and that does not break the model. This is a developer mapping concern and a question of what we promise a client on a Breakdance build, not a reason to design differently. See `22_design_system_reuse_model.md`.
 
 ## Designer handoff checklist
 
@@ -192,4 +208,4 @@ Mark each item before labelling the file Ready for Dev.
 - [ ] Reusable versus page-specific components flagged
 - [ ] Every frame carries a status label; Ready for Dev applied only to passing frames
 - [ ] File satisfies the Designer-to-Developer Handoff Contract
-- [ ] All layouts achievable with the Breakdance Layout Engine (flex or grid via Section, Div, Columns)
+- [ ] All layouts achievable as flex or grid, so they build cleanly on either target

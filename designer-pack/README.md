@@ -73,8 +73,8 @@ Two rules that matter most:
    as skills, but the guidance in them is ours and applies to her work. In Cowork
    she uses Anthropic's design plugin instead: `/design-critique`,
    `/accessibility-review`, `/design-handoff`, `/design-system`, `/ux-copy`.
-2. **The workflow document has a Breakdance section.** That applies to Target A
-   (WordPress plus Breakdance). The practical rules are the same either way:
-   design every layout as flex or grid, keep structure shallow and reusable, and
-   assume the client edits content, not layout. If the project is Target B (Astro
-   plus Payload), ignore the Breakdance-specific naming but keep those rules.
+2. **The design is the same for both build targets.** Whether the site is built
+   in WordPress plus Breakdance or Astro plus Payload, the design system, tokens,
+   components and states do not change. The workflow document sets out the build
+   constraints that apply to both, and keeps the per-target detail as reference
+   only. You never design differently for a target.

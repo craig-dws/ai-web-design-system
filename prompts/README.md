@@ -1,37 +1,63 @@
-# Setup and onboarding prompts
+# Prompts
 
 Each prompt is a separate file so it can be copied and pasted on its own. The
-source narrative, with the reasoning behind each, is in `START_HERE.md`.
+reasoning behind the setup prompts is in `START_HERE.md`.
 
-| File | Who runs it | Tool | How often |
-|------|-------------|------|-----------|
-| `01_stand_up_system_dev_lead.md` | Dev Lead (or PM standing the system up) | Claude Code | Once, ever, for the repo. Already run on 19 July 2026 |
-| `02a_onboard_developer_or_pm.md` | Each developer or PM | Claude Code | Once per person |
-| `02b_onboard_designer_cowork.md` | The designer | Claude Cowork (no terminal) | Once |
-| `02c_connect_verify_mcps_developer.md` | Each developer | Claude Code | Once per machine, or whenever MCP access breaks |
-| `03a_base_kit_designer_cowork.md` | Designer plus Design Lead | Claude Cowork | Once, to build the base kit |
-| `03b_mirror_base_kit_dev.md` | Dev Lead | Claude Code | Once per build target, after the base kit is approved |
-| `03c_teach_claude_design.md` | Whoever owns Claude Design | Claude Design | Once, and re-run when the base kit changes |
+There are three groups: **one-time system setup**, then a **per-project sequence
+for the designer** and one **for the developer**.
 
-## The order
+## One-time setup
 
-1. **Prompt 1** builds the shared system and commits it. It is run once, by one
-   person, for the whole repository. Nobody else runs it. Everyone else inherits
-   the result by cloning or pulling the repo.
-2. **Prompt 2a, 2b, 2c** onboard each person's own machine. They do not rebuild
-   the shared system; they set up the local, uncommitted pieces and connect the
-   tools. 2c is the focused MCP connect-and-verify helper for developers.
-3. **Prompt 3a, 3b, 3c** build the agency design system base kit. This is the one
-   thing the setup prompt cannot do for you, because a design system is a design
-   decision made in Figma. Without it there are no token names, and nothing
-   downstream has a contract to check against.
+| File | Who | Tool | How often |
+|------|-----|------|-----------|
+| `01_stand_up_system_dev_lead.md` | Dev Lead | Claude Code | Once, ever, for the repo. Already run |
+| `02a_onboard_developer_or_pm.md` | each dev or PM | Claude Code | Once per person |
+| `02b_onboard_designer_cowork.md` | PM, working with the designer | Cowork | Once |
+| `02c_connect_verify_mcps_developer.md` | each dev | Claude Code | Once per machine |
+| `03a_base_kit_designer_cowork.md` | designer plus Design Lead | Cowork | Once, ever: the agency base kit |
+| `03b_mirror_base_kit_dev.md` | Dev Lead | Claude Code | Once per build target |
+| `03c_teach_claude_design.md` | Claude Design owner | Claude Design | Once, re-run on change |
+
+Prompt 1 is not a per-person step. It builds the shared system and commits it;
+everyone else inherits it by cloning. Prompt 2 onboards each person's machine.
+
+## Designer, per project (`designer/`)
+
+She works in Figma with Cowork. No terminal, no Git. Give her the documents first:
+run `bash designer-pack/assemble.sh` and share `designer-pack/documents/`.
+
+| File | When |
+|------|------|
+| `01_designer_setup.md` | Once, when she joins. Orients her on her role and gates |
+| `02_concept_directions_claude_design.md` | Start of a project. Visual directions in Claude Design. **Gate 1a** |
+| `03_build_design_system.md` | The base kit once, then an Extended Collection per client. **Gate 1b** |
+| `04_handoff_self_check.md` | Before every handoff. **Gate 1d** |
+
+## Developer, per project (`developer/`)
+
+| File | When |
+|------|------|
+| `01_dev_setup.md` | Machine once, then once per client project |
+| `02_accept_handoff.md` | **Gate 1d.** Accept or reject the dev-ready file |
+| `03_tokens.md` | **Gate 2a.** Extract once, sync by reviewed diff |
+| `04_build_page.md` | **Gates 2b and 2c.** One page at a time, tokens only |
+| `05_qa_and_launch.md` | **Gates 3a to 3c.** QA, UAT triage, launch |
+
+## The two rules that hold across all of them
+
+1. **The design is the same for both build targets.** Brief, research, creative
+   direction, design system and token extraction are identical whether the site is
+   built in WordPress plus Breakdance or Astro plus Payload. Only the build
+   differs. Never design differently for a target.
+2. **Tokens are the contract.** Reference token names, never raw values. Without a
+   token name there is no definition of "right" for a reviewer or an agent to
+   check against, and review becomes guesswork.
 
 ## What is shared versus per person
 
-Committed and shared (arrive with the clone, never recreated): `.claude/`
-(agents, skills, commands, hooks, `settings.json`) and `.mcp.json` (the MCP
-server definitions).
+Committed and shared, arriving with the clone and never recreated: `.claude/`
+(agents, skills, commands, hooks, `settings.json`) and `.mcp.json`.
 
-Per person and per machine (never committed): plugin installs, MCP
-authentication (each person's own Figma sign-in), `settings.local.json`, and any
-local environment variables or secrets.
+Per person and per machine, never committed: plugin installs, MCP authentication
+(each person's own Figma sign-in), `settings.local.json`, and local environment
+variables or secrets.
