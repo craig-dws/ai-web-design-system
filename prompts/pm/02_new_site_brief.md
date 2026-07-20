@@ -1,9 +1,13 @@
 # PM 02: New site brief (Stage 0)
 
 - **Who:** the Project Manager.
-- **Tool:** Claude Cowork. (In Claude Code you can trigger the `site-brief` skill
-  instead; this is the Cowork equivalent, since skills in the repository do not
-  load in Cowork.)
+- **Tool:** either, and they are not equivalent in effort:
+  - **In Claude Code, prefer the skill.** Just say
+    *"I need a new site for BRAND"* and let the **`site-brief`** skill run. It
+    reads the docs itself, asks the clarifying questions, researches, and writes
+    the brief into the client folder. Nothing to paste.
+  - **In Cowork, use the paste-in below.** Repository skills do not load there,
+    so this is the same workflow done by hand.
 - **When:** the start of every project, before any design work.
 
 The brief is what makes short prompts possible everywhere downstream. Once it

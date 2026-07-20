@@ -23,11 +23,13 @@ repository. Nobody re-runs it.
 
 ## pm/ (Project Manager)
 
-Works in Cowork. No terminal needed.
+Works in **either Cowork or Claude Code**. A terminal is not required, but is not
+ruled out. In Claude Code the PM can run the repository's own `site-brief` and
+`stage-gate` skills directly.
 
 | File | When |
 |------|------|
-| `01_pm_setup.md` | Once, when joining |
+| `01_pm_setup.md` | Once, when joining. Covers both surfaces and which to use for what |
 | `02_new_site_brief.md` | Start of every project. **Gate: brief approved.** Design does not start without it |
 
 ## designer/ (Designer)
@@ -80,6 +82,11 @@ variables or secrets.
 ## A note on skills versus prompts
 
 Our skills (`site-brief`, `web-design`, and the rest) live in `.claude/` and load
-in **Claude Code only**. The PM and the designer work in **Cowork**, which does
-not load them. That is why their work is provided here as paste-in prompts, and
-why the designer's reference material is handed over as documents.
+in **Claude Code only**. Cowork loads plugins from claude.com/plugins, not this
+repository.
+
+- The **designer** works in Cowork and never uses a terminal, so her work is
+  provided as paste-in prompts and her reference material is handed over as
+  documents in `designer-pack/`.
+- The **PM** can use either surface. In Claude Code, prefer the `site-brief` and
+  `stage-gate` skills directly; in Cowork, use the paste-in equivalents here.

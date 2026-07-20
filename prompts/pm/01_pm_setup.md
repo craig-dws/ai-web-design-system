@@ -1,10 +1,15 @@
 # PM 01: Get set up
 
 - **Who:** the Project Manager.
-- **Tool:** Claude Cowork, in the Claude Desktop app. No terminal needed.
+- **Tool:** **either Claude Cowork or Claude Code**, whichever suits the task.
+  The PM does not *need* a terminal, but is not restricted from one.
 - **How often:** once.
 
 ## Setup
+
+Set up whichever surfaces you will use. Most PMs will want both.
+
+**Cowork** (no terminal, good for briefs, research and writing):
 
 1. **Claude Desktop** on the Team seat, working in the **Cowork** tab.
 2. Install from claude.com/plugins, in Cowork:
@@ -12,12 +17,18 @@
      `/synthesize-research`, `/product-brainstorming`, `/stakeholder-update`.
    - **design** (useful for reviewing what comes back): `/design-critique`,
      `/research-synthesis`.
-3. Read two documents: `docs/25_end_to_end_lifecycle.md` (the lifecycle and the
-   gates) and `docs/24_open_questions_answered.md` (the live decisions).
 
-If you also need Claude Code (for example to stand the system up or to push to
-the repository), use `developer/01_dev_setup.md` Part A. Your day-to-day PM work
-does not require it.
+**Claude Code** (in the repository, when you want the system's own skills):
+
+3. Follow `developer/01_dev_setup.md` Part A to set up the machine, then
+   `developer/02_connect_mcps.md`.
+4. This gives you the repository's own skills, which Cowork cannot load:
+   **`site-brief`** (the full Stage 0 workflow, which reads the docs and writes
+   the brief into the client folder) and **`stage-gate`** (the between-stages
+   checklist for every gate).
+
+Then read two documents: `docs/25_end_to_end_lifecycle.md` (the lifecycle and the
+gates) and `docs/24_open_questions_answered.md` (the live decisions).
 
 ## What you own
 
@@ -45,8 +56,16 @@ Your job at Stage 0:
   on one low-ops host; Astro plus Payload when performance leads, the developer
   owns the front end in code, and the client mainly edits structured content.
 
-## A note on the site-brief skill
+## Which surface for which job
 
-Our `site-brief` skill lives in the repository as a Claude Code skill, so **it
-cannot be invoked in Cowork**. `02_new_site_brief.md` is the same workflow as a
-paste-in prompt you can use in Cowork without a terminal.
+| Job | Best surface | Why |
+|-----|--------------|-----|
+| Writing the brief | **Claude Code** if you have it open | You can run the `site-brief` skill directly; it reads the docs and writes into the client folder |
+| Writing the brief, no terminal | **Cowork** | Use the paste-in in `02_new_site_brief.md`, the same workflow by hand |
+| Checking a gate | **Claude Code** | The `stage-gate` skill runs the checklist for the transition |
+| Competitive and market research | **Cowork** | `/competitive-brief` and `/research-synthesis` from the plugins |
+| Specs and stakeholder updates | **Cowork** | `/write-spec`, `/stakeholder-update` |
+
+The rule to remember: **repository skills load in Claude Code only**. Cowork
+loads plugins from claude.com/plugins, not this repository. That is why the same
+workflow exists in both forms.
