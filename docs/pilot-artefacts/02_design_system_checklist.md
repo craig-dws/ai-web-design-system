@@ -2,7 +2,7 @@
 
 AI Web Design System v0.1 (Pilot). Confirm a project's design-system foundation is ready before design production begins. One per project.
 
-Project: [Codename]  |  Reviewer: [Name]  |  Date: [YYYY-MM-DD]
+Project: [Codename]  |  Designer: [Name]  |  Date: [YYYY-MM-DD]
 
 ## Variables and Tokens
 
@@ -31,14 +31,17 @@ Project: [Codename]  |  Reviewer: [Name]  |  Date: [YYYY-MM-DD]
 - [ ] Colour contrast checked for text and interactive elements (WCAG 2.2 AA)
 - [ ] Focus and interactive states defined in the design
 
-## Handover Rules File
+## Derived Design Record
 
-- [ ] DESIGN.md rules file generated for this project
-- [ ] DESIGN.md references the token source of truth
+- [ ] DESIGN.md created from the approved template for this project
+- [ ] DESIGN.md verified against the approved Figma file
+- [ ] DESIGN.md references, but does not duplicate or replace, the canonical token contract
+- [ ] DESIGN.md contains exact provenance and no unresolved placeholders or pending markers
 - [ ] DESIGN.md location recorded: [path]
 
 ## Sign-off
 
 - **Foundation confirmed ready**: [ ] Yes  [ ] No
-- **Reviewer**: [Name], [YYYY-MM-DD]
+- **Designer self-certification**: [Name], [YYYY-MM-DD]
+- **PM evidence record confirmed**: [Name], [YYYY-MM-DD]
 - **Notes or gaps**: [List any items to resolve before production]

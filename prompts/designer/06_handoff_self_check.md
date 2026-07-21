@@ -1,4 +1,4 @@
-# Designer 04: Pre-handoff self-check
+# Designer 06: Pre-handoff self-check
 
 - **Who:** the designer.
 - **Tool:** Claude Cowork with the Figma plugin.

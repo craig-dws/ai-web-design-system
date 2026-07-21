@@ -1,6 +1,6 @@
 # 13. Source-of-Truth Model
 
-Status: v0.1 | Date: 14 July 2026 | Owner: Dev Lead and Design Lead
+Status: v0.2 | Date: 21 July 2026 | Owners: Designer, Project Manager and Dev Lead
 
 This defines which system owns each class of information, and exactly when authority transfers from one system to another. The purpose is to prevent silent overwrites, where one tool undoes another's work because nobody agreed which was authoritative.
 
@@ -8,8 +8,9 @@ This defines which system owns each class of information, and exactly when autho
 
 | Information | Authoritative source | Changed only by |
 |-------------|----------------------|-----------------|
-| Brand and visual direction | Approved Figma library | Design Lead, with client sign-off |
-| Design tokens | Version-controlled token spec and DESIGN.md | Design Lead, synced to Breakdance |
+| Brand and visual direction | Approved Figma library | Designer, with client sign-off |
+| Design tokens | Approved Figma variables and version-controlled canonical token contract | Designer in Figma; Developer or Dev Lead in the implementation mirror |
+| Design-system explanation | Client `DESIGN.md`, derived from the approved sources | Designer; PM records evidence only |
 | Component behaviour | Component specification (Figma plus notes) | Designer, reviewed by Dev |
 | Page content, before launch | The Google Doc, once the human editor has revised it | The editor; pulled to markdown before use |
 | Page content, after launch | The live Breakdance site | The client, in Client Mode |
@@ -25,6 +26,7 @@ Authority is not fixed. It moves at defined gates and never silently.
 1. **Requirements stage**. The signed brief is authoritative for scope. It changes only by an approved change request.
 2. **Design stage**. Once visual direction and components are approved, the Figma file is the design source of truth. Nobody hand-edits the live site to force a look. Changes flow Figma to build.
 3. **Token layer**. The token specification (mirrored into Breakdance global settings) is the translation layer. Figma token values and the code or Breakdance values must stay in lockstep, kept aligned by differential merge, never blind import.
+   `DESIGN.md` explains the approved system but is not part of this machine authority chain.
 4. **Build stage**. During the build, the version-controlled project files and Breakdance settings on staging become authoritative for implementation detail.
 5. **Production stage**. After launch, the live Breakdance site and its database are the source of truth for content and functionality. Post-launch content edits happen in Breakdance (Client Mode for clients). Major design changes go back up to the Figma and token layer first, then flow down again.
 

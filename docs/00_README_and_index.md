@@ -1,6 +1,6 @@
 # AI Web Design System v0.1
 
-Status: DRAFT v0.1 | Date: 14 July 2026 | Owners: Dev Lead and Design Lead
+Status: DRAFT v0.2 | Date: 21 July 2026 | Owners: Project Manager and Dev Lead
 
 An internal system for taking a website from brief to launch using AI (the Claude Design product, Claude Code, the Figma MCP server, and Novamira) across two build targets: WordPress with Breakdance, and Astro with Payload CMS. The design and token front-half is shared; only the back-half build differs. This is the pilot version. It is deliberately minimal, honest about what is unproven, and built to be revised into v0.2 after a real pilot.
 
@@ -62,6 +62,7 @@ The user asked for a full investigation and a complete, versioned system split i
 | 25_end_to_end_lifecycle.md | The team-facing life cycle: PM, Design, Develop, UAT, with gates and where changes happen |
 | 26_vendor_capability_matrix.md | **The single home for volatile vendor facts**, dated and sourced. Never restate a vendor limit in another document; link here instead |
 | 27_breakdance_write_test.md | The decisive Target A write test: the runnable procedure that decides whether the native Breakdance 3.0 MCP (tested first) or a fallback bridge is viable, before any client build |
+| 28_design_md_workflow.md | How the Designer creates, verifies and maintains the client DESIGN.md without displacing Figma or the canonical token contract |
 
 ### Pilot and measurement
 

@@ -12,7 +12,7 @@
 >
 > Folding the gate model into a single current specification is outstanding work, recorded rather than done. Rewriting a governance document that is largely correct is lower value than proving the Breakdance write path.
 
-Status: SUPERSEDED IN PART | Date: 14 July 2026 | Owner: Dev Lead and Design Lead jointly
+Status: SUPERSEDED IN PART | Updated: 21 July 2026 | Owners: Project Manager, Designer and Dev Lead
 
 This was the governing specification for how the agency uses AI (Claude Design, Claude Code, Figma MCP, Novamira, Breakdance) to take a website from brief to launch. v0.1 was the pilot version: deliberately minimal, honest about what is unproven.
 
@@ -57,13 +57,13 @@ The detailed workflows, prompts, setup, and templates live in the sibling docume
 (2) Sitemap and content architecture . gate: PM + client sign-off
       |
       v
-(3) Visual direction / style ......... gate: client + Design Lead
+(3) Visual direction / style ......... gate: client, advised by Designer
       |
       v
-(4) Design system foundations ........ gate: Design Lead
+(4) Design system foundations ........ gate: Designer self-certification; PM records evidence
       |
       v
-(5) High-fidelity design (Figma) ..... gate: client + Design Lead
+(5) High-fidelity design (Figma) ..... gate: client, with Designer review
       |     AI assists; human decides
       v
 (6) Dev-ready handoff (contract) ..... gate: PM + Dev Lead accept
@@ -96,14 +96,15 @@ Every arrow crossing into a new stage is a go or no-go gate. AI can prepare evid
 
 ## 3. Responsibilities and decision rights
 
-Roles: PM (project manager), Design Lead, Designer, Dev Lead, Developer, QA, Client.
+Roles: PM (project manager), Designer, Dev Lead, Developer, QA, Client.
 
 | Decision | Who decides | AI role |
 |----------|-------------|---------|
 | Scope and requirements | PM with client | Draft and summarise only |
-| Visual direction | Client, advised by Design Lead | Generate options only |
-| Design system token values | Design Lead | Suggest, never finalise |
-| Design sign-off (dev-ready) | Design Lead and PM | Prepare handoff evidence |
+| Visual direction | Client, advised by Designer | Generate options only |
+| Design system token values | Designer | Suggest, never finalise |
+| Design-system readiness | Designer self-certifies; PM records the required evidence | Prepare checklist and handoff evidence |
+| Design sign-off (dev-ready) | Designer; Dev Lead accepts technical handoff | Prepare handoff evidence |
 | Enabling Novamira AI Abilities | Dev Lead only | None |
 | Accepting AI-generated build output | Designer and QA | Produce, never self-approve |
 | Accessibility compliance | QA and Dev Lead | Scan and flag only |
@@ -135,7 +136,7 @@ AI never gives final approval on anything. AI output is always a proposal.
 | Discovery | Signed brief; project intake (pilot artefact 01) |
 | Architecture | Sitemap and content map |
 | Visual direction | Style tiles, palette, type |
-| Design foundations | Figma Variables and DESIGN.md; design-system checklist (02) |
+| Design foundations | Figma Variables, canonical token contract, derived DESIGN.md and design-system checklist (02) |
 | High-fidelity design | Approved Figma frames (desktop, tablet, mobile) |
 | Handoff | Signed handover contract (04); dev acceptance |
 | Staging setup | Configured staging; AI context pack (05); MCP verified |
@@ -167,7 +168,7 @@ The authoritative system for each class of information, and when authority trans
 
 - **Requirements**: the signed brief, changed only by approved change request.
 - **Design (before build)**: the approved Figma file.
-- **Design tokens**: the version-controlled token specification and DESIGN.md.
+- **Design tokens**: approved Figma variables and the version-controlled canonical token contract. `DESIGN.md` is a derived explanation, not token authority.
 - **Production implementation**: Breakdance and the site database after launch.
 - **AI instructions**: the version-controlled project context (CLAUDE.md and the AI context pack).
 - **Decisions and exceptions**: the project decision log.

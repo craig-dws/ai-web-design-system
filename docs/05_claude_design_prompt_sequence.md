@@ -35,7 +35,7 @@ These principles apply to every prompt in the sequence. They are the difference 
 | Stage | Prompt (see 14_prompt_library.md) | Tools invoked | Human gate | Artefact produced |
 |-------|-----------------------------------|---------------|------------|-------------------|
 | 1. Creative research | Creative brief and research prompt | WebSearch, WebFetch | PM signs off on the brief and moodboard direction | Creative brief, references, art direction notes |
-| 2. Design-system scaffolding | (a) System-scaffolding prompt | `use_figma`, `get_variable_defs`, plus the `figma-create-design-system-rules` Agent Skill | Designer reviews token names, type scale, spacing scale, master components | Figma Local Variables collection, master components, `DESIGN.md` |
+| 2. Design-system scaffolding | (a) System-scaffolding prompt, then the two-pass Designer 05 prompt | Figma or Cowork design tools, `get_variable_defs`, read-only Figma inspection | Designer self-certifies the token names, type scale, spacing scale, master components and derived design record; PM records evidence | Figma Local Variables collection, master components, canonical token contract and client `DESIGN.md` |
 | 3. Homepage concept | (b) Initial website-design prompt | `use_figma`, `get_variable_defs`, `get_screenshot` | Designer and client review the homepage concept | Homepage design frame in Figma |
 | 4. Token extraction | (part of c and d) `get_variable_defs` extraction | `get_variable_defs`, `get_design_context` | Developer confirms tokens map cleanly to Breakdance global variables | Token export (JSON), Breakdance global variable mapping |
 | 5. Breakdance translation | (c) Figma-to-Breakdance translation prompt | `get_variable_defs`, `wp breakdance export_settings`, `wp breakdance import_settings`, `wp breakdance clear_cache`, `wp breakdance status` | Developer reviews the differential merge before import | Merged Breakdance settings JSON, applied global variables on staging |
@@ -49,7 +49,7 @@ Establish the creative direction before any design system exists. The output is 
 
 ### Stage 2. Design-system scaffolding
 
-Use prompt (a). The model acts as an Elite Design Systems Architect and creates a Figma design system: a Local Variables collection with semantic token names, a type scale in rem at base 16px, a 4pt and 8pt spacing scale, and master components built with Auto Layout. No hardcoded hex. It then runs the bundled `create_design_system_rules` skill to output a `DESIGN.md` that captures the rules in text. The designer reviews token naming and the component set before anything is designed on top of it. Get this stage right and every later stage inherits its discipline.
+Use prompt (a) to assist the Designer with the Figma design system: a Local Variables collection with semantic token names, a type scale in rem at base 16px, a 4pt and 8pt spacing scale, and master components built with Auto Layout. No hardcoded hex. The current Figma design-system-rules skill produces agent-specific rule files such as `CLAUDE.md` or `AGENTS.md`; it is not the client `DESIGN.md` authoring workflow. The Designer creates `DESIGN.md` with `prompts/designer/05_create_design_md.md`, first as a narrative draft after Gate 1a and then as a verified derived record before Gate 1b closes. See document 28. Get this stage right and every later stage inherits its discipline.
 
 ### Stage 3. Homepage concept
 

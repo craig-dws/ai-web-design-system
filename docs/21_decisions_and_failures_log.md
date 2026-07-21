@@ -1,7 +1,7 @@
 # AI Web Design System v0.1: Decisions and Failures Log
 
 Document 21 of the AI Web Design System v0.1 series.
-Audience: Agency PMs, Dev Lead, Design Lead, operator.
+Audience: Agency PMs, Designer, Dev Lead and operator.
 Status: Internal working document, maintained live during the pilot.
 
 ## Purpose
@@ -65,7 +65,7 @@ These three rows show the level of detail expected. They are illustrative.
 |----|------|-------|----------|---------------|-----|-------------|-----------------|-------|
 | DFL-001 | 2026-07-15 | Phase 3 | BDFIX | AI generated the homepage hero but the spacing tokens did not apply to the section padding, so it rendered with default padding | Breakdance section padding was set outside the global token layer, so the token merge did not reach it | +1.5 hrs lost | Manually corrected padding, then added a pre generation note that section level spacing must be mapped explicitly in the token map. Update the token translation prompt for v0.2 | Dev Lead |
 | DFL-002 | 2026-07-16 | Phase 2 | NOCTX | AI proposed a testimonials layout the client had already rejected in an earlier project | The pilot brief did not include prior client feedback, so the AI had no way to know | +0.5 hr lost | Added a "client no go list" to the Phase 1 brief template so prior rejections are always fed in | PM |
-| DFL-003 | 2026-07-18 | Phase 4 | TIMESAVE | AI generated three near identical service subpages from one approved pattern in minutes, all passing review with only minor copy tweaks | The pattern was well defined and the token layer was already locked from Phase 3 | -4 hrs saved | Confirmed that repeatable, pattern based pages are the strongest use case; recommend leading with these in v0.2 | Design Lead |
+| DFL-003 | 2026-07-18 | Phase 4 | TIMESAVE | AI generated three near identical service subpages from one approved pattern in minutes, all passing review with only minor copy tweaks | The pattern was well defined and the token layer was already locked from Phase 3 | -4 hrs saved | Confirmed that repeatable, pattern based pages are the strongest use case; recommend leading with these in v0.2 | Designer |
 
 ## Reviewing the log at the pilot review
 

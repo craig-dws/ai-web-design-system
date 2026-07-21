@@ -100,7 +100,8 @@ CONSTRAINTS:
 ## Before you build anything
 
 The prerequisites, in order: the **agency base kit exists** (token names), the
-**design system is approved** (Gate 1b), and the **handoff is accepted**
+**Designer has self-certified the design system and the PM has recorded the
+evidence** (Gate 1b), and the **handoff is accepted**
 (Gate 1d). Without token names there is no contract for the AI to check its own
 output against, and reviewing its output becomes guesswork.
 

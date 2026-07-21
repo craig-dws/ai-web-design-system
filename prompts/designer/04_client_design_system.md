@@ -1,6 +1,6 @@
 # Designer 04: The client's design system
 
-- **Who:** the designer, with the Design Lead approving.
+- **Who:** the Designer, with the PM recording the completed evidence.
 - **Tool:** Claude Cowork with the Figma plugin.
 - **How often:** once per client, after the agency base kit exists.
 
@@ -54,8 +54,8 @@ Rules:
 
 ## Before you call it done
 
-Run `05_design_system_checklist.md` in full and hand it to the **Design Lead for
-Gate 1b**. This is the most consequential approval in the system: everything
-downstream inherits it, and if the tokens are wrong or unnamed here the AI will
-emit wrong values on every page and no amount of later review fixes it
-economically. Do not start the homepage until that approval is recorded.
+Run `05_design_system_checklist.md` in full, complete Pass B of
+`05_create_design_md.md`, and sign the **Designer self-certification for Gate
+1b**. The PM records the checklist, `DESIGN.md` path and Figma evidence but does
+not decide whether the design is correct. Everything downstream inherits this
+foundation, so do not start the homepage until the record is complete.

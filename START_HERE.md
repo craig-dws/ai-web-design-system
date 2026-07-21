@@ -251,7 +251,7 @@ Rules:
 
 **Then, per client:** create an **Extended Collection** that inherits the base and overrides only colour, typography family and radius. Do not fork the base. That is the whole point of the model.
 
-**Gate:** the Design Lead approves the base kit before any client build uses it. This is the most consequential approval in the system.
+**Gate:** the Designer self-certifies the base kit before any client build uses it. The Dev Lead verifies that the naming and token structure can be extracted and mapped, and the PM records the evidence. This is the most consequential foundation check in the system.
 
 ### 3b. The Dev Lead mirrors it into Breakdance, in Claude Code
 

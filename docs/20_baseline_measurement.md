@@ -1,7 +1,7 @@
 # AI Web Design System v0.1: Baseline Measurement
 
 Document 20 of the AI Web Design System v0.1 series.
-Audience: Agency PMs, Dev Lead, Design Lead.
+Audience: Agency PMs, Designer and Dev Lead.
 Status: Internal working document.
 
 ## Purpose

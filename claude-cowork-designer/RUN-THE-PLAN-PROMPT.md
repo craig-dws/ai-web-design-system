@@ -1,25 +1,6 @@
-# Setup 02: Package the design-consistency skill for Claude Cowork (completed)
+# The prompt that generates the plan
 
-**Status:** Completed. The resulting package is in `claude-cowork-designer/`.
-Do not run this prompt for designer onboarding or routine package updates.
-
-For current use:
-
-- Designer installation: `claude-cowork-designer/INSTALL-FOR-DESIGNER.md`
-- Admin provisioning and maintenance: `claude-cowork-designer/SETUP.md`
-- Plan regeneration after a standard change:
-  `claude-cowork-designer/RUN-THE-PLAN-PROMPT.md`
-
-The original planning prompt is retained below only for a deliberate rebuild of
-the package strategy from scratch.
-
-Who: Dev Lead or a technical admin (the person who owns skill provisioning).
-Where: **Claude Cowork** (the agentic mode in the Claude desktop app), pointed at this repository folder.
-When: only when deliberately rebuilding the package strategy.
-
-Why this is retained: it records the prompt originally used to plan the agency-specific, self-contained Cowork skill. The designer works only in Cowork and never opens this repository, so Cowork cannot rely on repository paths or Claude Code skills.
-
-Run this in Cowork with this repository folder attached, then paste the block below.
+Run this in Claude Cowork with the AI Web Design System repository folder attached, when you want to regenerate or revise the plan behind this skill (for example after the standard or the base kit changes). It produces a plan and stops. It does not build anything until you approve.
 
 ```
 [ROLE: You are helping an agency package its design-consistency knowledge into a
@@ -97,5 +78,3 @@ CONSTRAINTS:
 OUTPUT: the written plan, then a short list of questions for me before you build
 anything.
 ```
-
-After the plan is approved, the same session can write the self-contained skill package (a `SKILL.md` plus any reference files it needs, all inside the skill folder). Keep that source in this repository so Git remains the single source of truth, then upload a copy into Cowork by the route the plan recommends.

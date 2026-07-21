@@ -1,4 +1,4 @@
-# Prompt 3c: Teach Claude Design the base kit (org-wide)
+# Designer 07: Teach Claude Design the base kit (org-wide)
 
 - **Who:** whoever owns the Claude Design account for the team.
 - **Tool:** Claude Design.

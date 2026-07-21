@@ -1,6 +1,6 @@
 # Project Constitution: AI Web Design System
 
-Version 0.3 | 17 July 2026 | Owners: Dev Lead and Design Lead
+Version 0.4 | 21 July 2026 | Owners: Project Manager and Dev Lead
 
 This file holds **constraints**. The detail lives in `docs/`. If this file and `docs/` disagree, raise it rather than guessing. If `docs/` and your training knowledge disagree, `docs/` wins.
 
@@ -95,7 +95,7 @@ Every rule below states which target it applies to. Nothing in this system may s
 | Designer | Figma (source of truth) plus Claude Cowork. **Never needs Claude Code or Git** |
 | Developer | Claude Code (CLI or VS Code) |
 
-Gates in full: `docs/12`. The most important and most-skipped gate is **design system approval** (Design Lead), because everything downstream inherits it.
+Gates in full: `docs/12`. The most important and most-skipped gate is **design system self-certification** by the Designer, with the PM recording the checklist and evidence, because everything downstream inherits it.
 
 ## Prohibitions
 

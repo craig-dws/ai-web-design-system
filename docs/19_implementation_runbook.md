@@ -1,7 +1,7 @@
 # AI Web Design System v0.1: Implementation Runbook (WordPress plus Breakdance)
 
 Document 19 of the AI Web Design System v0.1 series. This is the runbook for **Target A: WordPress plus Breakdance**. For **Target B: Astro plus Payload**, use [19b_astro_payload_implementation_runbook.md](19b_astro_payload_implementation_runbook.md) instead. The shared front-half (Steps up to token extraction) is common to both.
-Audience: Dev Lead and operator (technical). PMs and Design Lead for context.
+Audience: Dev Lead and operator (technical). PMs and Designer for context.
 Status: Internal working document.
 
 ## Purpose
@@ -165,7 +165,7 @@ Rollback: re import the exported settings file from the backup folder, or restor
 
 Generate the homepage in Breakdance via the project's bound layout-write capability (the native Breakdance 3.0 MCP first, Novamira only as fallback), mapped to the approved Figma frame and content outline. Then stop for full human review (Phase 3 gate in document 10).
 
-Verification: the homepage renders on staging; Dev Lead reviews the build line by line; Design Lead compares it to the Figma frame; PM confirms scope. Back up before accepting:
+Verification: the homepage renders on staging; Dev Lead reviews the build line by line; Designer compares it to the Figma frame; PM confirms scope. Back up before accepting:
 
 ```bash
 wp post meta get <homepage-id> _breakdance_data > pilot-artefacts/breakdance_global_settings_backup/homepage_data.txt

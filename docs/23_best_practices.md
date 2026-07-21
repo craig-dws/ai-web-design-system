@@ -1,6 +1,6 @@
 # 23. Best Practices: Web Design, Web Development, and AI for Web Dev
 
-Status: v0.1 | Date: 14 July 2026 | Owner: Design Lead and Dev Lead
+Status: v0.2 | Date: 21 July 2026 | Owners: Designer and Dev Lead
 
 A consolidated reference of the standards this system expects, written to apply to **both build targets** (WordPress with Breakdance, and Astro with Payload). The workflows (03, 04), the target docs (08, 08b), the QA checklist (pilot artefact 08), and the scorecard (11) enforce these. This document is the single place they are explained.
 

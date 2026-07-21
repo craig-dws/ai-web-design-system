@@ -1,39 +1,27 @@
-# Designer 01: Get set up
+# Designer 01: Orientation and training
 
-- **Who:** the designer, with the PM or Dev Lead doing the prep first.
+- **Who:** the designer, with the PM or Dev Lead preparing access and documents first.
 - **Tool:** Claude Cowork, in the Claude Desktop app. No terminal, no Git, no
   Claude Code.
-- **How often:** once, when she joins the system.
+- **How often:** once, after her Cowork skill and plugins are installed.
 
 ---
 
-## Part A. Prep, done by the PM or Dev Lead before she starts
+## Before starting
 
-She has **no repository**, so she cannot open anything at a `docs/...` path.
-Produce her documents and hand them over:
+Complete the installation steps in
+`claude-cowork-designer/INSTALL-FOR-DESIGNER.md`. Confirm the DiscoverWeb design
+standard skill, Design plugin and Figma plugin are available and working.
 
-1. From the repository root, run `bash designer-pack/assemble.sh`.
-2. Share the resulting `designer-pack/documents/` folder with her: her shared
-   Google Drive, or a folder on her machine.
-3. Re-run the script and re-share whenever a source document changes. The pack is
-   a snapshot, not a live link. A stale pack is worse than none, because she will
-   follow an old standard confidently.
+The designer has no repository access, so the PM or Dev Lead must also:
 
-She also installs, from claude.com/plugins, **in Cowork** (not Claude Code):
-
-- the **Design** plugin: `/design-critique`, `/accessibility-review`,
-  `/design-handoff`, `/design-system`, `/ux-copy`, `/user-research`,
-  `/research-synthesis`,
-- the **Figma** plugin, which needs a paid Figma Dev or Full seat. This is how
-  Claude works on her canvas (`figma-use`, `figma-generate-design`,
-  `figma-generate-library`).
-
-Confirm she is signed into **Claude Desktop on the Team seat** and works in the
-**Cowork** tab, never Code.
+1. Run `bash designer-pack/assemble.sh` from the repository root.
+2. Share the resulting `designer-pack/documents/` folder with her.
+3. Rebuild and re-share the pack whenever a source document changes.
 
 ---
 
-## Part B. Her prompt
+## Orientation prompt
 
 She pastes this into Cowork, with her documents folder attached or pointed at.
 
@@ -74,7 +62,7 @@ Rules for you:
 
 ---
 
-## Part C. Her first practice task
+## First practice task
 
 Half a day in Figma on tokens: Variables and collections, primitive versus
 semantic, aliasing, Extended Collections, and Auto Layout. Then run
@@ -85,7 +73,8 @@ hex or off-scale spacing value is a defect, not a detail.
 
 Stage 1, Design. She produces the visual direction, the design system, the
 homepage, the internal pages, and the dev-ready handoff. Her gates are **1a**
-visual direction (client), **1b design system (Design Lead, the important one)**,
+visual direction (client), **1b design system (Designer self-certification, with
+the PM recording the evidence, the important one)**,
 **1c** homepage (client), and **1d** handoff accepted (Dev Lead). She does not
 touch the build or staging.
 

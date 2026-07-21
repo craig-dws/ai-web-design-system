@@ -1,7 +1,7 @@
 # AI Web Design System v0.1: Implementation Runbook (Astro plus Payload)
 
 Document 19b of the AI Web Design System v0.1 series. This is the Astro plus Payload counterpart to 19 (the WordPress and Breakdance runbook).
-Audience: Dev Lead and operator (technical). PMs and Design Lead for context.
+Audience: Dev Lead and operator (technical). PMs and Designer for context.
 Status: Internal working document.
 
 ## Purpose
@@ -120,7 +120,7 @@ Verification: token names are identical across Figma, the Tailwind or CSS layer,
 - **Wire the homepage** to fetch content from Payload and render the Blocks array to the matching components.
 - **Stop for full human review** (the Phase 3 gate in document 10).
 
-Verification: the homepage renders locally, the screenshot diff against Figma is clean, and the Dev Lead and Design Lead sign off. Rollback: revert the commit; the previous build is intact in Git.
+Verification: the homepage renders locally, the screenshot diff against Figma is clean, and the Dev Lead and Designer sign off. Rollback: revert the commit; the previous build is intact in Git.
 
 ## Step 10: Generate subpages
 

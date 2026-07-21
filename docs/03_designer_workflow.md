@@ -8,6 +8,7 @@ Companion documents:
 - `07_figma_mcp_setup_and_handoff_contract.md` (MCP setup and the formal handoff contract)
 - `08_breakdance_and_wordpress_plugin_stack.md` (Target A build platform and its limits)
 - `08b_astro_payload_build_target.md` (Target B build platform and its limits)
+- `28_design_md_workflow.md` (the client DESIGN.md ownership, two-pass workflow and source boundaries)
 
 ## Principle
 
@@ -56,9 +57,9 @@ AI may assist: generate variation options, draft rationale copy, and mock placeh
 
 Human must decide: which direction is presented, and the reading of client feedback. Sign-off is a human-to-client step and is never delegated to AI.
 
-### Step 4: High-fidelity layouts with Variables and Auto Layout
+### Step 4: Design-system foundations with Variables and Auto Layout
 
-1. Build the approved direction into full page layouts at desktop width first.
+1. Translate the approved direction into the design-system foundations before building a full page.
 2. Use Figma Variables for every design decision that should become a token: colour, typography (family, size, weight, line height), spacing scale, radius, and effects. Do not hardcode values that belong in a token.
 3. Use Auto Layout on every frame that will stack, wrap, or reflow. This mirrors how both build targets lay out (Section, Div and Columns on Target A; flex and grid written in code on Target B) and makes the developer mapping direct.
 4. Build reusable components with variants for anything that repeats (buttons, cards, form fields, navigation items). Name them clearly and consistently.
@@ -91,17 +92,28 @@ AI may assist: generate a contrast report, suggest label text, and list states t
 
 Human must decide: whether a borderline contrast result is acceptable, and how error and empty states read to a real user.
 
-### Step 7: Prepare design-system artefacts and component docs
+### Step 7: Prepare design-system artefacts, DESIGN.md and Gate 1b
 
 1. **Assemble a design-system page or file section**: the token list, the type scale, the spacing scale, and the component library with variant names.
 2. **Document each reusable component**: purpose, variants, states, and any content-length assumptions.
 3. Confirm token names are the ones developers will use in the build target's token layer, so mapping is one to one. The names must be identical on both sides; that naming bridge is what lets the AI emit a token reference instead of a raw value.
+4. Complete Pass B of `prompts/designer/05_create_design_md.md`. Verify the client `DESIGN.md` against Figma and the canonical token contract, remove every pending marker, and complete the Gate 1b self-certification. The PM records the evidence but does not approve design correctness.
 
 AI may assist: draft component documentation and produce a token table from the Variables.
 
 Human must decide: naming conventions and which components are promoted to the shared library.
 
-### Step 8: Asset export
+### Step 8: Build the approved pages
+
+1. Build the homepage at full fidelity from the self-certified system. Obtain written client approval at Gate 1c.
+2. Build the internal pages by composing the same approved tokens, components and responsive rules. Do not create a second visual direction while assembling pages.
+3. If page work exposes a missing or incorrect system decision, update Figma and `DESIGN.md`, rerun the affected Gate 1b checks, and record the change before continuing.
+
+AI may assist: assemble layouts from approved components, test realistic content lengths and flag deviations from the system.
+
+Human must decide: hierarchy, composition and whether any proposed system change is accepted.
+
+### Step 9: Asset export
 
 1. Export images at the correct dimensions and at 1x and 2x where needed.
 2. Prefer SVG for icons and logos, and modern raster formats (WebP or AVIF) for photography, with sensible fallbacks noted.
@@ -112,17 +124,17 @@ AI may assist: list required assets and flag missing exports.
 
 Human must decide: final crop, art direction, and image quality.
 
-### Step 9: Mark frames developer-ready
+### Step 10: Mark frames developer-ready
 
 1. **Apply a clear status label to every frame**: for example Ready for Dev, In Progress, or Needs Review.
-2. Only frames that pass the self-check (Step 10) may be labelled Ready for Dev.
+2. Only frames that pass the self-check (Step 11) may be labelled Ready for Dev.
 3. Confirm the file satisfies the Designer-to-Developer Handoff Contract in `07_figma_mcp_setup_and_handoff_contract.md`.
 
 AI may assist: check that all pages have status labels and flag frames missing one.
 
 Human must decide: the final Ready for Dev call.
 
-### Step 10: Self-check before handoff
+### Step 11: Self-check before handoff
 
 Run the handoff checklist at the end of this document. Do not hand off a file that fails any mandatory item.
 
@@ -130,7 +142,7 @@ AI may assist: run an automated pass of the checklist and report gaps.
 
 Human must decide: sign the file off for handoff.
 
-### Step 11: Answer developer questions
+### Step 12: Answer developer questions
 
 1. Monitor the open-questions log and the deviation register during the build.
 2. **Answer promptly**. If a developer proposes a deviation, decide whether to accept it, adjust the design, or reject it.
@@ -140,7 +152,7 @@ AI may assist: draft answers and summarise the deviation register.
 
 Human must decide: every design deviation.
 
-### Step 12: Review the built site
+### Step 13: Review the built site
 
 1. Review the staging build against the Figma file at all three breakpoints.
 2. Check interaction states, focus visibility, form behaviour, and accessibility in the browser, not only in Figma.
@@ -203,6 +215,8 @@ Mark each item before labelling the file Ready for Dev.
 - [ ] Accessible names and labels noted for icons, buttons, and fields
 - [ ] Reduced-motion behaviour noted for any animation
 - [ ] Design-system page complete: tokens, type scale, spacing scale, component library
+- [ ] Client DESIGN.md verified against Figma and the canonical token contract, with no pending markers
+- [ ] Gate 1b Designer self-certification complete and PM evidence record present
 - [ ] Component docs written (purpose, variants, states, content-length assumptions)
 - [ ] Assets exported at correct sizes and formats, named predictably
 - [ ] Reusable versus page-specific components flagged

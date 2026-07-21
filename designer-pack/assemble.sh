@@ -33,6 +33,9 @@ copy "docs/pilot-artefacts/02_design_system_checklist.md"            "05_design_
 copy "docs/pilot-artefacts/04_design_to_development_handover_contract.md" "06_handover_contract.md"
 copy ".claude/skills/web-design/SKILL.md"                            "07_web_design_principles.md"
 copy ".claude/skills/anti-ai-design-checklist/SKILL.md"              "08_anti_ai_design_checklist.md"
+copy "docs/28_design_md_workflow.md"                                 "09_design_md_workflow.md"
+copy "docs/templates/DESIGN.template.md"                             "10_DESIGN_TEMPLATE.md"
+copy "prompts/designer/05_create_design_md.md"                       "11_CREATE_DESIGN_MD_PROMPT.md"
 cp "$root/designer-pack/README.md" "$out/00_START_HERE.md"
 echo "  added 00_START_HERE.md"
 

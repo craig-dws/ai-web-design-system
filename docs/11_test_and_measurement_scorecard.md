@@ -1,7 +1,7 @@
 # AI Web Design System v0.1: Test and Measurement Scorecard
 
 Document 11 of the AI Web Design System v0.1 series.
-Audience: Agency PMs, Dev Lead, Design Lead.
+Audience: Agency PMs, Designer and Dev Lead.
 Status: Internal working document.
 
 ## Purpose
@@ -11,7 +11,7 @@ This scorecard is the instrument that decides whether the AI assisted pipeline a
 ## How to use this document
 
 1. **Establish the baseline first using document 20**. Every metric here compares against a baseline figure.
-2. Agree the target and the pass, watch and fail bands with the PM, Dev Lead and Design Lead before the pilot starts.
+2. Agree the target and the pass, watch and fail bands with the PM, Dev Lead and Designer before the pilot starts.
 3. **Record actuals during and after the pilot**. Populate the summary template at the end.
 4. **Read the whole scorecard together**. A single green metric does not prove success; a cluster of red or watch results in defects, rework or satisfaction outweighs a speed gain.
 

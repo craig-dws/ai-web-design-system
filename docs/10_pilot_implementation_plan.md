@@ -1,7 +1,7 @@
 # AI Web Design System v0.1: Pilot Implementation Plan
 
 Document 10 of the AI Web Design System v0.1 series.
-Audience: Agency PMs, Dev Lead, Design Lead.
+Audience: Agency PMs, Designer and Dev Lead.
 Status: Internal working document.
 
 ## Purpose
@@ -45,7 +45,7 @@ If no external low risk client is available, run the pilot on an agency marketin
 3. Baseline captured per document 20 (averages from 3 to 5 recent comparable projects).
 4. Scorecard prepared per document 11 with targets and pass, watch and fail bands agreed.
 5. Pilot artefacts folder created and populated (see below).
-6. A named operator, Design Lead, Dev Lead and PM assigned, and a review slot booked for each phase gate.
+6. A named operator, Designer, Dev Lead and PM assigned, and a review slot booked for each phase gate.
 
 ## Pilot artefacts folder
 
@@ -73,7 +73,7 @@ Each phase has an objective, entry criteria, activities, human gates, exit crite
 - **Objective**: Use AI to accelerate discovery, sitemap and content planning. No design output, no build output.
 - **Entry criteria**: All prerequisites complete. Pilot candidate confirmed.
 - **Activities**: Competitor and reference research, sitemap draft, page by page content outline, component inventory, accessibility and performance targets defined.
-- **Human gates**: Design Lead and PM sign off the sitemap and content plan. Dev Lead confirms the component inventory is buildable in Breakdance.
+- **Human gates**: PM signs off the sitemap and content plan after Designer review. Dev Lead confirms the component inventory is buildable in Breakdance.
 - **Exit criteria**: Approved sitemap, approved content plan, approved component inventory recorded in the artefacts folder.
 - **Rollback**: None required; this phase produces documents only. If quality is poor, revert to fully manual planning and record the reason in document 21.
 
@@ -82,7 +82,7 @@ Each phase has an objective, entry criteria, activities, human gates, exit crite
 - **Objective**: Designers use Claude assisted previews to explore layout options; developers use Claude Code to extract Figma tokens and produce a build plan. No writes to WordPress yet.
 - **Entry criteria**: Phase 1 exit met. Figma file exists with named frames per the convention.
 - **Activities**: Generate design previews for review; scope `get_design_context` to individual frames (never a whole page) to avoid token overflow; extract tokens; draft the token to Breakdance mapping; produce the build plan.
-- **Human gates**: Design Lead approves the visual direction. Dev Lead approves the token mapping and build plan.
+- **Human gates**: Client approves the visual direction advised by the Designer. The Designer self-certifies the design system, the PM records the evidence, and the Dev Lead approves the token mapping and build plan.
 - **Exit criteria**: Approved token map and build plan in the artefacts folder. Zero unresolved token conflicts.
 - **Rollback**: Discard AI previews and proceed with manual design. No system state changes to undo.
 
@@ -91,7 +91,7 @@ Each phase has an objective, entry criteria, activities, human gates, exit crite
 - **Objective**: First controlled write to staging. AI generates Breakdance global settings (the token layer) and builds a single page (the homepage).
 - **Entry criteria**: Phase 2 exit met. `_breakdance_data` postmeta and current global settings backed up to the artefacts folder.
 - **Activities**: Export current Breakdance settings; apply a differential merge of the new tokens; import; run `wp breakdance clear_cache`; confirm status; generate the homepage; full human review of both settings and page.
-- **Human gates**: Dev Lead reviews every settings change line by line before acceptance. Design Lead reviews the rendered homepage against the Figma frame. PM confirms scope adherence. No change is accepted without this triple sign off.
+- **Human gates**: Dev Lead reviews every settings change line by line before acceptance. Designer reviews the rendered homepage against the Figma frame. PM confirms scope adherence. No change is accepted without this three-role sign-off.
 - **Exit criteria**: Homepage matches the approved design within agreed tolerance, global settings verified, no console or accessibility regressions on the page.
 - **Rollback**: Restore global settings from the backup, restore `_breakdance_data` postmeta, run `wp breakdance clear_cache`, and rebuild the homepage manually. Record the trigger in document 21.
 
@@ -100,7 +100,7 @@ Each phase has an objective, entry criteria, activities, human gates, exit crite
 - **Objective**: Scale generation to the remaining pages, keeping human review on every page.
 - **Entry criteria**: Phase 3 exit met and stable.
 - **Activities**: Generate subpages one at a time or in small batches; back up before each batch; review each page against its Figma frame and content outline; run QA and accessibility per page.
-- **Human gates**: Design Lead and Dev Lead review each subpage before acceptance. PM tracks effort and rework against the scorecard.
+- **Human gates**: Designer and Dev Lead review each subpage before acceptance. PM tracks effort and rework against the scorecard.
 - **Exit criteria**: All pages built, reviewed and accepted; full site QA and accessibility pass complete; scorecard populated.
 - **Rollback**: Restore the affected page or batch from backup, run `wp breakdance clear_cache`, and rebuild manually. Record in document 21.
 
@@ -124,7 +124,7 @@ Compress to 4 weeks only if the site is at the small end (5 pages) and the team 
 | Role | Responsibility in the pilot |
 |------|------------------------------|
 | PM | Owns the plan, the timeline, scorecard tracking and the pilot review; guards scope |
-| Design Lead | Owns design direction, Figma frames and visual review at every gate |
+| Designer | Owns design direction, Figma frames, the client DESIGN.md and visual review at every gate |
 | Dev Lead | Owns tooling, all WordPress and Breakdance writes, backups and technical review |
 | Operator | Runs Claude Code sessions, prompts and captures outputs into artefacts |
 

@@ -32,10 +32,11 @@ Her job, in order:
    (**Gate 1a: visual direction approved by the client.**)
 4. **Build the design system.** The Figma Variable collections (primitive,
    semantic, component), the type and spacing scales, and the components with
-   their states. This is the real work.
-   (**Gate 1b: the Design Lead approves the design system.** This is the most
-   important gate in the whole process, because everything downstream inherits
-   it.)
+   their states. Draft `DESIGN.md` after Gate 1a, then verify and finish it from
+   the completed Figma system.
+   (**Gate 1b: the Designer self-certifies the design system and the PM records
+   the checklist and evidence.** This is the most important gate in the whole
+   process, because everything downstream inherits it.)
 5. **Build the homepage at full fidelity**, composed from the system.
    (**Gate 1c: homepage approved by the client.**)
 6. **Build the internal pages.** These should be fast, because they are assembly
@@ -65,14 +66,17 @@ Two rules that matter most:
 | `06_handover_contract.md` | The Gate 1d contract the file must satisfy before handoff |
 | `07_web_design_principles.md` | Our design point of view, and the quality floor |
 | `08_anti_ai_design_checklist.md` | The five constraints that stop work looking AI-generated |
+| `09_design_md_workflow.md` | Ownership, timing, source boundaries, required content and exclusions for DESIGN.md |
+| `10_DESIGN_TEMPLATE.md` | The client-level DESIGN.md template. The PM copies it into the project; the Designer completes it |
+| `11_CREATE_DESIGN_MD_PROMPT.md` | Guided two-pass Cowork prompt for drafting and verifying DESIGN.md |
 
 ## Two honest notes
 
-1. **The last two documents are reading, not tools.** They are written as Claude
-   Code skills for the developer's environment. In Cowork she cannot invoke them
-   as skills, but the guidance in them is ours and applies to her work. In Cowork
-   she uses Anthropic's design plugin instead: `/design-critique`,
-   `/accessibility-review`, `/design-handoff`, `/design-system`, `/ux-copy`.
+1. **Documents 07 and 08 are reference copies.** The installable Cowork version
+   of the agency checks is the DiscoverWeb design-standard skill in
+   `claude-cowork-designer/`. It uses these standards and works alongside
+   Anthropic's Design plugin commands such as `/design-critique`,
+   `/accessibility-review`, `/design-handoff`, `/design-system` and `/ux-copy`.
 2. **The design is the same for both build targets.** Whether the site is built
    in WordPress plus Breakdance or Astro plus Payload, the design system, tokens,
    components and states do not change. The workflow document sets out the build

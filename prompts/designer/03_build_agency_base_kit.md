@@ -1,6 +1,6 @@
 # Prompt 3a: Build the agency base kit (designer)
 
-- **Who:** the designer, with the Design Lead approving.
+- **Who:** the Designer, with the Dev Lead checking technical extractability and the PM recording the evidence.
 - **Tool:** Claude Cowork, with the Figma plugin installed.
 - **How often:** once, to build the shared base kit. Do it on a duplicate file
   first; `use_figma` is beta.
@@ -60,5 +60,7 @@ Rules:
 and overrides only colour, typography family and radius. Do not fork the base.
 That is the whole point of the model.
 
-**Gate:** the Design Lead approves the base kit before any client build uses it.
-This is the most consequential approval in the system.
+**Gate:** the Designer self-certifies the base kit before any client build uses
+it. The Dev Lead confirms that the naming and token structure can be extracted
+and mapped, and the PM records the evidence. This is the most consequential
+foundation check in the system.

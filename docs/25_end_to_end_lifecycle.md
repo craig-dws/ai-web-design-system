@@ -1,6 +1,6 @@
 # 25. End-to-End Lifecycle: PM, Design, Develop
 
-Status: v0.2 | Date: 15 July 2026 | Owner: Dev Lead and Design Lead | Audience: the whole team
+Status: v0.3 | Date: 21 July 2026 | Owners: Project Manager, Designer and Dev Lead | Audience: the whole team
 
 The high-level life cycle of a site build, what AI does at each stage, who approves what, and where changes happen. This is the team-facing map. The target-specific detail lives in 08 (Breakdance), 08b (Astro plus Payload), and the runbooks (19, 19b).
 
@@ -43,7 +43,7 @@ STAGE 0  PROJECT MANAGEMENT (set up the job)
 STAGE 1  DESIGN (build the system, then the pages)
   concepts -> design system (tokens + components) -> homepage -> internal pages
   GATE 1a: visual direction approved (client)
-  GATE 1b: design system approved (Design Lead)   <-- the important one
+  GATE 1b: design system self-certified (Designer); evidence recorded (PM)   <-- the important one
   GATE 1c: homepage approved (client)
   GATE 1d: dev-ready handoff accepted (Dev Lead)
                     |
@@ -99,7 +99,7 @@ The designer builds the system in **Figma**: the Variables collections (primitiv
 
 **AI helps here** via Cowork plus the Figma skills (`figma-generate-library`, `figma-use`) and `/design-system` to audit for hardcoded values and naming drift.
 
-**Gate 1b: the Design Lead approves the design system.** This is the most important gate in the whole process and the easiest to skip. Everything downstream inherits it. If the tokens are wrong or unnamed here, the AI will emit wrong values on every page and no amount of later review will fix it economically.
+**Gate 1b: the Designer self-certifies the design system and the PM records the checklist and evidence.** This is the most important gate in the whole process and the easiest to skip. The Designer completes and verifies the client `DESIGN.md` as a derived design record. The PM checks completeness, not design correctness. Everything downstream inherits this foundation. If the tokens are wrong or unnamed here, the AI will emit wrong values on every page and no amount of later review will fix it economically.
 
 ### 1.3 Homepage, then internal pages
 

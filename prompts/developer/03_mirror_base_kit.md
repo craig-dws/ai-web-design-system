@@ -2,7 +2,7 @@
 
 - **Who:** the Dev Lead.
 - **Tool:** Claude Code.
-- **How often:** once per build target, after the base kit is approved (Gate 1b).
+- **How often:** once per build target, after the Designer has self-certified the base kit and the PM has recorded the Gate 1b evidence.
 
 The naming bridge is the whole game: the same token names must exist in Figma and
 in the build target, so the agent emits a token reference instead of a literal.

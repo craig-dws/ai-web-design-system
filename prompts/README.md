@@ -22,11 +22,10 @@ prompts/
 it has already been run.** Everyone else inherits the result by cloning the
 repository. Nobody re-runs it.
 
-`02` produces a plan to package our agency-specific design-consistency knowledge
-into a self-contained skill the non-technical designer can use in Cowork, since
-Cowork does not read this repository's `.claude/skills`. Run it, approve the plan,
-build the self-contained skill, keep the source here, and upload a copy to Cowork.
-Re-run when the design standard or the base kit changes.
+`02` has also been completed. Its output is in `claude-cowork-designer/`. Keep
+the prompt only as the historical planning route for a deliberate rebuild. For
+installation, provisioning and routine maintenance, follow the instructions in
+that package instead.
 
 ## pm/ (Project Manager)
 
@@ -46,12 +45,13 @@ run `bash designer-pack/assemble.sh` and share `designer-pack/documents/`.
 
 | File | When |
 |------|------|
-| `01_designer_setup.md` | Once, when joining. Includes the prep the PM does first |
+| `01_designer_onboarding.md` | Once, after Cowork installation. Orientation and initial training |
 | `02_concept_directions.md` | Start of a project. Visual directions in Claude Design. **Gate 1a** |
 | `03_build_agency_base_kit.md` | **Once, ever.** The shared agency base kit |
 | `04_client_design_system.md` | Once per client. An Extended Collection, never a fork. **Gate 1b** |
-| `05_handoff_self_check.md` | Before every handoff. **Gate 1d** |
-| `06_teach_claude_design.md` | Once, and re-run whenever the base kit changes |
+| `05_create_design_md.md` | Two passes per client: after **Gate 1a**, then before **Gate 1b** closes |
+| `06_handoff_self_check.md` | Before every handoff. **Gate 1d** |
+| `07_teach_claude_design.md` | Once, and re-run whenever the base kit changes |
 
 ## developer/ (Developer)
 

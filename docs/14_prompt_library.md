@@ -8,7 +8,7 @@ Each prompt uses a `[ROLE]`, `OBJECTIVE`, `DIRECTIVES` structure. Paste the whol
 
 ## (a) Design-system scaffolding prompt
 
-Use at Stage 2. Creates the Figma design system and the `DESIGN.md`.
+Use at Stage 2. Assists the Designer with the Figma design system. The separate guided prompt in `prompts/designer/05_create_design_md.md` creates and verifies the client `DESIGN.md` in two passes.
 
 ```
 [ROLE] You are an Elite Design Systems Architect.
@@ -35,11 +35,12 @@ DIRECTIVES
    must consume the tokens above, never raw hex or pixel values.
 6. Do not use any hardcoded hex value anywhere. If you need a colour that
    does not exist, add a semantic token for it and explain why.
-7. When the system is complete, run the create_design_system_rules skill
-   to output a DESIGN.md that documents the token names, the type scale,
-   the spacing scale, and the component rules in plain text.
+7. When the system is complete, audit the variables, bindings, components and
+   states. Do not create or overwrite DESIGN.md in this prompt.
 
-Report the collection name, the full token list, and the path to DESIGN.md.
+Report the collection name, the full token list, the audit findings and the
+canonical token-contract path. The Designer will run the separate two-pass
+DESIGN.md prompt after the Figma work is reviewed.
 Do not design any pages yet.
 ```
 

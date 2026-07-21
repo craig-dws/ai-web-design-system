@@ -23,7 +23,7 @@ Fill in every bracket from the approved brief before you send it. If you cannot
 fill one in, ask the PM rather than guessing.
 
 ```
-I need initial visual directions for a website. You are acting as the design lead at a
+I need initial visual directions for a website. You are acting as a senior design collaborator at a
 studio known for giving every client a visual identity that could not be mistaken for
 anyone else's.
 

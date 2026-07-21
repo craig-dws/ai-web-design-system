@@ -1,6 +1,6 @@
 # 22. Design-System Reuse Model
 
-Status: v0.1 | Date: 14 July 2026 | Owner: Design Lead and Dev Lead jointly
+Status: v0.2 | Date: 21 July 2026 | Owners: Designer and Dev Lead
 
 This document answers a question the rest of v0.1 left implicit: does the agency build a new design system for every client, or maintain one system and re-skin it per client? It sets the model both build targets (Breakdance and Astro plus Payload) inherit.
 
