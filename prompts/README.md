@@ -16,10 +16,17 @@ prompts/
 | File | Who | Tool |
 |------|-----|------|
 | `01_stand_up_system.md` | Dev Lead | Claude Code |
+| `02_package_design_skills_for_cowork.md` | Dev Lead or technical admin | Claude Cowork |
 
-This builds the shared system and commits it. **It is not a per-person step and
+`01` builds the shared system and commits it. **It is not a per-person step and
 it has already been run.** Everyone else inherits the result by cloning the
 repository. Nobody re-runs it.
+
+`02` produces a plan to package our agency-specific design-consistency knowledge
+into a self-contained skill the non-technical designer can use in Cowork, since
+Cowork does not read this repository's `.claude/skills`. Run it, approve the plan,
+build the self-contained skill, keep the source here, and upload a copy to Cowork.
+Re-run when the design standard or the base kit changes.
 
 ## pm/ (Project Manager)
 
