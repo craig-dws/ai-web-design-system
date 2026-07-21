@@ -1,14 +1,14 @@
 # 18. Novamira: A Decisive Recommendation
 
-Status: v0.1 | Date: 14 July 2026 | Owner: Dev Lead | Decision type: adopt with strict constraints
+Status: v0.1 | Date: 14 July 2026 | Owner: Dev Lead | Decision type: on hold, pending the native path
 
-## The decision
+> **SUPERSEDED 18 July 2026: do not buy Novamira yet. Breakdance 3.0 shipped a native, first-party MCP that writes layouts (see 24 and 26).** If the native path passes our write test, Novamira is not needed for layout writes at all. Novamira is now the **fallback**, tested and bought only if the native 3.0 MCP fails. Everything below stands as the guardrail set for Novamira *if we end up using it*, but the purchase and adoption decision is on hold. Do not read the "adopt Novamira Pro" wording that follows as a live instruction.
 
-Adopt **Novamira Pro** for the pilot, on staging only, wrapped in the guardrails below. Do not put it near a production client site. Re-evaluate at pilot close before treating Novamira as a standing agency dependency.
+## The decision (now conditional on the native path failing)
 
-**Buy Pro, not free core.** The free-first strategy is SUPERSEDED (17 July 2026). It was written while Bricks was still a live option, on the reasoning that Bricks' own MCP might remove the need for Novamira. Once Breakdance was chosen, the Pro Breakdance specialization became the specific thing that must be tested, and free core cannot test it. See 24.
+Adopt **Novamira Pro** for the pilot, on staging only, wrapped in the guardrails below, **only if the native Breakdance 3.0 MCP fails the write test**. Do not put it near a production client site. Do not buy it before the native path has been tested and found wanting.
 
-This is a qualified yes, not an endorsement to build the agency's future on it today.
+This was a qualified yes on 17 July, when Breakdance had no sanctioned layout path. Breakdance 3.0 changed that on 18 July. The guardrails below remain correct for Novamira; the timing of any purchase does not.
 
 ## Why yes
 
@@ -44,7 +44,7 @@ These are the non-negotiable conditions under which we use Novamira. They are al
 
 **SUPERSEDED (17 July 2026): the previous text said start on free core and defer Pro until after the pilot.**
 
-**Buy Novamira Pro (EUR 129 per year Agency, 1,000 sites) before the write test.** Free core's eight abilities prove a generic PHP write; they do not prove the **Pro Breakdance specialization**, which is the only thing that matters for Target A. Testing free core and concluding anything about Pro would be testing the wrong product. At EUR 129 per year the cost is not worth deliberating over relative to the decision it informs.
+**SUPERSEDED 18 July 2026. Do not buy Novamira Pro before the write test.** The native Breakdance 3.0 MCP is tested first (see the banner at the top and doc 24). If Novamira does end up being the fallback, then this holds: buy Pro (EUR 129 per year Agency, 1,000 sites), not free core, because free core's eight abilities prove only a generic PHP write, not the Pro Breakdance specialization that would be the reason to use it at all. But that purchase happens only after the native path has failed the test, not before.
 
 Persistent memory remains a separate question, deferred to the scorecard (11). We are buying Pro for the specialization, not the memory.
 

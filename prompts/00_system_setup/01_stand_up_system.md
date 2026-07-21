@@ -14,7 +14,7 @@ Have these to hand, because it will stop and ask:
 - A Figma account with a Professional Dev seat.
 - Claude Team plan admin access (for org-wide plugin provisioning).
 - Your LiteSpeed staging server details and a Breakdance Pro licence key.
-- Novamira Pro (bought only when you reach the Breakdance write test, not before).
+- No third-party bridge yet. Breakdance 3.0 (July 2026, beta) has a native first-party MCP; test it first. Novamira Pro or Respira are the fallback, bought only if the native path fails the write test.
 
 ```
 [ROLE: Senior DevOps Engineer standing up an internal AI web design system]
@@ -39,9 +39,10 @@ READ FIRST, in this order, and treat them as the specification:
 
 KEY DECISIONS ALREADY MADE. Do not relitigate them:
 - Target A is WordPress plus Breakdance. Bricks was considered and declined.
-- Breakdance has NO sanctioned programmatic layout path. Any layout write is
-  reverse-engineering via a third party. Trial Novamira Pro before Respira. Keep the
-  layout-write step swappable: skills call a CAPABILITY, never a vendor tool name.
+- Breakdance 3.0 (July 2026, beta) ships a native first-party MCP that writes layouts.
+  Test that FIRST. Third parties (Novamira, Respira) are the fallback only if it fails; on
+  2.x there is no sanctioned path. Keep the layout-write step swappable: skills call a
+  CAPABILITY, never a vendor tool name. See docs 24 and 26.
 - The designer never uses Claude Code. She uses Claude Cowork plus Figma.
 - Content is a pluggable input from any source (client, ZilvaEdge, or placeholder). It never blocks a build. Design against real content where you have it; placeholder is fine otherwise.
 - Adopt Anthropic's plugins rather than rebuilding them.

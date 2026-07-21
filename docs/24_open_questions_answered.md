@@ -6,9 +6,21 @@ Answers to the open question set, each with a decision and a confidence note. Fa
 
 **Read the three headline findings first.** They change decisions already made in this system.
 
+## LATEST DEVELOPMENT (18 July 2026): Breakdance 3.0 has a native MCP
+
+**This is the most important update since the Breakdance decision, and it may resolve Target A's central risk.** Breakdance 3.0 Beta 1 (announced July 2026) ships a **first-party MCP** (Settings then Agents & MCP) that writes layouts: pages, headers, footers, templates, forms, loops, Global Blocks. The agent writes HTML and CSS and Breakdance converts it to native, editable elements. The write path is finally vendor-owned, not reverse-engineered.
+
+**What it changes:**
+
+1. **It undercuts Headline finding 1 below.** That finding (Bricks has first-party MCP, Breakdance does not) was true on 15 July and is now false. Breakdance has one too. The last real Bricks advantage is gone, which only strengthens the decision to stay on Breakdance.
+2. **Test the native 3.0 MCP FIRST, before buying anything.** It is official, likely free or first-party, and if it works it removes the need for Novamira or Respira for layout writes entirely.
+3. **Hold the Novamira Pro purchase.** See the revised decision below.
+
+**What it does not change yet:** it is **Beta 1, days old, with placeholder documentation, no published requirements, undecided licensing, and no independent testing.** Do not rewrite the system around it or assume it works. It is a promising unproven capability, tested the same way everything else is: on a disposable staging site, against the acceptance criteria, before it touches client work. Full facts in 26.
+
 ## Headline findings
 
-1. **Bricks now has first-party AI tooling and Breakdance does not.** Bricks 2.4 (beta, 15 July 2026) ships a native MCP and Abilities layer explicitly targeting Claude Code, plus a published JSON schema written for AI tools to read and write Bricks content. Breakdance has no equivalent. This is a genuine fork in the road for Target A.
+1. **Bricks now has first-party AI tooling and Breakdance does not.** Bricks 2.4 (beta, 15 July 2026) ships a native MCP and Abilities layer explicitly targeting Claude Code, plus a published JSON schema written for AI tools to read and write Bricks content. **SUPERSEDED 18 July 2026: Breakdance 3.0 now ships a native MCP too (see the update above), so this is no longer a Bricks advantage.**
 2. **Rank Math ships an official MCP server**, built on the WordPress mcp-adapter, with documented Claude Code setup. That settles the SEO plugin question and validates mcp-adapter as the strategic direction.
 3. **Claude Cowork is real and is the answer for the non-technical designer.** It is the agentic Claude with no terminal, and it hosts Anthropic's official Design skills. Claude Design, by contrast, has no native Figma export, which changes the assumed designer flow.
 
@@ -41,7 +53,7 @@ Answers to the open question set, each with a decision and a confidence note. Fa
 
 **Decision (SUPERSEDED 17 July 2026): start on free core, do not buy Pro yet.** This was written while Bricks 2.4 was still a live option, on the reasoning that Bricks' own MCP might remove the need for Novamira entirely.
 
-**Current decision: buy Novamira Pro for the write test.** Once Breakdance was chosen (Section C), that reasoning expired. Breakdance has no sanctioned layout path, so the Pro Breakdance specialization is the specific thing that has to be tested, and at EUR 129 per year for 1,000 sites the cost is not a factor worth deliberating over. Buy it, run the 15-minute write test, and let the result decide whether it stays.
+**SUPERSEDED again (18 July 2026): do not buy Novamira Pro yet. Test the native Breakdance 3.0 MCP first.** The 17 July decision to buy Pro rested on Breakdance having no sanctioned layout path. Breakdance 3.0 now provides one, first-party and likely free. So the sequence inverts: run the write test against the **native 3.0 MCP** first. If it passes, we never need Novamira Pro for layout writes and we save the licence and the third-party dependency. Only if the native path fails our test does Novamira Pro (or Respira) come back into play as the fallback, and only then do we buy it. The cost was never the issue; buying a tool we may not need is.
 
 ---
 
@@ -143,7 +155,9 @@ Two third-party MCP servers can write Breakdance layouts. **Both reverse-enginee
 
 **Decision: trial Novamira Pro first.** It is far cheaper at agency scale, makes the explicit native-editability claim that matters most, and has independent review coverage. Trial Respira second only if Novamira fails the test. **Do not run both against the same site** (two tools with independent `_nextNodeId` counters writing the same undocumented format is a plausible corruption source).
 
-**The 15-minute test that settles it,** and which must run before Phase 3 of the pilot: on a disposable staging site, have Claude Code build a non-trivial page (multi-section, a Global Block, a header or footer assignment, one design-token change). Then open it in the Breakdance visual builder and check three things: it renders correctly; every element is still natively editable with no "unknown element" errors; and a forced malformed write is caught and rolled back. That test beats any vendor claim.
+**The 15-minute test that settles it,** and which must run before Phase 3 of the pilot: on a disposable staging site running **Breakdance 3.0 with its native MCP**, have Claude Code build a non-trivial page (multi-section, a Global Block, a header or footer assignment, one design-token change). Then open it in the Breakdance visual builder and check three things: it renders correctly; every element is still natively editable with no "unknown element" errors; and a forced malformed write is caught, or the snapshot restores cleanly. That test beats any vendor claim.
+
+**Run this against the native 3.0 MCP first, not Novamira.** The native path is the one we want if it works. Only fall back to testing Novamira Pro or Respira if the native MCP fails. Whichever path you test, take a snapshot first: the native MCP uses admin-equivalent access, so our own backup is still the real safety net, not any vendor rollback.
 
 **Mandatory guardrails for Target A**, given no sanctioned write path:
 1. **Snapshot before every agent write.** The vendor's rollback is a convenience; our backup is the actual safety net.
@@ -421,10 +435,10 @@ Documentation, planner, orchestrators, strategists, analysts, code archaeologist
 1. **Target A is WordPress plus Breakdance.** Bricks was analysed and declined (Section C).
 2. **Claude Team plan**, so the toolset is provisioned once and stays consistent.
 3. **Content is a pluggable input from any source (client, ZilvaEdge, or placeholder). It never blocks a build.** ZE is optional, not on the critical path (Section F2).
-4. **Buy Novamira Pro** for the write test. Do not buy Breakdance AI (Section D) or Respira yet.
+4. **Buy nothing yet.** Do not buy Novamira Pro, Respira, or Breakdance AI. The native Breakdance 3.0 MCP is tested first and may make Novamira and Respira unnecessary for layout writes (see the 18 July update at the top).
 
 **Open, in priority order:**
 
-1. **Run the 15-minute Breakdance write test** (Section C). It can invalidate Target A, so nothing else in Target A should be built before it passes.
-2. **Get one real Breakdance settings export.** Five minutes, and it replaces our assumptions about the format with the format.
+1. **Install Breakdance 3.0 on disposable staging and run the write test against its native MCP** (Section C). It can invalidate Target A, or resolve its central risk, so nothing else in Target A should be built before it settles. Fall back to Novamira or Respira only if the native path fails.
+2. **Get one real Breakdance settings export** (and, on 3.0, a real element-tree sample). Five minutes, and it replaces our assumptions about the format with the format.
 3. **Confirm the pilot scope**, so the skills are built against a real job rather than in the abstract.

@@ -105,5 +105,7 @@ The prerequisites, in order: the **agency base kit exists** (token names), the
 output against, and reviewing its output becomes guesswork.
 
 On **Target A** there is one more: the Breakdance write test must have passed.
-Breakdance has no sanctioned layout path, so until that test passes on a
-disposable staging site, do not build client pages on Target A.
+Test the native Breakdance 3.0 MCP first (July 2026, beta, first-party); it is
+the preferred path if it works, with Novamira or Respira as the fallback. Until
+that test passes on a disposable staging site, do not build client pages on
+Target A. See docs 24 and 26.

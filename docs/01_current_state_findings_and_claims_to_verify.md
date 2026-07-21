@@ -4,6 +4,10 @@ Status: v0.1 | Date: 14 July 2026 | Owner: Dev Lead | Type: internal R&D
 
 This document records what we currently believe to be true about the proposed AI web design stack, separates confirmed fact from unconfirmed or corrected claims, and lists what still needs first-hand verification on our own hardware before we rely on any of it. It is the evidence base for the rest of the system. Every downstream document inherits the corrections recorded here, not the raw source research in docs/research/web-design.
 
+## Update, 18 July 2026: Breakdance 3.0 native MCP changes finding D.3
+
+**The central finding of this document, that Breakdance has no supported programmatic layout path (D.3, C.3 below), was true for 2.x and is now overtaken by Breakdance 3.0.** Breakdance 3.0 Beta 1 (announced July 2026) ships a first-party MCP that writes layouts. So the write path is no longer purely reverse-engineering. It is, however, Beta 1 and unproven: no published requirements, undecided licensing, placeholder documentation, no independent testing. The findings below are left intact as the accurate 2.x record; read them with this update in mind. Test the native 3.0 MCP before relying on either it or the third-party fallbacks. Full facts in 26; decisions in 24.
+
 ## How to read this document
 
 Each claim carries a verdict:

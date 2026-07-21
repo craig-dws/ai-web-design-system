@@ -44,8 +44,9 @@ Every rule below states which target it applies to. Nothing in this system may s
 
 ### Target A: WordPress plus Breakdance
 
-- **Breakdance has no sanctioned programmatic layout path.** Any agent that writes layout is reverse-engineering the `_breakdance_data` postmeta tree through a third party (Novamira or Respira). This risk is permanent and must be managed, not wished away. See `docs/24`.
-- **Pin the Breakdance version** on client staging. A Breakdance point release has already broken a third-party write path completely (2.8.0, June 2026). Treat a Breakdance update as a change that requires re-testing the write path before it touches client work.
+- **Breakdance 3.0 (beta) introduces a first-party MCP that writes layouts.** This is new (July 2026) and it changes the central risk: the write path may finally be vendor-owned rather than reverse-engineered. **But it is Beta 1 and unproven.** Until it reaches a stable release with published requirements and has passed our own write test, treat it as promising, not settled. Test the native MCP FIRST; it is the preferred path if it works. See `docs/24` and `docs/26`.
+- **The 2.x position still applies as the fallback:** on 2.x, or if the native 3.0 MCP fails our test, any agent that writes layout is reverse-engineering the `_breakdance_data` postmeta tree through a third party (Novamira or Respira). That is managed risk, not a wished-away one.
+- **Pin the Breakdance version** on client staging, on either path. A Breakdance point release has already broken a third-party write path completely (2.8.0, June 2026), and a beta feature can change under you. Treat a Breakdance update as a change that requires re-testing the write path before it touches client work.
 - **Never write raw PHP layout files.** Breakdance ignores them and it is a security risk.
 - **Never run a blind `wp breakdance import_settings`.** It overwrites the entire configuration. Differential merge only, with the diff reviewed.
 - **Never run `wp breakdance total_reset`** in any automated path.

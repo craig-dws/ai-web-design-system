@@ -18,9 +18,10 @@ PM's Stage 0 brief, and the designer's Claude Design concept template.
    - A Figma account with a **Professional Dev seat** (the free tier is too rate-limited to use).
    - Your **Claude Team plan** admin access (for org-wide plugin provisioning).
    - Your **LiteSpeed staging server** details, and a Breakdance Pro licence key.
-   - **Novamira Pro** (EUR 129/yr Agency). Buy it at the human purchase step in Prompt 1, not
-     before. It is bought specifically to run the Breakdance write test; free core cannot test
-     the Pro Breakdance specialization. Do not buy Respira or Breakdance AI.
+   - **Buy no third-party bridge yet.** Breakdance 3.0 (July 2026) shipped a native, first-party MCP
+     that writes layouts. Test that first. Only if it fails our write test do Novamira Pro or Respira
+     come back in as the fallback, bought at that point, not before. Do not buy Novamira Pro, Respira,
+     or Breakdance AI now. See docs 24 and 26.
 
 **This prompt does not build a website.** It builds the system that builds websites. Expect it to stop and ask you things. That is the design.
 
@@ -53,9 +54,10 @@ READ FIRST, in this order, and treat them as the specification:
 
 KEY DECISIONS ALREADY MADE. Do not relitigate them:
 - Target A is WordPress plus Breakdance. Bricks was considered and declined.
-- Breakdance has NO sanctioned programmatic layout path. Any layout write is
-  reverse-engineering via a third party. Trial Novamira Pro before Respira. Keep the
-  layout-write step swappable: skills call a CAPABILITY, never a vendor tool name.
+- Breakdance 3.0 (July 2026, beta) now ships a native first-party MCP that writes layouts.
+  Test that FIRST. Third parties (Novamira, Respira) are the fallback only if it fails. On 2.x
+  there is no sanctioned path and third parties are the only option. Keep the layout-write step
+  swappable: skills call a CAPABILITY, never a vendor tool name. See docs 24 and 26.
 - The designer never uses Claude Code. She uses Claude Cowork plus Figma.
 - Content is a pluggable input from any source (client, ZilvaEdge, or placeholder). It never blocks a build. Design against real content where you have it; placeholder is fine otherwise.
 - Adopt Anthropic's plugins rather than rebuilding them.
@@ -306,7 +308,7 @@ In Claude Design: **Add a design system**. Two routes are offered:
 
 ## What to do after the system is up, in order
 
-1. **Run the 15-minute Breakdance write test** (`docs/24`, Section C). On a disposable staging site, have Claude Code build a real multi-section page via Novamira Pro, then open it in the Breakdance visual builder. Check it renders, that every element is still natively editable with no "unknown element" errors, and that a forced malformed write is caught. **This decides whether the Target A pipeline is viable at all.** Nothing else is worth doing until it passes.
+1. **Run the 15-minute Breakdance write test** (`docs/24`, Section C). On a disposable staging site running **Breakdance 3.0 with its native MCP** (July 2026, first-party, test this before any third party), have Claude Code build a real multi-section page, then open it in the Breakdance visual builder. Check it renders, that every element is still natively editable with no "unknown element" errors, and that a forced malformed write is caught or the snapshot restores cleanly. **This decides whether the Target A pipeline is viable at all.** Only fall back to Novamira Pro or Respira if the native path fails. Nothing else is worth doing until this settles.
 2. **Build the agency base kit** (Prompt 3). The pilot cannot start without token names.
 3. **Capture the baseline** (`docs/20`) from recent projects, so the pilot has something to compare against.
 4. **Pick the pilot** (`docs/10`): a low-risk brochure site, 5 to 8 pages.

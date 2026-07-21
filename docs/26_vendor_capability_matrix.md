@@ -55,7 +55,15 @@ Source: https://novamira.ai/docs/security/
 
 | Capability | Status | Checked | Confidence |
 |------------|--------|---------|------------|
-| REST API for creating layouts | **Does not exist.** No sanctioned programmatic layout path | 14 Jul 2026 | Confirmed |
+| Sanctioned programmatic layout path (2.x) | **Did not exist** in 2.x. No REST API; third parties reverse-engineer `_breakdance_data` | 14 Jul 2026 | Confirmed |
+| **Native MCP (3.0)** | **Breakdance 3.0 ships a first-party MCP** (Settings then Agents & MCP). This is the big change: the write path is now vendor-owned, not reverse-engineered | 18 Jul 2026 | Confirmed |
+| 3.0 MCP maturity | **Beta 1, days old. Its own docs say "coming soon".** No GA date, no independent testing, conversion fidelity unverified | 18 Jul 2026 | Confirmed (beta), Unverified (fidelity) |
+| 3.0 MCP write scope | Creates pages, headers, footers, templates, forms, loops, Global Blocks, interactions. Mechanism: agent writes HTML/CSS, Breakdance converts to native elements (Container, Text, Image, Text Link, SVG Icon) | 18 Jul 2026 | Confirmed (as vendor claim) |
+| 3.0 MCP output editable in builder | Claimed yes. Not independently verified | 18 Jul 2026 | Reported |
+| 3.0 MCP auth | Application Password, **admin-equivalent access**. One-click "Agent Connector" install | 18 Jul 2026 | Confirmed |
+| 3.0 MCP requirements and licensing | **Unknown.** PHP/WP version unstated. Pro-vs-free "not finalised" per Breakdance. Verify before relying on it | 18 Jul 2026 | Unconfirmed |
+| 3.0 MCP with Claude Code | Names "Claude, Codex, Cursor". Standard MCP server, so Claude Code should work, but "Claude Code" not named literally | 18 Jul 2026 | Partially |
+| REST API for creating layouts (2.x) | **Does not exist.** Superseded by the 3.0 native MCP above for anyone on 3.0 | 14 Jul 2026 | Confirmed |
 | Layout storage | Structured JSON in the `_breakdance_data` postmeta | 14 Jul 2026 | Confirmed |
 | WP-CLI | `status`, `clear_cache`, `export_settings`, `import_settings`, `replace_url`, `total_reset` | 14 Jul 2026 | Confirmed |
 | `export_settings` / `import_settings` | **Pro (self-hosted) mode only** | 14 Jul 2026 | Confirmed |
