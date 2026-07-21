@@ -8,6 +8,10 @@ Status: Internal working document.
 
 This runbook stands up the whole pipeline once, end to end, on a staging environment. Follow the steps in order. Each step has a verification and, where the step is risky, a rollback note. Do not run any part of this against production. Novamira is dev and staging only as a matter of policy, and its sandbox is not a security boundary.
 
+## Layout-write path: native Breakdance 3.0 MCP first
+
+The layout-write path for the write test and the initial builds is the **native Breakdance 3.0 MCP** (Settings then Agents and MCP). It is the preferred path and is tested first. See the write-test procedure in [27_breakdance_write_test.md](27_breakdance_write_test.md). The Novamira steps in this runbook are the **fallback**, used only if the native path fails the write test. Do not buy Novamira Pro before the test. Buy no third-party bridge until the native path has been proven to fail.
+
 ## Environment facts to keep in mind
 
 - WordPress 7.0 "Armstrong", PHP 8.3.
@@ -25,7 +29,7 @@ Confirm all of the following before Step 1.
 - [ ] Node.js LTS installed (`node -v`, `npm -v` return versions).
 - [ ] Staging host available with HTTPS, PHP 8.3, WP CLI and MySQL access.
 - [ ] Breakdance Pro licence key to hand.
-- [ ] **Novamira Pro** licence key to hand. Not free core: free core cannot test the Pro Breakdance specialization, which is the point of the test. See 24.
+- [ ] Novamira is **not needed unless the native Breakdance 3.0 MCP fails the write test**. Buy no Novamira licence before the test. If the native path fails and you fall back to Novamira, you will need the Pro key then (not free core: free core cannot test the Pro Breakdance specialization). See 24 and 27.
 - [ ] Figma account with a Professional Dev seat (about US$12 per operator per month) and the pilot Figma file created with named frames.
 - [ ] Anthropic account and Claude Code access.
 - [ ] Baseline captured (document 20) and scorecard prepared (document 11).
@@ -94,7 +98,11 @@ Verification: `/mcp` lists the Figma server as connected. A scoped `get_metadata
 
 Rollback: remove the plugin with the plugin manager if OAuth misbehaves, then reinstall.
 
-## Step 5: Install Novamira and connect it to Claude Code
+## Step 5: Connect the layout-write path
+
+**Primary path: the native Breakdance 3.0 MCP.** In WordPress, go to Breakdance then Settings then Agents and MCP, install the one-click Agent Connector, and generate the credential (Application Password auth). Paste the connection command into Claude Code so it registers the native MCP server. Run `/mcp` and confirm it connects. This is the path you test first (see 27) and build on if it passes. If it passes, skip the Novamira fallback below.
+
+**Fallback path: Novamira (only if the native path fails the write test).** Use the steps below only after the native Breakdance 3.0 MCP has failed a write-test PASS check. Buy the Novamira Pro licence at that point, not before.
 
 1. Install the Novamira plugin on the staging site and activate it.
 2. In Novamira settings, enable AI Abilities.
@@ -155,7 +163,7 @@ Rollback: re import the exported settings file from the backup folder, or restor
 
 ## Step 9: Generate the homepage, then human review
 
-Generate the homepage in Breakdance via Novamira, mapped to the approved Figma frame and content outline. Then stop for full human review (Phase 3 gate in document 10).
+Generate the homepage in Breakdance via the project's bound layout-write capability (the native Breakdance 3.0 MCP first, Novamira only as fallback), mapped to the approved Figma frame and content outline. Then stop for full human review (Phase 3 gate in document 10).
 
 Verification: the homepage renders on staging; Dev Lead reviews the build line by line; Design Lead compares it to the Figma frame; PM confirms scope. Back up before accepting:
 

@@ -58,6 +58,8 @@ Figma tools available after install:
 
 ## 3. Install Novamira on the staging site and paste its setup prompt
 
+**Primary path is the native Breakdance 3.0 MCP, not this Novamira config.** For Target A the primary layout-write path is the native Breakdance 3.0 MCP, connected inside WordPress via Breakdance Settings then Agents and MCP (one-click Agent Connector, Application Password auth), not through the Novamira MCP configuration shown in this section. Test it first (see 27). The Novamira setup below applies **only if the native path fails the write test**; buy no Novamira licence before then.
+
 Novamira is a free WordPress MCP server plugin (Pro tiers run about EUR 49 to 249 per year). It is installed on the staging WordPress site, not on the developer machine.
 
 Steps:
@@ -83,7 +85,7 @@ Guardrails to respect:
 /mcp
 ```
 
-Confirm both the `figma` and `novamira` servers show as connected before running any build prompt.
+Confirm the `figma` and `chrome-devtools` servers show as connected before running any build prompt. That is what the committed `.mcp.json` contains. The WordPress write bridge (the native Breakdance 3.0 MCP, or Novamira as fallback) is added only at pilot time, after the write test.
 
 ## Concrete .mcp.json
 

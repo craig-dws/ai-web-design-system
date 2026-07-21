@@ -87,18 +87,20 @@ You do not write to WordPress and you do not import anything. You output the
 token export and the mapping only.
 ```
 
-### breakdance-builder
+### builder-builder
 
-File: `.claude/agents/breakdance-builder.md`
+File: `.claude/agents/builder-builder.md`
+
+The layout-write path is the **native Breakdance 3.0 MCP first**, with a third party (Novamira, then Respira) only as fallback if the native path fails the write test (see 27). This agent stays vendor-neutral: it calls the project's bound layout-write capability, never a hardcoded vendor tool (per CLAUDE.md principle 5).
 
 ```markdown
 ---
-name: breakdance-builder
+name: builder-builder
 description: Builds a single page in Breakdance on staging from an approved Figma frame, using established global variables. Use for per-subpage generation. Never writes raw PHP; never touches production.
-tools: mcp__figma__get_design_context, mcp__figma__get_screenshot, mcp__figma__get_code_connect_map, mcp__novamira__*, Bash, Read, Write
+tools: mcp__figma__get_design_context, mcp__figma__get_screenshot, mcp__figma__get_code_connect_map, Bash, Read, Write
 ---
 
-You build one Breakdance page at a time from an approved Figma frame.
+You build one Breakdance page at a time from an approved Figma frame. Use the project's bound layout-write capability (the native Breakdance 3.0 MCP first, a third-party bridge only as fallback); never call a vendor-specific tool by name.
 
 Rules:
 1. Scope to the single target frame. Call get_design_context and
@@ -154,13 +156,14 @@ File: `.claude/commands/new-subpage.md`
 ---
 description: Build one new subpage in Breakdance from a named Figma frame
 argument-hint: <page-name> <figma-frame>
-allowed-tools: mcp__figma__get_design_context, mcp__figma__get_screenshot, mcp__novamira__*, Bash(wp breakdance clear_cache)
+allowed-tools: mcp__figma__get_design_context, mcp__figma__get_screenshot, Bash(wp breakdance clear_cache)
 ---
 
 Build the single page "$1" in Breakdance on staging so it matches the Figma
-frame "$2".
+frame "$2". Use the project's bound layout-write capability (the native
+Breakdance 3.0 MCP first, a third-party bridge only as fallback; see 27).
 
-Delegate to the breakdance-builder subagent. Enforce these rules:
+Delegate to the builder-builder subagent. Enforce these rules:
 - Scope to the frame "$2" only.
 - Reference Breakdance global variables; never hardcode values.
 - Map Auto Layout to Section and Div; use the Post Loop Builder for
@@ -219,7 +222,7 @@ Hooks catch honest mistakes. They do not stop a badly-scoped agent, and they are
 
 ### The hooks
 
-Four hooks in `.claude/settings.json`. They block edits to protected paths, scan for dangerous PHP before writes, lint changed PHP, and clear the Breakdance cache after database-affecting operations.
+The hooks in `.claude/settings.json`. They block edits to protected paths, scan for dangerous PHP before writes, lint changed PHP (`lint-changed.sh`), clear the Breakdance cache after database-affecting operations (`breakdance-cache-clear.sh`), and purge the LiteSpeed cache (`litespeed-purge.sh`, shipped).
 
 The hook scripts live in `.claude/hooks/`. A `PreToolUse` hook blocks a call by exiting with code 2 (or by returning JSON with `permissionDecision` of `"deny"`).
 
@@ -252,7 +255,7 @@ The hook scripts live in `.claude/hooks/`. A `PreToolUse` hook blocks a call by 
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/phpcs-changed.sh"
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/lint-changed.sh"
           }
         ]
       },
@@ -261,7 +264,7 @@ The hook scripts live in `.claude/hooks/`. A `PreToolUse` hook blocks a call by 
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/breakdance-clear-cache.sh"
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/breakdance-cache-clear.sh"
           }
         ]
       }
@@ -313,7 +316,7 @@ fi
 exit 0
 ```
 
-### phpcs-changed.sh (PostToolUse)
+### lint-changed.sh (PostToolUse)
 
 Runs phpcs on a changed PHP file after a Write or Edit. Non-blocking: it reports issues but exits 0 so the workflow continues. Change the final line to `exit 2` if you want lint failures to block.
 
@@ -334,9 +337,9 @@ fi
 exit 0
 ```
 
-### breakdance-clear-cache.sh (PostToolUse)
+### breakdance-cache-clear.sh (PostToolUse)
 
-After a Bash command that affects the database (an import, a URL replace, a settings change), clears the Breakdance cache so staging reflects the change.
+After a Bash command that affects the database (an import, a URL replace, a settings change), clears the Breakdance cache so staging reflects the change. A companion `litespeed-purge.sh` hook (shipped) purges the LiteSpeed page cache on the same trigger, since a page cache can otherwise hide the change.
 
 ```bash
 #!/usr/bin/env bash
@@ -491,14 +494,14 @@ The `block-secrets-and-prod.sh` hook denies writes to `.env` files and any produ
 | Skill `token-sync` | A (Breakdance) | Token extraction and safe Breakdance merge |
 | Skill `token-to-code` | B (Astro) | Sync tokens into Tailwind config and CSS vars |
 | Subagent `figma-token-extractor` | Shared | Clean token export and mapping |
-| Subagent `breakdance-builder` | A | Builds one Breakdance page from one frame |
+| Subagent `builder-builder` | A | Builds one Breakdance page from one frame |
 | Subagent `astro-component-builder` | B | Builds one Astro component or page from one frame |
 | Subagent `payload-schema-modeller` | B | Models Payload Collections, Globals, and Blocks |
 | Subagent `wp-security-auditor` | A | Read-only WordPress security audit |
 | Command `/new-subpage` | A | Per-page Breakdance build plus visual QA |
 | Command `/new-astro-page` | B | Per-page Astro build plus visual QA |
 | Command `/deploy-staging` | A | Sync and cache refresh |
-| Hooks (A) | A | Block protected paths, scan PHP, lint, clear cache |
+| Hooks (A) | A | Block protected paths, scan PHP, lint, clear Breakdance cache, purge LiteSpeed |
 | Hooks (B) | B | Block secrets and production, run astro check or eslint |
 
 ## Related documents

@@ -49,24 +49,32 @@ text, images, and links and never needs a structural change. The vendor warns
 Client Mode "does not restrict privileges", so treat it as a UX guardrail, not a
 security control.
 
-## There is no layout API
+## The layout-write path
 
-Breakdance has **no sanctioned REST API for creating layouts**. Any agent that
-builds a Breakdance page is reverse-engineering an undocumented internal format
-through a third party. This risk is permanent on Target A and is managed, not
-removed (docs/24, Section C).
+**Breakdance 3.0 (beta, July 2026) ships a native, first-party MCP that writes
+layouts.** This is the preferred path and it may resolve what used to be Target
+A's central risk. It is Beta 1 and unproven, so it is tested before it touches
+client work (see docs/27, the write test). If it passes, no third party is
+needed.
 
-Consequences that must shape every build:
+**On Breakdance 2.x, or if the native MCP fails the write test,** there is no
+sanctioned layout API, and any agent that builds a page is reverse-engineering an
+undocumented internal format through a third party (Novamira, Respira). That is
+managed risk, not removed. (docs/24 Section C, docs/26.)
+
+Consequences that shape every build, on either path:
 
 - **Snapshot before every agent write** that can affect the database or a live
-  file. Our backup is the safety net, not the vendor's rollback.
+  file. Our backup is the safety net, not the vendor's rollback. This matters as
+  much on the native path, which uses admin-equivalent access.
 - **Pin the Breakdance version** on client staging. A point release has already
-  broken a third-party write path (2.8.0, June 2026). A Breakdance update is a
-  change that requires re-testing the write path before it touches client work.
+  broken a third-party write path (2.8.0, June 2026), and a beta feature can
+  change under you. A Breakdance update requires re-testing the write path before
+  it touches client work.
 - **Staging only.** The agent never writes layout on production.
 - **Keep the layout-write step a capability**, never a hardcoded vendor tool, so
-  the bridge (currently Novamira Pro, alternatively Respira, or a manual build)
-  is swappable (CLAUDE.md principle 5). See the builder-builder subagent.
+  the binding (native 3.0 MCP first, Novamira or Respira as fallback, or a manual
+  build) is swappable (CLAUDE.md principle 5). See the builder-builder subagent.
 
 ## The five ways to target Breakdance, ranked safest first
 
@@ -106,6 +114,7 @@ Prefer the highest-ranked method that can do the job (docs/08).
 - The full native element vocabulary beyond Div, Section, Columns, and Post Loop
   Builder. docs/01 confirms these; the complete set should be captured from a
   live Breakdance install and added here.
-- The layout-write capability binding for the project (Novamira Pro first, per
-  docs/24). Record which vendor is bound and the pinned Breakdance version in the
-  project CLAUDE.md.
+- The layout-write capability binding for the project (native Breakdance 3.0 MCP
+  first; Novamira or Respira only as fallback if the native path fails the write
+  test in docs/27). Record which binding is in use and the pinned Breakdance
+  version in the project CLAUDE.md.

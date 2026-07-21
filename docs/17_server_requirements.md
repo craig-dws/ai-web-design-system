@@ -2,7 +2,7 @@
 
 Status: v0.1 | Date: 14 July 2026 | Owner: Dev Lead
 
-Requirements for the staging and production environments of both build targets. Target A is WordPress with Breakdance plus an MCP server plugin (Novamira). Target B is Astro with a Payload CMS backend. The Breakdance figures are an engineering estimate synthesised from Breakdance's own recommendations and the WordPress 7.0 baseline. They are not a single vendor-cited spec sheet. Confirm against the client's actual hosting. Sections below are split by target.
+Requirements for the staging and production environments of both build targets. Target A is WordPress with Breakdance, using Breakdance 3.0's native MCP as the primary write bridge (Novamira only as fallback if the native path fails the write test, see 27). Target B is Astro with a Payload CMS backend. The Breakdance figures are an engineering estimate synthesised from Breakdance's own recommendations and the WordPress 7.0 baseline. They are not a single vendor-cited spec sheet. Confirm against the client's actual hosting. Sections below are split by target.
 
 # Target A: WordPress plus Breakdance
 
@@ -31,7 +31,7 @@ Production runs Breakdance and Client Mode only. It carries no MCP server and no
 
 ## Two provisioning routes
 
-1. **Traditional managed WordPress hosting**. Provision a staging subdomain per client (for example staging-clientname.agency.com), install Breakdance Pro and Novamira, and follow the runbook (19).
+1. **Traditional managed WordPress hosting**. Provision a staging subdomain per client (for example staging-clientname.agency.com), install Breakdance Pro (its native 3.0 MCP is the primary write bridge; add Novamira only as fallback if the native path fails the write test), and follow the runbook (19).
 2. **InstaWP (optional, evaluate for v0.2)**. Provides rapid staging provisioning and InstaMCP. The InstaWP CLI can also spin up local disposable sites via WordPress Playground (WASM PHP plus SQLite) with no Docker or MySQL, which is useful for throwaway experiments. Not part of the v0.1 minimum.
 
 # Target B: Astro plus Payload

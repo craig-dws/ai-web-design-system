@@ -40,7 +40,7 @@ If no external low risk client is available, run the pilot on an agency marketin
 
 ## Prerequisites (all must be complete before Phase 1 entry)
 
-1. Tooling installed and verified per document 19 (Claude Code, Figma plugin OAuth complete, Breakdance Pro licensed, Novamira installed on staging with an Application Password).
+1. Tooling installed and verified per document 19 (Claude Code, Figma plugin OAuth complete, Breakdance Pro licensed, and the native Breakdance 3.0 MCP connected on staging via Settings then Agents and MCP with an Application Password). Novamira is connected only if the native path failed the write test (see 27).
 2. Staging provisioned over HTTPS with PHP 8.3 and WordPress 7.0. If HTTPS is unavailable on a local build, set `define('WP_ENVIRONMENT_TYPE','local')` so Application Passwords function.
 3. Baseline captured per document 20 (averages from 3 to 5 recent comparable projects).
 4. Scorecard prepared per document 11 with targets and pass, watch and fail bands agreed.

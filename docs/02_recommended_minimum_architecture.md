@@ -17,7 +17,7 @@ Adopt AI where it is strong and proven, keep humans in control where the tooling
 | Design-to-code read | Figma MCP read tools plus Code Connect | The mature, reliable half of the pipeline |
 | Build (target A) | Breakdance Pro on WordPress | Visual builder, Client Mode, WP-CLI, Global Settings import/export |
 | Build (target B) | Astro plus Payload CMS | Code-owned front-end, tokens in code, headless content; see 08b |
-| WordPress bridge (target A only) | Novamira (staging only) | The only WP MCP server with deep builder reach; treat as early-stage |
+| WordPress bridge (target A only) | Breakdance 3.0 native MCP (staging only), Novamira as fallback | Native 3.0 MCP is the primary bridge, tested first (see 27); Novamira used only if the native path fails the write test |
 | Environments | Separate staging per client, HTTPS | Isolation, and Application Password support for the WordPress target |
 
 Everything else (InstaWP, third-party Figma MCPs, Breakdance AI add-on, the WordPress native AI Client) is optional and evaluated separately, not part of the minimum.
@@ -37,8 +37,11 @@ Shared front-half (build-target-neutral)
    tokens -> Breakdance Global Settings         tokens -> Tailwind config / CSS vars
    layout -> Breakdance elements (staging)      layout -> Astro components (code)
    content -> Client Mode                       content -> Payload collections/blocks
-   bridge  -> Novamira (staging only)           bridge  -> none (code + Payload admin API)
+   bridge  -> Breakdance 3.0 native MCP          bridge  -> none (code + Payload admin API)
+             (Novamira fallback, staging only)
 ```
+
+Note on the Target A bridge shown above and in the architecture diagram below: the primary WP bridge is the **native Breakdance 3.0 MCP**, tested first in the write test (see 27). Where these diagrams say "Novamira (staging only)", read it as the **fallback** bridge, used only if the native path fails the write test. Either bridge runs on staging only; production carries neither.
 
 Choose the target per client at intake, not mid-build. Rough guidance:
 
@@ -104,9 +107,10 @@ Key point: production never carries Novamira. The AI pipeline lives entirely on 
 
 - **Figma**: one Professional Dev seat (roughly US$12 per month) per person who runs the MCP. The free tier is too rate-limited to be usable.
 - **Breakdance Pro**: agency licence covering staging and production sites.
-- **Novamira Pro**: EUR 129 per year (Agency, 1,000 sites). Bought for the Breakdance write test, not deferred. The free-first strategy is SUPERSEDED (17 July 2026). It was written while Bricks was still a live option, on the reasoning that Bricks' own MCP might remove the need for Novamira. Once Breakdance was chosen, the Pro Breakdance specialization became the specific thing that must be tested, and free core cannot test it. See 24.
+- **Breakdance 3.0 native MCP**: the primary WP bridge for Target A. It ships with Breakdance 3.0 (beta) and is tested first in the write test (see 27). Buy nothing to test it.
+- **Novamira Pro**: EUR 129 per year (Agency, 1,000 sites). The fallback bridge only, bought only if the native Breakdance 3.0 MCP fails the write test. Buy no bridge before the test. If the native path fails and you fall back to Novamira, note that free core cannot test the Pro Breakdance specialization. See 24 and 27.
 - **Claude Code**: standard subscription per operator.
 
 ## When to expand beyond the minimum
 
-Only after the pilot (see 10 and 11) proves the write path is reliable enough. Candidate expansions, in order: the WordPress native AI Client for content generation; InstaWP for faster staging provisioning; a shared component library. (Novamira Pro is no longer an expansion; it is bought up front for the write test, see 24.)
+Only after the pilot (see 10 and 11) proves the write path is reliable enough. Candidate expansions, in order: the WordPress native AI Client for content generation; InstaWP for faster staging provisioning; a shared component library. (No WP bridge is bought up front: the native Breakdance 3.0 MCP is tested first in the write test and costs nothing to try; Novamira Pro is bought only if the native path fails, see 24 and 27.)

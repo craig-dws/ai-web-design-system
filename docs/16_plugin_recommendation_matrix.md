@@ -11,7 +11,7 @@ Recommendations are given as a primary pick and an alternative. Confirm current 
 | Role | Primary pick | Alternative | Notes |
 |------|--------------|-------------|-------|
 | Visual builder | Breakdance Pro | Bricks | Breakdance chosen for Client Mode, WP-CLI, and Global Settings import/export; Novamira has a Breakdance specialization |
-| WP MCP bridge | **Novamira Pro** (staging only) | mcp-adapter | Staging only; see 18 and 24. Pro, not free core: free core cannot test the Pro Breakdance specialization. mcp-adapter is the governed alternative where raw PHP is not needed |
+| WP MCP bridge | **Breakdance 3.0 native MCP** (staging only) | Novamira Pro / Respira (fallback), mcp-adapter | Native 3.0 MCP ships with Breakdance and is the primary write path, tested first (see 27). Novamira Pro or Respira are the third-party fallback, used only if the native path fails the write test. Staging only; see 18, 24 and 27 |
 | Design tokens | Breakdance Global Settings | none needed | Global Settings JSON is the token layer; no extra plugin |
 
 ## Supporting stack
@@ -43,6 +43,6 @@ Recommendations are given as a primary pick and an alternative. Confirm current 
 
 ## Minimum viable set for the pilot
 
-For the low-risk pilot, install only: Breakdance Pro, **Novamira Pro** (staging only), Fluent Forms, **Rank Math**, LiteSpeed Cache, a security plugin (with the Application Password exception handled), and UpdraftPlus. Add anything else only when a specific requirement demands it.
+For the low-risk pilot, install only: Breakdance Pro, Fluent Forms, **Rank Math**, LiteSpeed Cache, a security plugin (with the Application Password exception handled), and UpdraftPlus. The WP MCP bridge is not a separate install: the **native Breakdance 3.0 MCP** ships with Breakdance 3.0 and is the primary write path (tested first, see 27). **Novamira Pro is a labelled fallback only**, installed on staging only if the native path fails the write test. Add anything else only when a specific requirement demands it.
 
-**Two corrections from earlier drafts (17 July 2026):** this list previously said Novamira *free* and *The SEO Framework*. Both were superseded by 24. Novamira free core cannot test the Pro Breakdance specialization, which is the whole point of the write test. Rank Math is settled over The SEO Framework because it ships an official MCP server and TSF has no agent story.
+**Corrections from earlier drafts:** the WP MCP bridge is now native-first. The native Breakdance 3.0 MCP is tested first and costs nothing to try (see 27); a third-party bridge (Novamira Pro, then Respira) is bought and installed only if the native path fails. Rank Math is settled over The SEO Framework because it ships an official MCP server and TSF has no agent story.

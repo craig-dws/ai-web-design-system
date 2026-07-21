@@ -9,7 +9,7 @@ Note on "Claude Design": it is now a specific Anthropic product (Anthropic Labs,
 ## Read this first
 
 1. The technical claims in the original research (docs/research/web-design) were verified on 14 July 2026. Some were wrong or overstated. This folder uses the corrected facts. If you find a conflict, 01_current_state_findings_and_claims_to_verify.md wins over the source research.
-2. **The single most important rules**: Novamira runs on staging only; the AI never touches production; every gate needs a named human approver; back up before every agent write; never blind-import Breakdance settings.
+2. **The single most important rules**: for Target A, the layout-write path is the native Breakdance 3.0 MCP, tested first (see 27); any WordPress write bridge (native, or Novamira as fallback) runs on staging only; the AI never touches production; every gate needs a named human approver; back up before every agent write; never blind-import Breakdance settings.
 3. If you are standing the system up for the first time, go straight to 19_implementation_runbook.md and work through it, keeping 15_claude_code_setup_and_mcp_config.md open beside you.
 
 ## What was built and why
@@ -61,6 +61,7 @@ The user asked for a full investigation and a complete, versioned system split i
 | 24_open_questions_answered.md | Answers and decisions: Novamira vs alternatives, Bricks vs Breakdance, the WP MCPs, webMCP, the SEO stack, LiteSpeed, the agent/skill/hook triage |
 | 25_end_to_end_lifecycle.md | The team-facing life cycle: PM, Design, Develop, UAT, with gates and where changes happen |
 | 26_vendor_capability_matrix.md | **The single home for volatile vendor facts**, dated and sourced. Never restate a vendor limit in another document; link here instead |
+| 27_breakdance_write_test.md | The decisive Target A write test: the runnable procedure that decides whether the native Breakdance 3.0 MCP (tested first) or a fallback bridge is viable, before any client build |
 
 ### Pilot and measurement
 

@@ -65,11 +65,17 @@ Plan hosting PHP versions accordingly. If the Breakdance AI add-on is in use, th
 
 Choose one product per role and use it consistently across projects so the team builds and maintains a predictable stack.
 
-## The five ways an AI agent can target Breakdance, ranked by safety
+## The ways an AI agent can target Breakdance, ranked by safety
 
 Ranked safest first. Prefer the highest-ranked method that can do the job.
 
-### 1. WP-CLI settings and cache (safest)
+### 0. Native Breakdance 3.0 MCP (preferred, test this first)
+
+Breakdance 3.0 (beta, July 2026) ships a native, first-party MCP that writes layouts from an agent and leaves them natively editable in the visual builder (Settings then Agents and MCP). This is the preferred layout-write path and is tested first in the write test (see [27_breakdance_write_test.md](27_breakdance_write_test.md)). Where it passes, it supersedes the constrained methods below for layout creation.
+
+Caveat: the claim is first-party and, until the write test passes on your environment, unverified by anyone outside Breakdance. It uses Application Passwords with admin-equivalent access, so a snapshot before every write is mandatory. If the native path fails the write test, fall back to a third party (Novamira Pro, then Respira) and, if that also fails, to the constrained methods below.
+
+### 1. WP-CLI settings and cache (safest of the fallback methods)
 
 Use `wp breakdance status`, `wp breakdance clear_cache`, and the Pro settings export and import (as a differential merge). These are the supported, predictable commands.
 
@@ -99,11 +105,11 @@ Write directly to the `_breakdance_data` postmeta.
 
 Caveat: highest risk. A malformed write destroys the layout. Use only when nothing above can do the job, always after backing up the postmeta, always human-reviewed, and always followed by `wp breakdance clear_cache`.
 
-Note on why these are the options: Breakdance has NO REST API for creating layouts. That is why layout automation reduces to constrained JSON-patch on known-good templates (method 3) or builder-UI browser automation (method 4), both human-reviewed. There is no supported programmatic layout-creation endpoint to lean on.
+Note on why these are the options: in Breakdance 2.x there is NO REST API for creating layouts. That is why, in the 2.x and fallback context, layout automation reduces to constrained JSON-patch on known-good templates (method 3) or builder-UI browser automation (method 4), both human-reviewed. There is no supported programmatic layout-creation endpoint in 2.x to lean on. Breakdance 3.0 changes this: it introduces a native, first-party MCP write path (method 0 above), which is the preferred method once it passes the write test (see 27). Treat the "no API" statement as describing the 2.x baseline and the fallback path, not the 3.0 native MCP.
 
 ## Watch-outs
 
-1. **Breakdance has no REST API for creating layouts**. Do not design an automation that assumes one.
+1. **Breakdance 2.x has no REST API for creating layouts**. Do not design a 2.x or fallback automation that assumes one. Breakdance 3.0 adds a native first-party MCP write path (the preferred method, tested per 27); the no-API rule is the 2.x and fallback baseline, not a statement about the 3.0 native MCP.
 2. `import_settings` overwrites the whole config. Only ever apply it as a reviewed differential merge.
 3. `total_reset` is destructive and human-gated. Never call it from automation.
 4. Always back up `_breakdance_data` postmeta before any database write that touches layout data.

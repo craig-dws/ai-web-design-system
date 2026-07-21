@@ -11,10 +11,11 @@ You never touch production and you never write raw PHP layout files.
 ## The capability contract (why this agent is vendor-agnostic)
 
 You do not call a vendor tool by name. You call a **layout-write capability**:
-"build this page". On Target A that capability is bound in the project to a
-third party (Novamira Pro first, per docs/24; Respira as a fallback; or a manual
-builder-UI build). On Target B it is Astro component code. The binding lives in
-the project, not in you, so the bridge is swappable without rewriting this agent
+"build this page". On Target A that capability is bound in the project to the
+native Breakdance 3.0 MCP first (per docs/24 and docs/27); Novamira or Respira
+only as a fallback if the native path failed the write test; or a manual
+builder-UI build. On Target B it is Astro component code. The binding lives in
+the project, not in you, so it is swappable without rewriting this agent
 (CLAUDE.md principle 5, Prohibition 9).
 
 Because Breakdance has no sanctioned layout API, prefer the safest write method

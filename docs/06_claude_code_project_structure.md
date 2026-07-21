@@ -21,15 +21,15 @@ client-site-build/
 │   │       └── SKILL.md         # committed: design sync workflow skill
 │   ├── agents/
 │   │   ├── figma-token-extractor.md    # committed
-│   │   ├── breakdance-builder.md       # committed
+│   │   ├── builder-builder.md          # committed
 │   │   └── wp-security-auditor.md      # committed
 │   ├── commands/
 │   │   ├── new-subpage.md       # committed
 │   │   └── deploy-staging.md    # committed
 │   └── hooks/
 │       ├── scan-dangerous-php.sh       # committed: PreToolUse scan
-│       ├── phpcs-changed.sh            # committed: PostToolUse lint
-│       └── breakdance-clear-cache.sh   # committed: PostToolUse cache clear
+│       ├── lint-changed.sh             # committed: PostToolUse lint
+│       └── breakdance-cache-clear.sh   # committed: PostToolUse cache clear
 ├── .mcp.json                    # committed: MCP server definitions (secrets via ${ENV})
 ├── .env                         # gitignored: actual secret values
 ├── .gitignore
