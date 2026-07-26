@@ -1,6 +1,6 @@
 # Setup and installation
 
-This skill is for the whole team, so install it once org-wide and everyone gets the same version. A no-code self-install is given as a fallback.
+This skill can be installed once for the whole organisation or individually by each person. Organisation-wide installation is recommended because everyone receives the same approved version.
 
 Prerequisite for every route: skills need Code Execution and File Creation turned on for the account or workspace. If they are off, the skill will not run.
 
@@ -15,9 +15,9 @@ Before you start, turn on the two capabilities the skill needs, in the organisat
 Steps:
 
 1. Sign in as an Owner.
-2. Go to Organisation settings, then Skills.
+2. Go to `Organization settings`, then `Skills`.
 3. In the Organisation skills section, click "+ Add".
-4. Select the file `discoverweb-design-standard.zip` (or `discoverweb-design-standard.skill`; both are the same zip and contain SKILL.md). If the picker only accepts `.zip`, use the `.zip` copy included in this package.
+4. Select `discoverweb-design-standard.zip`.
 5. The skill is provisioned to all users in your organisation immediately.
 
 What your team sees: the skill is enabled by default for everyone. A member can toggle it off for themselves if they want, but cannot delete it.
@@ -28,18 +28,29 @@ Scripted alternative: teams that manage skills through the API can upload and ve
 
 If org-wide provisioning is not available to you:
 
-1. In the Claude app, open Settings, then Capabilities, then Skills.
-2. Upload discoverweb-design-standard.skill.
-3. Confirm it appears and is enabled.
+1. In Cowork, open `Customize`, then `Skills`.
+2. Select `+`, then `Create skill`.
+3. Select `Upload a skill`.
+4. Upload `discoverweb-design-standard.zip`.
+5. Confirm it appears and is enabled.
 
-## The two Cowork plugins the designer also needs
+## Install the Design and Figma plugins
 
-This skill audits a design. To let Claude read the actual Figma canvas, the designer installs two plugins in Cowork (not Claude Code), from claude.com/plugins:
+In Cowork, open `Customize`, then `Plugins`, then `Browse plugins`. Install:
 
 - The Design plugin, for the generic commands this skill defers to: `/design-critique`, `/accessibility-review`, `/design-system`, `/design-handoff`, `/ux-copy`.
-- The Figma plugin, which needs a paid Figma Dev or Full seat. This is how Claude works on the canvas and can check variables, bindings, and naming. Without it, the skill runs in screenshot or description mode only, which cannot verify token bindings.
+- The Figma plugin from `Anthropic & Partners`, which includes Figma skills and the Figma MCP connection.
 
-If a team member has not installed these, ask Claude in Cowork: "walk me through installing the Design plugin and the Figma plugin from claude.com/plugins", and follow the steps. The skill will also prompt for this when it detects it cannot read the canvas.
+## Connect Figma
+
+The connector is included with the Figma plugin but must be configured for each person's Figma account.
+
+1. In Cowork, open `Customize`, then `Plugins`.
+2. Open the installed Figma plugin and select its `Connectors` tab.
+3. Open the included Figma connector and select `Connect` or `Configure`.
+4. Sign in with the account used for agency design work and approve the requested access.
+
+Without a working Figma connection, the skill can assess supplied images and descriptions but cannot claim checks that require direct file access.
 
 ## Keeping the team in step over time
 

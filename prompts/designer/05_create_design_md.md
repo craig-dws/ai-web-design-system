@@ -74,9 +74,9 @@ PASS B and UPDATE rules:
 - Run the installed DiscoverWeb design-standard audit and `/design-system` where available.
   Treat their results as evidence for Designer review, not as approval or accessibility
   certification. If either tool is unavailable, say so and continue with the manual checks.
-- If dotted canonical names cannot be represented safely in DESIGN.md front matter, keep
-  the minimal front matter, preserve the exact names in the canonical token contract and
-  link to it. Do not create an alternative naming scheme.
+- If canonical names cannot be represented safely in DESIGN.md front matter, keep the
+  minimal front matter, preserve the exact names in the canonical token contract and link
+  to it. Do not create an alternative naming scheme.
 - Resolve every [PENDING AFTER FIGMA] marker and every square-bracket placeholder before
   proposing READY status. Unresolved contradictions block the final file.
 

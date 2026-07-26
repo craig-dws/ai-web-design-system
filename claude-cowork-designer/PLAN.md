@@ -10,7 +10,7 @@ Build one self-contained Cowork skill that encodes the agency-specific design st
 
 The standard itself is well covered in the repository: the token model and base-kit rules (docs/22), the naming standard and banned practices (the Figma naming standard), web design best practices (docs/23 Part A), the anti-AI-look constraints (the anti-ai-design-checklist and web-design skills), and the house style (CLAUDE.md). The designer's workflow and gates are in docs/25.
 
-What was missing: all of that reaches Claude Code only. Cowork does not read `.claude/skills`. In Cowork the designer had the generic Design plugin, the Figma plugin, and a designer-pack of snapshot documents she must remember to attach. There was no agency-specific, self-contained, auto-triggering audit skill. This skill closes that gap.
+What was missing: all of that reaches Claude Code only. Cowork does not read `.claude/skills`. In Cowork the Designer had the generic Design plugin, the Figma plugin and connector, and a designer-pack of snapshot documents the Designer must remember to attach. There was no agency-specific, self-contained, auto-triggering audit skill. This skill closes that gap.
 
 ## 2. The skill
 
@@ -26,11 +26,11 @@ What it does not rebuild: the generic checks already in Anthropic's Design plugi
 
 ## 3. Self-contained, no repository access
 
-The skill is a folder of SKILL.md plus reference files that carry the standard as literal content, with no repository paths. The designer invokes it by name or trigger in Cowork and gives it a screenshot, a description, or her Figma canvas. It states which mode it is in and what it could not check without canvas access.
+The skill is a folder of SKILL.md plus reference files that carry the standard as literal content, with no repository paths. The Designer invokes it by name or trigger in Cowork and gives it a screenshot, a description, or a Figma file. It states which mode it is in and what it could not check without file access.
 
 ## 4. Packaging and delivery
 
-Source of truth stays in the repository at `.claude/skills/discoverweb-design-standard/`. The Cowork copy is a packaged export. Delivery is org-wide via the admin console or the `/v1/skills` endpoint (enabled by default for everyone, which is what keeps the team consistent), with self-install in Settings, then Capabilities, then Skills as the fallback. Skills need Code Execution and File Creation enabled. Keep in step by re-issuing on every standard or base-kit change, with a version bump in SKILL.md.
+Source of truth stays in the repository at `.claude/skills/discoverweb-design-standard/`. The Cowork copy is a packaged export. Delivery is organisation-wide through Organization settings, then Skills, with individual upload through Customize, then Skills as the fallback. Skills need Code Execution and File Creation enabled. Keep in step by re-issuing on every standard or base-kit change, with a version bump in SKILL.md.
 
 ## 5. Sequencing
 

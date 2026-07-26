@@ -32,8 +32,8 @@ Help me build, in this order, and stop after each step so I can review:
 
 1. THREE VARIABLE COLLECTIONS, in this tier order:
    - Primitive  (raw values, no meaning: blue-500, space-4, radius-lg)
-   - Semantic   (intent, and the per-client brand knob: color.action.primary, surface.bg)
-   - Component  (usage: button.bg.default, card.border)
+   - Semantic   (intent, and the per-client brand knob: color/brand/primary, color/surface/background)
+   - Component  (usage: button/background/default, card/border/default)
    Semantic aliases Primitive. Component aliases Semantic. Never a raw value above tier 1.
 
 2. THE SCALES:

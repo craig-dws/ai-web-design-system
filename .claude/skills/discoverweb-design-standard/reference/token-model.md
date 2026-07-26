@@ -12,10 +12,10 @@ Maintain one shared agency base kit and layer a per-client brand theme on top of
 Tier 1  PRIMITIVE   raw values, no meaning        blue-500, space-4, radius-lg
    |  (aliased by)
    v
-Tier 2  SEMANTIC    intent, the brand knob         color.action.primary, surface.bg
+Tier 2  SEMANTIC    intent, the brand knob         color/brand/primary, color/surface/background
    |  (aliased by)
    v
-Tier 3  COMPONENT   where it is used               button.bg.default, card.border
+Tier 3  COMPONENT   where it is used               button/background/default, card/border/default
 ```
 
 - Primitive is what a value is. Shared across all clients. Rarely changes.

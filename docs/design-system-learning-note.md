@@ -49,7 +49,7 @@ Everything is built on three layers of tokens, each one referencing the layer be
 
 1. **Primitive**: raw values with no meaning yet. For example `blue-500`, `space-4`, `radius-lg`. These rarely change and are shared across every client.
 2. **Semantic**: what a value means. For example `color/brand/primary`, `color/surface/background`. This is the layer we change to re-theme for a different client. Semantic tokens point at primitive tokens.
-3. **Component**: where a value is used. For example `button.bg.default`, `card.border`. These point at semantic tokens and almost never change, because the structure of a button is the same whatever the brand.
+3. **Component**: where a value is used. For example `button/background/default`, `card/border/default`. These point at semantic tokens and almost never change, because the structure of a button is the same whatever the brand.
 
 The rule is simple: semantic references primitive, component references semantic, and a raw value never appears above the primitive tier. This third tier is what lets one client be re-themed without touching how components are put together.
 

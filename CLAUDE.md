@@ -1,6 +1,6 @@
 # Project Constitution: AI Web Design System
 
-Version 0.4 | 21 July 2026 | Owners: Project Manager and Dev Lead
+Version 0.5 | 26 July 2026 | Owners: Project Manager and Dev Lead
 
 This file holds **constraints**. The detail lives in `docs/`. If this file and `docs/` disagree, raise it rather than guessing. If `docs/` and your training knowledge disagree, `docs/` wins.
 
@@ -25,7 +25,7 @@ Every rule below states which target it applies to. Nothing in this system may s
 
 ## Core principles
 
-1. **AI proposes, humans dispose.** No AI output is approved by AI. Every gate has a named human owner. This rule outranks every other consideration.
+1. **AI proposes, humans dispose.** No AI output is approved by AI. Every gate is approved by a human before the next stage builds on it. Recording who approved is optional; the approval itself is not. This rule outranks every other consideration.
 2. **Design to a system, not to a page.** Tokens are the contract that makes AI output checkable. Without a token name there is no definition of "right" for an agent or a reviewer to check against.
 3. **Token first, one page at a time, verified.** Reference token names, never raw values. Build one page per operation. Diff the result against the design.
 4. **Adopt before building.** Anthropic's design and product-management plugins, the Figma skills, and ZilvaEdge's existing agents already cover a great deal. Do not rebuild what exists.
@@ -95,7 +95,7 @@ Every rule below states which target it applies to. Nothing in this system may s
 | Designer | Figma (source of truth) plus Claude Cowork. **Never needs Claude Code or Git** |
 | Developer | Claude Code (CLI or VS Code) |
 
-Gates in full: `docs/12`. The most important and most-skipped gate is **design system self-certification** by the Designer, with the PM recording the checklist and evidence, because everything downstream inherits it.
+Gates in full: `docs/12`. The most important and most-skipped gate is **approving the design system** before anything is built on it, because everything downstream inherits it. The design is approved before handoff to the build; anything the build then derives (tokens, responsive scale) is approved before pages are built on it.
 
 ## Prohibitions
 

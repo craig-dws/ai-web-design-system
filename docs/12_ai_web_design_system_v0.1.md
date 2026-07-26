@@ -60,7 +60,7 @@ The detailed workflows, prompts, setup, and templates live in the sibling docume
 (3) Visual direction / style ......... gate: client, advised by Designer
       |
       v
-(4) Design system foundations ........ gate: Designer self-certification; PM records evidence
+(4) Design system foundations ........ gate: design system approved; evidence recorded
       |
       v
 (5) High-fidelity design (Figma) ..... gate: client, with Designer review
@@ -103,7 +103,7 @@ Roles: PM (project manager), Designer, Dev Lead, Developer, QA, Client.
 | Scope and requirements | PM with client | Draft and summarise only |
 | Visual direction | Client, advised by Designer | Generate options only |
 | Design system token values | Designer | Suggest, never finalise |
-| Design-system readiness | Designer self-certifies; PM records the required evidence | Prepare checklist and handoff evidence |
+| Design-system readiness | Design system approved; required evidence recorded | Prepare checklist and handoff evidence |
 | Design sign-off (dev-ready) | Designer; Dev Lead accepts technical handoff | Prepare handoff evidence |
 | Enabling Novamira AI Abilities | Dev Lead only | None |
 | Accepting AI-generated build output | Designer and QA | Produce, never self-approve |
@@ -152,7 +152,7 @@ Throughout: the issue and exception log (09) and time and rework tracking (10) a
 
 ## 6. Acceptance criteria
 
-A stage is complete only when its gate owner has signed off and its required artefact exists. Specific bars:
+A stage is complete only when its gate is approved by a human and its required artefact exists. Specific bars:
 
 - **Dev-ready handoff**: passes the handover contract checklist in full. Missing items mean the handoff is rejected, not patched informally.
 - **Build output**: matches the approved Figma at all defined breakpoints; deviations are logged and approved, not silent.
@@ -195,7 +195,7 @@ Authority transfers at gates, never silently. Figma leads until handoff; the bui
 
 ### Exceptions
 
-Any deviation from this system (skipping a gate, using a tool outside its scope, a manual override) is an exception. Every exception is logged in the issue and exception log (pilot artefact 09) and, if it teaches us something, the decisions and failures log (21). An exception needs the relevant gate owner's approval before it proceeds, or a written note of why it could not wait.
+Any deviation from this system (skipping a gate, using a tool outside its scope, a manual override) is an exception. Every exception is logged in the issue and exception log (pilot artefact 09) and, if it teaches us something, the decisions and failures log (21). An exception needs human approval for the relevant gate before it proceeds, or a written note of why it could not wait.
 
 ### Rollback
 

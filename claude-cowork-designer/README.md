@@ -1,20 +1,20 @@
 # DiscoverWeb design standard: Cowork skill package
 
-This package puts the agency's design-consistency standard into Claude Cowork, so the designer and the whole team check every design against the same bar. It closes one gap: Cowork does not read the repository's `.claude/skills` folder, so the skill has to be uploaded separately. Everything needed to install and use it is in here.
+This package puts the agency's design-consistency standard into Cowork, so the Designer and the whole team check every design against the same bar. Everything needed to install and use the skill is in this folder.
 
 ## Which file do I open?
 
-- **You are the designer, or you work in Cowork and just want to use this:** open `INSTALL-FOR-DESIGNER.md`. It walks you through installing the skill and the two plugins in about ten minutes, and you can let Claude guide you through it.
+- **You are the Designer, or you work in Cowork and just want to use this:** open `INSTALL-FOR-DESIGNER.md`. It covers the skill, Anthropic Design plugin, Figma plugin and Figma connector.
 - **You are the admin and want the whole team set up at once:** open `SETUP.md` for org-wide provisioning.
 - **You are the Owner setting standing house rules for the team:** open `ORG-AND-PROJECT-INSTRUCTIONS.md` for the organisation and project instructions to paste in.
 - **You want to understand or revise the standard behind the skill:** open `PLAN.md`, and `RUN-THE-PLAN-PROMPT.md` to regenerate the plan when the standard changes.
 
 ## What is in this package
 
-- `discoverweb-design-standard.skill` : the skill, ready to upload into Cowork. This is the file you install.
+- `discoverweb-design-standard.zip` : the skill package used for organisation-wide or individual installation.
 - `INSTALL-FOR-DESIGNER.md` : plain-English install guide for a non-technical person.
 - `COWORK-GUIDED-SETUP-PROMPT.md` : a prompt to paste into Cowork that guides the whole setup and verifies it.
-- `SETUP.md` : install and org-wide provisioning steps, including the two plugins.
+- `SETUP.md` : organisation-wide and individual installation routes, plus the plugin and connector setup.
 - `ORG-AND-PROJECT-INSTRUCTIONS.md` : the always-on house rules to paste into Cowork (organisation instructions for the team, project instructions for design work).
 - `PLAN.md` : the approved plan behind this skill.
 - `RUN-THE-PLAN-PROMPT.md` : the prompt that generates the plan.

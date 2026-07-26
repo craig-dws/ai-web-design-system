@@ -76,6 +76,118 @@ Consequences that shape every build, on either path:
   the binding (native 3.0 MCP first, Novamira or Respira as fallback, or a manual
   build) is swappable (CLAUDE.md principle 5). See the builder-builder subagent.
 
+## Building with the Breakdance 3.0 native MCP (observed on a live 3.0.0-beta.1 install)
+
+Confirmed on a real install via `get-instructions`, which **must be called before any
+build or edit tool, every session**. It is the vendor's authoritative guidance and can
+change between versions, so read it live rather than trusting this summary. For the native
+MCP path, the convention below overrides the element-by-element assumption elsewhere in
+this skill.
+
+**Authoring method:**
+
+- `insert-stylesheet` for the design system (global classes and selectors).
+- `html-to-page` per section: author semantic HTML with a `<style>` block and pass it in;
+  Breakdance converts it to native, editable elements. Do **not** assemble static layouts
+  element by element.
+- Reserve `edit-post` and the `set-element-*` tools for loops, forms and dynamic widgets,
+  and for what `html-to-page` cannot express.
+- **Populate the native Global Settings, not only CSS variables.** `insert-css-variables` and
+  `insert-stylesheet` build the CSS-variable and class layer the pages reference, but they do
+  NOT fill Breakdance's native Global Settings: the Colours (Brand, Text, Headings, Links,
+  Background), the Palette, the Typography (heading font, body font, base size, ratio) and the
+  Typography Presets. Populate those from the design tokens with `set-global-settings`, so the
+  brand palette is pickable in the builder and elements inherit globally instead of being styled
+  one by one. `set-global-settings` overwrites the whole blob, so do it as a differential: call
+  `get-global-settings` first, merge the colours and typography into the existing settings, then
+  set. Never blind-set. A design system with empty native Global Settings is only half done.
+
+**Gotchas that fail silently, so fix them at design time:**
+
+- **The theme is replaced entirely** (Breakdance Zero Theme). There are no prebuilt
+  components; a card is a Container plus Image plus Text, built from scratch.
+- **Only `@media` queries copied verbatim from `get-breakpoints` are imported.** A rounded
+  or invented breakpoint is dropped silently, leaving a desktop-only page that looks fine
+  until someone opens it on a phone. Use the exact breakpoints `get-breakpoints` returns.
+- **Headings on a coloured background render near-black.** `h1`-`h6` and `a` get bare-tag
+  rules from global settings, and a direct tag match beats inheritance, so set `color` on
+  the heading's own class.
+- **Loop items ship a hidden `padding: 20px`.** Designed cards need `design.post.padding`
+  zeroed or the spacing is wrong.
+- **Google Fonts load just by being named first in a `font-family`.** No `@font-face` and
+  no `@import` needed.
+- **`html-to-page` `<style>` blocks are global and outlive the page.** Every `<style>`
+  block passed to `html-to-page` becomes a permanent selector in the site stylesheet;
+  deleting the page does **not** remove it. Name selectors deliberately, and remove
+  throwaway or superseded selectors with `delete-css-selectors`, or they silently
+  accumulate and pollute the design system.
+- **`html-to-page` drops alt text and force-lazy-loads URL-sourced images.** An image referenced
+  by URL renders with no `alt` attribute even when alt was passed (leaving a linked logo with no
+  accessible name), and gets `loading=lazy`, which is wrong for above-the-fold images. A URL `<img>` also lacks native `srcset`
+  (WebP is still served by WebP Express). Binding to the media id would fix that, but **the native
+  MCP cannot bind media**: `from: media_library` with the only permitted shape `{id, url, alt}`
+  renders the grey "no image" placeholder, and the hydrated shape the renderer needs is rejected by
+  the schema (proven on 3.0.0-beta.1). So MCP images are referenced by URL and a **human binds them
+  in the builder** for `srcset`. Never use an external (Figma) URL, always the uploaded image. Set alt
+  (and disable lazy loading for above-the-fold images) with the same element mechanism that
+  carries width and height, and verify the rendered HTML rather than trusting the write. Check
+  every URL-sourced image.
+
+- **`html-to-page` silently drops any class that has no CSS rule of its own**, including classes
+  written purely as structural hooks or band wrappers. A hook class with no rule vanishes from the
+  output. Give every class at least one rule, or do not rely on it existing.
+- **`insert-stylesheet` replaces, it does not merge.** Re-inserting a stylesheet restates every
+  rule; restate all breakpoints each time, or earlier ones are lost.
+
+**Cache on the native MCP path:** `html-to-page` regenerates the compiled CSS itself on
+page creation (proven), so no manual cache clear is needed there and the WP-CLI
+`clear_cache` command is not required. Whether it self-regenerates when editing an existing
+page's postmeta is **unproven, verify on the first such edit**; if it does not, clear the
+cache from wp-admin, since the connection may have no WP-CLI available. This supersedes the
+blanket "always run wp breakdance clear_cache" guidance below for the native MCP path.
+
+## Internal pages: content-first, from a page-type design plus the style guide
+
+Pages of the same type share a design language, but they are not identical, content differs, so
+**let the content drive the layout, not the other way around.**
+
+**First, establish the mode at the design-to-build handoff.** Some projects hand over a design
+for **every** page; others hand over a **few reference designs plus a style guide**. Decide which
+at the handoff and record it: with a design per page, build each page from its own design; with
+references plus a style guide, use the content-first approach below. Do not assume, it changes
+what gets built.
+
+- **The design system, one reference design per page type, and a style guide** define the visual
+  language (tokens, components, spacing, the page-type layout). That is enough to build from.
+- **Build each page from its type's reference as a starting point, then adapt it to that page's
+  content.** A condition page with three sections and one with seven both start from the
+  condition design; each is then adjusted to its own content. Do not force content into a rigid
+  mould.
+- **Claude can design pages that have no explicit frame** (a page type without a design) from the
+  reference designs, the style guide and the content, staying within the design system. That is
+  AI proposing a design for a human to approve, never AI approving its own design.
+- **Genuinely uniform, content-light pages** (blog posts) can use a Breakdance **Template**
+  applied with `set-template-conditions`, so one layout serves many and changes once. Do not
+  duplicate a page N times, that creates copies that drift.
+- **Shared sections** (a CTA band, a contact block, related links) go in a
+  `create-reusable-global-block` Global Block, edited once, reused everywhere.
+
+## Interactive states: build every interactive element with its states
+
+Menu items, buttons, links and dropdown items need visible states, not just a default:
+- **Menu items:** hover changes the colour.
+- **Buttons:** hover changes the background or the text colour, per the button's styling.
+- **Dropdown items:** a hover treatment, and consider an arrow or icon in front of the item.
+- **Links:** a distinct hover, and keep a distinct focus state for keyboard users (WCAG 2.2 AA).
+
+Drive these from design tokens (a hover-colour token), never a hardcoded value. Breakdance
+derives some hover states from the brand colour, so confirm the design's intended hover exists
+as its own token, especially **link hover**, which otherwise collapses into the brand colour
+and loses its distinction.
+
+The invariant is the design **system**, not the page layout: every page references the same
+tokens, components and style guide, while its layout follows its content.
+
 ## The five ways to target Breakdance, ranked safest first
 
 Prefer the highest-ranked method that can do the job (docs/08).

@@ -75,7 +75,7 @@ Link to authoritative material instead of duplicating it. Keep the document shor
 
 Use the minimal front matter in `docs/templates/DESIGN.template.md`. Do not manually author a second token system in YAML.
 
-This repository uses semantic dotted names such as `color.action.primary`. The Design Tokens Community Group format reserves periods for path notation, so do not rename tokens merely to satisfy an exporter. If a tested tool cannot preserve the canonical names and hierarchy, keep the exact values in the canonical token contract and reference that contract from `DESIGN.md`.
+This repository uses forward-slash semantic names such as `color/brand/primary`, which avoid the period restriction in the Design Tokens Community Group format. Do not rename tokens merely to satisfy an exporter. If a tested tool cannot preserve the canonical names and hierarchy, keep the exact values in the canonical token contract and reference that contract from `DESIGN.md`.
 
 An export is evidence only when the tool version is pinned, the output is reviewed and a diff confirms that names, types, aliases and values were preserved.
 

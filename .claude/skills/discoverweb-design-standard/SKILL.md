@@ -1,17 +1,17 @@
 ---
 name: discoverweb-design-standard
-description: Audit a Figma design, design system, or pre-handoff file against the DiscoverWeb agency standard, covering token naming, base-kit rules, banned practices, the anti-AI-look constraints, and British and Australian house style. Use during Stage 1 design-system work and before any developer handoff. Target neutral, so it applies whether the site is later built in WordPress plus Breakdance or Astro plus Payload.
+description: Audit a Figma design, design system, or pre-handoff file against the DiscoverWeb agency standard, covering token naming, base-kit rules, banned practices, anti-AI-look constraints, and British and Australian house style. Use during design-system work and before handoff.
 ---
 
 # DiscoverWeb design standard
 
-Version 1.0 | Source of truth: the AI Web Design System repository (docs 22, 23, the naming standard, the anti-ai-design-checklist skill, and CLAUDE.md). This skill is a self-contained copy for use in Claude Cowork. If this skill and the repository ever disagree, the repository wins and this skill is out of date and must be re-issued.
+Version 1.1 | This is the approved DiscoverWeb design standard packaged for Claude Cowork. Re-issue the skill whenever the agency standard or shared design system changes.
 
 ## What this is
 
-The agency's design-consistency bar, packaged so the designer can use it in Cowork without any repository, terminal, or Git access. It does one job: audit a design, a design system, or a pre-handoff Figma file against the agency standard, and report honestly what passes and what fails.
+The agency's design-consistency bar for Cowork. It does one job: audit a design, a design system, or a pre-handoff Figma file against the agency standard, and report honestly what passes and what fails.
 
-It is target neutral. The design is the same whether the site is later built in WordPress plus Breakdance or Astro plus Payload. Never phrase a check as a search for a builder class or a config value.
+It is build neutral. Never phrase a check as a search for a platform-specific class or configuration value.
 
 ## What this skill does NOT do (use the Design plugin instead)
 
