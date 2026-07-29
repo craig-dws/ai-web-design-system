@@ -47,7 +47,7 @@ Before the Designer starts a client project, the Project Manager supplies:
 - approved reference sites and competitor notes
 - known constraints and open questions
 
-The Designer confirms the brief and records a concise design interpretation note. The Designer does not create a second project brief or change the approved scope.
+The Designer confirms the brief and records a concise design interpretation note (a markdown file in the client folder, not Figma). The Designer does not create a second project brief or change the approved scope.
 
 ## The three rules to remember
 

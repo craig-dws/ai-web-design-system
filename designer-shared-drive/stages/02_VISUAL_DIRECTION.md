@@ -15,7 +15,7 @@ Help me develop two genuinely different visual directions for this client.
 
 Read first:
 - the approved client brief
-- the Design Interpretation Note in Figma
+- the Design Interpretation Note (the markdown file from Stage 1, in the client folder)
 - reference/02_DESIGN_QUALITY_STANDARD.md
 
 Before proposing a direction, list the facts that are established and any information
@@ -44,6 +44,10 @@ tokens or components as approved system values.
 If the available Figma access cannot perform an approved action, give me the exact manual
 Figma steps and wait while I complete them. Do not claim the action was completed.
 ```
+
+**No Figma is needed for the written directions above** — they are a written, conceptual exploration from
+the brief and the note. Figma is used only *after* a direction is chosen, to develop it into concept
+frames, and creating in Figma needs a Full or edit seat (see the Figma-access note at the end of Stage 1).
 
 ## Review and approval
 
