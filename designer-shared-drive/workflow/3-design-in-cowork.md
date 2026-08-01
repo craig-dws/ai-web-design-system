@@ -2,35 +2,38 @@
 
 Paste this into Claude Cowork, with the client folder (brief, brand assets, photos) attached and the
 Figma plugin connected (a Full/edit Figma seat). This is the alternative to prompts 1 and 2: Cowork
-designs **and** builds the design system in Figma in one place. Use it to compare against the
-Claude Design to Claude Code path.
+designs **and** builds the system in Figma. It works through the process with you and stops at the
+natural gates. Use it to compare against the Claude Design to Claude Code path.
 
 ---
 
-Design this client's site in Figma from the brief, and build a proper, build-ready design system. The
-brief already carries the strategy, audience, voice and per-page notes, so design to what it says
-rather than re-doing strategy. Load the Figma skills first.
+Design this client's site in Figma from the brief and build a build-ready design system. **Work
+through it with me, stopping where I need to decide or approve.** Load the Figma skills first. The
+brief carries the strategy, so design to it rather than re-doing it.
 
-**Read first:** the client brief and the brand assets (logo files, photos).
+## Start
+- Read the brief and the brand assets (logo files, photos).
+- **Confirm what you need and ask me for anything missing or ambiguous** before designing: the logo
+  files, any open scope question in the brief, any brand colour that fails WCAG AA. One question at a
+  time; default sensibly from the brief where you can.
 
-**Design:**
-- **The homepage**, then **tablet and mobile** frames. Design to the brand palette and fonts exactly,
-  with the roles the brief gives them, the signature accent dominant, modernised within the palette.
-- **Match the voice to the visual** (the brief's tone section), follow the homepage notes, and put the
-  primary call to action in the header, the body and the foot, with tap-to-call on mobile.
-- **Avoid the AI look:** intentional asymmetry and spatial rhythm, brand-specific colour, unexpected
-  hierarchy, not centred and uniform. Honour the brief's "what to avoid".
-- **WCAG 2.2 AA contrast** on every pair. Where a bright brand colour fails on white, use it as a
-  field or on a dark ground, not as text or a thin mark on white.
+## Design the homepage, then stop
+- Design the **homepage (desktop)** to the brand palette and fonts exactly, the signature accent
+  dominant; match the voice to the visual; follow the homepage notes; primary call to action in the
+  header, body and foot with tap-to-call. Avoid the AI look and honour the brief's "what to avoid".
+- **Show me the homepage and stop for review** before you build the system or the other breakpoints.
 
-**Build the design system (this is what makes it buildable):**
-- **Three-tier tokens** (primitive to semantic to component), named to the agency token model, no
-  duplicated raw values, every variable scoped with `var(--...)` syntax.
-- **Components with variants including hover**, text exposed as properties.
-- **Structured for Breakdance:** each band a full-bleed frame around a fixed container; Header and
-  Footer as single components (Global Blocks).
-- **QA:** zero unbound fills or strokes, zero unstyled text, zero default names, contrast to AA.
-- **Check against `reference/design-for-build-checklist.md`.**
-- **Produce the Breakdance token export** (variables to Global Settings), the bridge to the build.
+## Build the system (after I approve the homepage)
+- **Tablet and mobile** frames.
+- **Three-tier tokens** named to the token model (no duplicated raw values, every variable scoped with
+  `var(--...)`), **components with hover variants** and text as properties, and the **Breakdance
+  structure** (each band a full-bleed frame around a fixed container; Header and Footer as Global
+  Blocks). Flag any judgment call (spacing normalisation, an over-wide variant matrix) and ask.
+
+## Finish, and stop
+- **QA:** zero unbound fills or strokes, zero unstyled text, zero default names, contrast to AA. Check
+  against `design-for-build-checklist.md`.
+- Give me a **short report** and **stop for my review.** On my go-ahead, **produce the Breakdance token
+  export** (variables to Global Settings), the bridge to the build.
 
 British and Australian English, no em dashes, no emojis unless the brand calls for them.
