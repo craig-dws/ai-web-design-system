@@ -1,6 +1,6 @@
 ---
 name: stage-gate
-description: The between-stages checklist that confirms one stage is genuinely finished before the next starts. Use at each lifecycle transition (brief to design, design to build, build to QA, QA to launch). Confirms the required human approval is recorded, the required artefacts exist, and authority is transferring cleanly. Content is checked as an advisory, never as a blocker.
+description: The between-stages checklist that confirms one stage is genuinely finished before the next starts. Use at each lifecycle transition (brief to design, design to build, build to QA, QA to launch). Confirms the required human approval is recorded, the required artefacts exist, and authority is transferring cleanly. Content availability is checked as an advisory, never as a blocker; content reconciliation at launch is a Gate 3c condition.
 ---
 
 # Stage gate
@@ -89,12 +89,25 @@ before the Doc and a site edit never passes it. See `.claude/reference/build-sta
 
 ## The content check is advisory, not a blocker
 
-Content is a pluggable input from any source and never blocks a stage
-(CLAUDE.md). If the project uses the optional ZilvaEdge path, this skill may
-check Drive's modifiedTime against the manifest and report "the Doc changed N
-days ago, pull?" rather than pulling blindly, and never syncs automatically
-(docs/24, Section F2). If the project does not use that path, nothing is missing
-and the check is skipped. Never make a build wait on content.
+This is about content **availability**, and it is a separate question from
+reconciliation at launch below. Content is a pluggable input from any source and
+never blocks a stage (CLAUDE.md). A missing or placeholder content source is not
+a finding. If the project does not use the optional ZilvaEdge path, nothing is
+missing and the check is skipped. Never make a build wait on content.
+
+**During a build, do not prompt to pull.** A Doc that has moved on from the site
+is the expected condition, not a finding: the site owns page copy through the
+build (docs/13), so the Doc is meant to be behind it. Pulling would push older
+text over newer site copy, and ZilvaEdge refuses that release anyway, so
+prompting for it sends someone toward an action the tooling then blocks. The
+skill never syncs automatically (docs/24, Section F2).
+
+**At the launch gate, reconciliation is worth surfacing.** Gate 3c requires the
+Doc to have been refreshed to match the launched site. Outstanding reconciliation
+there is a real blocker, and it is the one place this check has something to
+report. This does not contradict the advisory rule above: that rule is about
+whether content exists to build with, this is about the Doc and the site agreeing
+at the point authority transfers to the client.
 
 ## Rules
 
