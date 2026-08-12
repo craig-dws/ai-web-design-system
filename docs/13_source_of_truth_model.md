@@ -12,7 +12,8 @@ This defines which system owns each class of information, and exactly when autho
 | Design tokens | Approved Figma variables and version-controlled canonical token contract | Designer in Figma; Developer or Dev Lead in the implementation mirror |
 | Design-system explanation | Client `DESIGN.md`, derived from the approved sources | Designer; PM records evidence only |
 | Component behaviour | Component specification (Figma plus notes) | Designer, reviewed by Dev |
-| Page content, before launch | The Google Doc, once the human editor has revised it | The editor; pulled to markdown before use |
+| Page copy not yet delivered to the site | The Google Doc, once the human editor has revised it | The editor; pulled to markdown and delivered to the site |
+| Page content, during the build | The site being built on staging | The build team, on the site; new pages and sections requested from ZilvaEdge |
 | Page content, after launch | The live Breakdance site | The client, in Client Mode |
 | Production implementation | Breakdance and the site database | Dev Lead, post-launch |
 | AI instructions | Version-controlled project context (CLAUDE.md, AI context pack) | Dev Lead |
@@ -37,12 +38,18 @@ Content authority moves once, at launch, and stating it flatly is what previousl
 | Stage | Who is canonical | Where a copy change is made |
 |-------|------------------|------------------------------|
 | Written in ZilvaEdge | The markdown ZE produced | In ZE |
-| Published to a Google Doc, editor revising | **The Google Doc** | In the Doc, then pull to markdown |
-| Design and build (pre-launch) | **The Google Doc** | **In the Doc, then pull.** Not typed into Breakdance |
-| At launch | Authority transfers | Recorded as a gate |
+| Published to a Doc, editor revising, before it reaches the site | **The Google Doc** | In the Doc |
+| Once the copy is on the built site (design, build, UAT) | **The site being built** | **On the site.** New pages and sections are requested from ZilvaEdge |
+| At launch | Authority transfers to the client; the Doc is refreshed to match the launched site | Recorded as a gate |
 | After launch | **The live Breakdance site** | In Breakdance, by the client in Client Mode |
 
-**The rule that matters during the build: do not type copy directly into Breakdance before launch.** The next pull from the Doc would overwrite it, and the loss would be silent. Fix it in the Doc and pull. This is the opposite of the post-launch rule, which is why the stage matters more than the instinct.
+The Doc's authority inside the editorial cycle is unchanged, and the reasoning for it is recorded in **24**: the editor is the final say on copy. What this table adds is the boundary where that cycle ends and the build begins.
+
+**The rule that matters during the build: copy fixes are made on the site.** The client reviews and signs off the built site, so the site is the approval artefact. The Doc is how ZilvaEdge's copy reaches the site, not what governs it afterwards. The build team also has no access to the Doc and no way to pull from it, so routing fixes through the Doc is not a slower path for them, it is an unavailable one.
+
+**The overwrite risk is real, and it is prevented in the tool rather than by the rule.** A release that re-pushed Doc copy over newer site copy would lose work silently. That is the failure the old Doc-is-canonical rule existed to prevent, and moving authority to the site does not make it go away; it moves where it is caught. ZilvaEdge's `site_repo_sync.py` refuses to release a page that has changed in the website repo since ZilvaEdge last released it, comparing against its own release commits. The refusal prints the diff command and requires an explicit `--allow-overwrite` to proceed, so an overwrite is possible but never silent.
+
+**Built and verified on 12 August 2026** (ZilvaEdge commit `354149a`): seven regression tests, and verified against a real build repo carrying a committed build-team edit on a clean working tree, which is exactly the case the previous check missed. Note the shape of that miss, because it is the same lesson as the `update_manifest()` defect in 24: a working tree can be clean and the page still be ahead.
 
 **After launch, new content restarts the cycle.** A new blog post written in ZE goes ZE, Doc, editor, pull, publish. It does not get typed into the site first.
 

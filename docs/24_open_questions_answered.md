@@ -342,6 +342,17 @@ The chain is: **ZE writes markdown, it is published to a Google Doc, the human e
 
 **The Google Doc is canonical once a human editor has touched it.** The local markdown is stale until pulled. This is a deliberate change to the source-of-truth model in 13, and it is chosen because it matches what is actually true: the editor is the final say on copy. Modelling markdown as canonical would fight the real workflow and produce drift rather than discipline.
 
+**Scoped, 12 August 2026: within the editorial cycle, and up to the point the content is released to a build.** This is a boundary on the statement above, not a reversal of it. Inside the editorial cycle the reasoning still holds exactly as written: the editor is the final say on copy, and the Doc is canonical there. What the boundary settles is what happens once content leaves that cycle and lands in a build, where the client reviews and signs off the built site rather than the Doc, and the build team is not on ZilvaEdge's system and cannot reach the Doc at all.
+
+| Phase | Who is canonical |
+|-------|------------------|
+| ZE writes, published to a Doc, editor revises | **The Doc** |
+| Released into a build, build in progress | **The site being built** |
+| Launch | Authority transfers, at a gate |
+| New post-launch content | Restarts the ZE cycle, so **the Doc** is canonical again |
+
+The overwrite risk that made the Doc-canonical rule attractive in the first place is now prevented in the tool rather than by the rule: ZilvaEdge refuses to release a page that has changed in the website repo since it last released it. See **13** for the site-side half of this and for the guard.
+
 ### When the pull happens
 
 **Never automatically.** An unattended sync could silently overwrite local work. It is an explicit step at exactly two points:

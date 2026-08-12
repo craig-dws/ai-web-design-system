@@ -62,16 +62,30 @@ Run it with the transition you are at. It reports; a human approves.
   (human-certified), Core Web Vitals, token and component adherence, design
   versus build diff. See pilot-artefacts/08_qa_and_accessibility_checklist.md.
 - UAT: the client reviews the staging site. Triage feedback by class (docs/25):
-  design changes go back to Figma; copy changes go to the content source; bugs
-  are fixed on site.
+  design changes go back to Figma; copy fixes are made on the site, because the
+  site is what the client is signing off; new copy, a new page or a new section
+  is requested from ZilvaEdge; bugs are fixed on site. Record the reviewed site
+  state at the gate.
 - Launch: backed up, rollback documented, promoted by a human. Approved by: PM.
+- **Gate 3c precondition: content reconciliation complete.** Before launch can be
+  signed, confirm the Doc has been refreshed to match the launched site, so
+  ZilvaEdge's records and the site agree at the point authority transfers to the
+  client. A release that disagrees with the site is caught by ZilvaEdge rather
+  than applied silently, but reconciling here is what stops the client's first
+  post-launch edit starting from stale copy.
 
 ## Where changes go (so build and design do not drift)
 
 Apply the change-class table in docs/25. The rule: if it changes the design it
-goes back to Figma; if it changes copy it goes to the content source, until
-launch transfers content authority to the live site. A small on-site CSS nudge
-for a technical constraint is logged in the deviation register.
+goes back to Figma; if it changes copy already on the site it happens on the
+site; if it needs new copy, a new page or a new section it is requested from
+ZilvaEdge. A small on-site CSS nudge for a technical constraint is logged in the
+deviation register.
+
+On a regulated client (AHPRA and similar) the copy half is narrower: clinical
+claims, outcome or benefit claims, practitioner qualifications and treatment or
+service descriptions go back to ZilvaEdge, because the compliance check runs
+before the Doc and a site edit never passes it. See `.claude/reference/build-standards.md`.
 
 ## The content check is advisory, not a blocker
 

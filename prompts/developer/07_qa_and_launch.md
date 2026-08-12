@@ -46,11 +46,18 @@ hand-maintained page:
 
 | Feedback type | Where it goes |
 |---|---|
-| **Copy or content** | Into the content source, then pulled into staging. **Not typed onto the staging site**, or the next pull silently discards the client's accepted change |
+| **Copy or content** | **Fixed on the site.** The client is reviewing the site, so the site is what they are signing off |
+| **New copy, a new page or a new section** | Requested from ZilvaEdge. Fixing what is there is yours; writing what is not there is not |
 | **Design change** | Back to Figma, re-approved, re-synced. If it is late and large, it is a change request, not a fix |
 | **Bug** | Fixed on site. It is a build defect, not a design or content decision |
 
-Record the reviewed content revision at the UAT gate.
+Record the reviewed site state at the UAT gate.
+
+**Your fixes will not be silently overwritten.** ZilvaEdge refuses to release a page
+that has changed in the website repo since it last released it. The refusal prints
+the diff command, and an overwrite requires an explicit `--allow-overwrite`. So an
+accepted UAT fix cannot disappear under a later content release without someone
+choosing it.
 
 ## Launch
 
@@ -58,8 +65,10 @@ Backed up, rollback documented, **promoted by a human**. No agent touches
 production, ever. Then hand over: Client Mode training on Target A, or the Payload
 admin on Target B.
 
-**Authority transfers at launch.** Before launch the content source is canonical;
-after launch the live site is. New post-launch content restarts the editorial
-cycle.
+**Authority transfers at launch.** The site is canonical for page copy right
+through the build, so nothing about the copy itself moves at launch. What
+transfers is ownership: the client takes it on in Client Mode, and new
+post-launch content restarts the editorial cycle. The Doc is refreshed at launch
+so ZilvaEdge's records match the launched site.
 
 Gates: **3a** QA Lead, **3b** client UAT sign-off, **3c** PM approves launch.

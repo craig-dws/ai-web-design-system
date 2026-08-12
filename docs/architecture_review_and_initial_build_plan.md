@@ -194,6 +194,8 @@ UAT precedes launch. Therefore the second instruction violates the authority mod
 
 Required resolution: route UAT copy fixes to the Google Doc, pull them into staging, and record the reviewed content revision at the UAT gate.
 
+**Superseded, 12 August 2026.** That resolution was applied, and has since been reversed. UAT copy fixes are now made on the staging site, because the client reviews and signs off the built site and the build team has no access to the Doc. The overwrite risk this issue identified is real and unchanged; it is now prevented by a ZilvaEdge release guard rather than by the routing rule. See `13_source_of_truth_model.md`, `25_end_to_end_lifecycle.md` and CLAUDE.md. The original text above is left as written, as the record of what was decided at the time.
+
 ### 6. Code Connect is still overgeneralised outside document 07
 
 **Severity: Medium**
@@ -468,13 +470,21 @@ Apply these decisions consistently across every active instruction:
 
 1. Target A is WordPress plus Breakdance.
 2. Target B is Astro plus Payload, but it is not part of the first pilot.
-3. Content authority is phased:
+3. Content authority is phased (**revised 12 August 2026**; the earlier version
+   made the Doc authoritative until launch):
    - ZilvaEdge markdown is authoritative while it is being written.
    - Once a human editor edits the Google Doc, the Doc is authoritative until
-     launch. Pre-launch copy changes, including UAT changes, happen in the Doc
-     and are pulled into staging.
-   - At launch, authority for existing live-page content transfers to the live
-     site. New post-launch content restarts the editorial cycle.
+     the copy reaches the site.
+   - **From the moment the copy is on the built site, the site is
+     authoritative.** Copy fixes, including UAT changes, are made on the site.
+     New copy, new pages and new sections are requested from ZilvaEdge. The
+     overwrite risk is prevented in the tool: ZilvaEdge refuses to release a
+     page that has changed in the website repo since it last released it, and
+     an overwrite requires an explicit `--allow-overwrite` (commit `354149a`,
+     12 August 2026).
+   - At launch, ownership transfers to the client and the Doc is refreshed to
+     match the launched site. New post-launch content restarts the editorial
+     cycle.
 4. Buy Novamira Pro specifically for the disposable-staging Breakdance write
    test, but only when the setup reaches the explicit human purchase step.
    The earlier free-first and post-pilot-Pro strategies are superseded.

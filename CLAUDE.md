@@ -65,13 +65,13 @@ Every rule below states which target it applies to. Nothing in this system may s
 | Requirements and scope | The signed brief; changed only by approved change request |
 | Design, before handoff | The approved Figma file |
 | Design tokens | The version-controlled token specification |
-| **Content, before launch** | **The Google Doc**, once the human editor has revised it. The local markdown is stale until pulled. This covers design, build, and UAT |
-| **Content, after launch** | **The live Breakdance site.** Authority transfers at launch. New post-launch content restarts the editorial cycle (ZE, Doc, editor, pull) |
+| **Content, during the build** | **The site being built.** The client reviews and signs off the built site, so that is the approval artefact. The Doc delivers ZilvaEdge's copy onto the site; it does not govern it afterwards. This covers design, build, and UAT. New pages and sections are requested from ZilvaEdge |
+| **Content, after launch** | **The live Breakdance site.** The client owns it in Client Mode from launch. New post-launch content restarts the editorial cycle (ZE, Doc, editor, pull) |
 | Implementation, after handoff | The build (Breakdance on staging, or the repository for Target B) |
 | AI instructions | This file plus the project's context pack |
 | Decisions | `docs/24_open_questions_answered.md` and the decision log |
 
-**Authority transfers at gates, never silently.** Figma leads until handoff; the build leads after. If it changes the design it goes back to Figma; if it changes the content it happens in the content system.
+**Authority transfers at gates, never silently.** Figma leads until handoff; the build leads after. If it changes the design it goes back to Figma; if it changes copy already on the site it happens on the site; if it needs new copy, a new page or a new section it is requested from ZilvaEdge.
 
 ## Content
 
@@ -81,9 +81,9 @@ Every rule below states which target it applies to. Nothing in this system may s
 
 **ZilvaEdge is one optional content source, not part of the pipeline.** If you choose to source content from ZE, the flow is: ZE writes markdown, it is published to a Google Doc, the human editor edits the Doc, and the Doc is pulled back to markdown before use (see 13, 24). If you do not use ZE, none of that applies and nothing is missing. The content round-trip is a convenience for the ZE path only; it is never a prerequisite for building.
 
-**"Launch" is the single transfer point. There is no separate "publish" event for authority purposes.** Publishing a Doc does not transfer authority; launching the site does. Before launch the Doc wins; after launch the live site wins.
+**"Launch" is the single transfer point. There is no separate "publish" event for authority purposes.** Publishing a Doc does not transfer authority; launching the site does. What transfers at launch is who owns the site copy and how new content is made: before launch the build team maintains it on staging, after launch the client owns it in Client Mode and new content restarts the editorial cycle. The Doc is refreshed at launch so ZilvaEdge's records match the launched site.
 
-**This includes UAT.** UAT happens before launch, so **UAT copy fixes go in the Doc and are pulled into staging**, not typed onto the staging site. Typing them onto staging means the next pull silently discards the client's accepted changes. Record the reviewed content revision at the UAT gate.
+**This includes UAT.** The client reviews the staging site, so **UAT copy fixes are made on the site.** That is the artefact they are signing off, and the build team can act on the feedback directly. Anything larger than a fix, a new page or a new section, is requested from ZilvaEdge. Record the reviewed site state at the UAT gate. A release cannot silently undo those fixes: ZilvaEdge refuses to release a page that has changed in the website repo since it last released it, and an overwrite needs an explicit `--allow-overwrite`.
 
 **ZilvaEdge integration is a content seam, not code coupling.** ZE owns content and its quality gates. This system consumes approved markdown. Neither imports the other.
 

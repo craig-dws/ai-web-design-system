@@ -140,17 +140,19 @@ You asked whether changes are done in AI or on site. **It depends on the class o
 
 | Change type | Where it happens | Why |
 |-------------|-----------------|-----|
-| **Copy or content**, pre-launch | **In the Google Doc, then pull** | The Doc is canonical until launch (13). Copy typed into Breakdance is silently overwritten by the next pull |
-| **Copy or content**, post-launch | On site, in Client Mode | Authority transferred to the live site at launch |
+| **Copy or content**, during the build | **On the site** | The client reviews and signs off the built site, so the site is the approval artefact (13). The build team has no access to the Doc. New pages and sections are requested from ZilvaEdge |
+| **Copy or content**, post-launch | On site, in Client Mode | The client owns the copy from launch |
 | **Image swap** | On site | Images are not carried by the content round-trip |
 | **Design change** (layout, spacing scale, colour, component anatomy) | **Back in Figma**, then re-sync | Figma leads until launch (13). Fixing it only on the site guarantees drift |
 | **Token value change** | Figma, then differential merge | Central by definition |
 | **Small CSS nudge** for a technical constraint | On site, **and logged** | Record it in the deviation register with a rationale, or reflect it back to Figma |
 | **Bug** | On site | It is a build defect, not a design decision |
 
-**The rule: if it changes the design, it goes back to Figma. If it changes the copy, it goes back to the Google Doc, until launch transfers content authority to the site.**
+**The rule: if it changes the design, it goes back to Figma. If it changes copy that is already on the site, it happens on the site. If it needs new copy, a new page or a new section, it is requested from ZilvaEdge.**
 
-An earlier version of this document said copy changes simply happen "on site". That was wrong, and it contradicted 13 and the constitution. It is only true after launch. Before launch it would lose the editor's work at the next pull.
+An earlier version of this document said copy changes simply happen "on site". That was reversed, correctly, because the next pull from the Doc would silently overwrite the newer site copy and lose the editor's work.
+
+**Reversed again on 12 August 2026, on different grounds.** The overwrite failure above is real and has not gone away. What changed is where it is prevented. Two operational facts decided it: the client reviews and signs off the built site rather than the Doc, so the site is the approval artefact; and the build team is not on ZilvaEdge's system and has no GWS CLI, so "fix it in the Doc and pull" is not available to them at all, and a rule nobody can follow gets ignored. Authority therefore sits with the site during the build, and the overwrite protection moves into the tool: ZilvaEdge's `site_repo_sync.py` refuses to release a page that has changed in the website repo since ZilvaEdge last released it, and an overwrite requires an explicit `--allow-overwrite`. **Built and verified the same day** (commit `354149a`), so the protection this document's earlier reversal was reaching for now exists, it is simply enforced by the tool instead of by a rule the build team could not follow.
 
 ---
 
@@ -160,9 +162,10 @@ An earlier version of this document said copy changes simply happen "on site". T
 
 **Client UAT:** the client reviews the **staging site**, not Figma. By now the design is approved and built; what they are testing is the real thing.
 
-**Where does UAT feedback go?** Triage it on arrival, using the same table above. **UAT happens before launch, so the pre-launch rules still apply.**
+**Where does UAT feedback go?** Triage it on arrival, using the same table above. **The same build-stage rules apply.**
 
-- **Content and copy fixes** go **in the Google Doc, then pull into staging.** Not typed onto the staging site. This is the one that catches people out: UAT feels like the end, so typing the client's copy fix straight onto staging feels harmless. It is not. The Doc is still canonical until launch, so the next pull would silently discard the client's accepted change. Record the reviewed content revision at the UAT gate.
+- **Content and copy fixes** are made **on the staging site.** The client is reviewing the site, so the site is what they are signing off, and the build team can act on the feedback directly. Record the reviewed site state at the UAT gate. A later release cannot silently undo those fixes: ZilvaEdge refuses to release a page that has changed in the website repo since it last released it, and an overwrite requires an explicit `--allow-overwrite`.
+- **New copy, a new page or a new section** is requested from ZilvaEdge. Fixing what is there is the build team's; writing what is not there is not.
 - **"Can we change the design"** is a design change. It goes back to Figma, gets re-approved, and re-syncs. If it is late and large, it is a change request, not a fix.
 - **Bugs** are fixed on site. They are build defects, not content or design decisions.
 
