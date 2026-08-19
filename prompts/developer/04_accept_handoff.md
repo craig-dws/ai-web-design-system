@@ -78,16 +78,28 @@ DIRECTIVES:
    - For each approved frame, at each breakpoint, call get_screenshot and save it to
      `design/frames/<page>-<breakpoint>.png`. Commit them.
    - These are reference pictures of the DESIGN, for checking a built page against. They
-     are never uploaded to the site. Content images are a separate thing and do not come
-     from here (see below).
+     are never uploaded to the site. They are NOT the content images (directive 7).
    - Report which frames you saved and any you could not.
 
-7. Confirm the rest of the pack exists, and say plainly what is missing:
+7. PULL THE CONTENT ASSETS, only if the person building will not have Figma.
+   The build normally pulls each raster image and SVG straight from the Figma frame,
+   renames it from the design, optimises and uploads it. That step needs Figma, so if the
+   builder has no seat it must be satisfied here instead.
+   - Look in `design/assets/` first and only fill what is missing.
+   - Download the raster assets and the SVGs from the approved frames into
+     `design/assets/`, named descriptively from the design (kebab-case, what it shows plus
+     its role, never the Figma layer name). Commit them.
+   - Do NOT resize, optimise or upload here. That happens at build time through
+     `.claude/tools/optimize-and-upload.py`, which sizes to about 2x display width and
+     compresses. This step only gets the source files out of Figma.
+   - Record the intended alt text alongside, read from the design, since the builder will
+     not be able to read it from Figma later.
+   - If the builder DOES have Figma, skip this: the build pulls per frame as it goes,
+     which keeps the asset tied to the frame it came from.
+
+8. Confirm the rest of the pack exists, and say plainly what is missing:
    - DESIGN.md, verified against Figma (Pass B complete, not DRAFT).
    - The breakpoint values and the responsive notes, in writing.
-   - Any assets the designer exported, and where they are. If none, that is fine and
-     expected: content images are handled after the build by the image-sourcing pass,
-     not pulled from Figma.
 
 CONSTRAINTS:
 - Read-only on Figma. Change nothing, build nothing.
@@ -104,16 +116,25 @@ acceptance the project should contain, committed:
 
 1. **The canonical token contract** (directive 5). The build reads this, not Figma.
 2. **Reference screenshots** in `design/frames/` (directive 6), saved by this step.
-3. **`DESIGN.md`**, verified against Figma, marked READY not DRAFT.
-4. **Breakpoints and responsive notes**, in writing.
+3. **Content assets** in `design/assets/` (directive 7), **only if the builder has no
+   Figma seat**. Otherwise the build pulls them per frame as it goes.
+4. **`DESIGN.md`**, verified against Figma, marked READY not DRAFT.
+5. **Breakpoints and responsive notes**, in writing.
 
 With those, the build runs with **no Figma access**. See
 `.claude/reference/building-without-figma.md`.
 
-**Content images are not part of this.** They are not pulled from Figma. Pages are
-built with placeholders and the real images are sourced afterwards from the client
-gallery, or stock, or generated, then optimised and uploaded
-(`prompts/source-images.md`).
+**Two different kinds of image, do not confuse them:**
+
+- **Content assets** are the photos, icons and logos that go **on the site**. On a page
+  that has a design, these come **from the Figma frame**: pulled, renamed from the design,
+  resized to display size, optimised, uploaded.
+- **Reference screenshots** are pictures **of the design**, used only to check a built
+  page against. Never uploaded.
+
+Separately, a page built with **no design** (most internal pages) has no assets to pull.
+Those get placeholder blocks and are filled afterwards by the image-sourcing pass from the
+client gallery, or stock, or generated (`prompts/source-images.md`).
 
 Then move to `05_tokens.md`, which syncs the contract into the build target and
 needs no Figma.

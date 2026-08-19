@@ -39,31 +39,47 @@ site to exist. Do not stand up a builder just to read a Figma file.
 3. **`DESIGN.md`**, verified against Figma and marked READY, not DRAFT (docs/28).
 4. **Breakpoints and responsive notes**, in writing.
 
-## Content images are a separate thing entirely
+## Content images are the real Figma dependency at build time
 
-They are **not** pulled from Figma, and they are not part of this pack.
+**This is the part that actually bites, so do not skip it.**
 
-Pages are built with **placeholder blocks** at the correct display size
-(`image-placeholder.md`), and every placeholder is logged under **Outstanding
-images** in the page record. The real images are sourced **after** the build
-(`prompts/source-images.md`): the client gallery first, then stock or generated if
-approved, always optimised and uploaded through
-`.claude/tools/optimize-and-upload.py` with proper alt text.
+On a page that has a design, the build pulls **every raster image and SVG straight
+from the Figma frame**: pull, rename from the design, resize to display size,
+optimise, upload (`optimize-and-upload.py`), and inline SVGs as builder icon
+elements. It also reads names, section labels and alt text **from the design**
+rather than asking.
 
-That pass runs after the layout is settled, so images pour into a stable layout
-rather than a moving one. A missing Figma seat has no bearing on it.
+All of that needs Figma. A developer without a seat cannot do it.
+
+So when the builder has no seat, the handoff step downloads the assets to
+`design/assets/` in advance, named from the design, with the intended alt text
+recorded. The build then optimises and uploads from that folder instead of pulling
+per frame. The optimising and uploading half needs no Figma; only the pull does.
+
+**A page built with no design is different and unaffected.** Most internal pages
+have no design, so there is nothing to pull. They get placeholder blocks
+(`image-placeholder.md`), logged under Outstanding images, and are filled after the
+build by `prompts/source-images.md` from the client gallery, or stock, or
+generated. A Figma seat has no bearing on that pass.
 
 ## What is genuinely lost without a seat
 
 | Lost | Covered by |
 |------|-----------|
 | `get_variable_defs` | Nothing lost. Tokens live in the build after Gate 2a |
-| `get_design_context` | `DESIGN.md` plus the saved reference frames |
 | `get_screenshot` | The saved `design/frames/` images |
+| Pulling content assets from the frame | `design/assets/`, downloaded at handoff |
+| Reading names and alt text from the design | The alt text recorded at handoff, plus `DESIGN.md` |
+| `get_design_context` | `DESIGN.md` plus the saved reference frames. **The weakest substitute:** exact structure and measurements are not fully recoverable from a picture |
 | `get_code_connect_map` | Only relevant if the project uses Code Connect |
 
 The build still screenshots the **built** page with the chrome-devtools MCP, which
 needs no Figma. The comparison is against the saved reference frame.
+
+**Be honest about the trade.** A seat costs about US$12 a month. Front-loading the
+assets works, but it is more setup, and it loses the tie between an asset and the
+frame it came from. If a developer is building regularly from designs, buy the
+seat.
 
 ## The one rule that keeps this honest
 
