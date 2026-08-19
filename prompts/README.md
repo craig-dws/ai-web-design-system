@@ -64,6 +64,7 @@ run `bash designer-pack/assemble.sh` and share `designer-pack/documents/`.
 | `05_tokens.md` | **Gate 2a.** Extract once, sync by reviewed diff |
 | `06_build_page.md` | **Gates 2b and 2c.** One page at a time, tokens only |
 | `07_qa_and_launch.md` | **Gates 3a to 3c.** QA, UAT triage, launch |
+| `08_existing_site_page.md` | A different job: add a page to a site that **already exists** (Elementor, or Breakdance 2.x). No design needed; it patterns the site's own pages |
 
 ## The three rules that hold across all of them
 
