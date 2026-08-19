@@ -1,29 +1,34 @@
-# Developer 03: Extract and sync the tokens
+# Developer 05: Sync the token contract into the build
 
 - **Who:** the developer.
-- **Tool:** Claude Code, in the client project.
+- **Tool:** Claude Code, in the client project, with the build target connected.
 - **When:** **Gate 2a**, after the handoff is accepted and before any page is built.
+- **Needs:** the staging site or the repository. **Does not need Figma**, and does
+  not need a Figma seat.
 
-Tokens are the contract that makes AI output checkable. Extract **once**, lock
-them, and never re-extract per component. Re-extraction is where fidelity leaks
-away, a component at a time.
+Tokens are the contract that makes AI output checkable. They were extracted
+**once** at handoff (`04_accept_handoff.md`) and written to the canonical token
+contract in this project. **This step does not re-extract.** Re-extraction is
+where fidelity leaks away, a component at a time, and a second extraction can
+silently disagree with the first.
 
 ```
-[ROLE: Developer syncing the approved design tokens into the build]
+[ROLE: Developer syncing the approved token contract into the build]
 
-OBJECTIVE: Get the approved Figma tokens into this project's token layer, by a reviewed
-diff, and verify a page renders with them. Build no pages.
+OBJECTIVE: Get the tokens from the project's canonical token contract into this
+project's token layer, by a reviewed diff, and verify a page renders with them.
+Build no pages.
 
 Build target: [A: WordPress plus Breakdance, or B: Astro plus Payload]
-Figma file: [LINK]
+Token contract: [PATH TO THE COMMITTED CONTRACT FILE]
 
 DIRECTIVES:
-1. Run the figma-token-extractor subagent. Scope reads to the collection; do not pull
-   whole files. Produce the mapping table: Figma token name, resolved value, the target
-   token home, and the CSS custom property name. Names must be IDENTICAL on both sides.
-2. Flag every token with no clean home on this target rather than inventing a mapping.
-   On Target A expect the component tier to have no clean home; that is known and fine,
-   report it rather than forcing it.
+1. Read the canonical token contract from the project. Do NOT open Figma and do NOT
+   re-extract. If the contract is missing, STOP and tell me: the handoff step
+   (04_accept_handoff.md) has not been completed, and that is where it comes from.
+2. Confirm the contract is usable: names present on both sides, no token left with an
+   unresolved value. Report anything flagged there as having no clean home on this
+   target rather than inventing a mapping for it.
 3. Apply the sync for the target:
    - Target A: use the token-sync skill. Export current settings first, then a DIFFERENTIAL
      MERGE that preserves every existing key, all custom CSS, and all clamp() functions.
@@ -42,11 +47,16 @@ CONSTRAINTS:
 - Snapshot before any write that can affect a database or a live file.
 - Never a blind import. Never total_reset.
 - Reference token names, never raw values. A hardcoded value is a defect.
+- Do not re-extract from Figma. The contract is the source for this step.
 - British and Australian English. No em dashes, no en dashes, no emojis.
 ```
 
 ## Gate 2a
 
 The Dev Lead verifies the token sync and spot-checks a page rendered with the new
-tokens. Only then do pages get built. If a token is missing, stop and get it added
-in Figma rather than inventing one in the build.
+tokens. Only then do pages get built.
+
+**If a token is genuinely missing**, do not invent one in the build. It goes back
+to the designer in Figma, and whoever holds the Figma seat re-runs the extraction
+in `04_accept_handoff.md` to reissue the contract. That keeps a single extraction
+as the only source, rather than growing a second one here.

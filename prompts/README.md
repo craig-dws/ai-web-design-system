@@ -66,8 +66,8 @@ run `bash designer-pack/assemble.sh` and share `designer-pack/documents/`.
 | `01_dev_setup.md` | Machine once, then once per client project |
 | `02_connect_mcps.md` | Once per machine. Connect and verify the MCP servers |
 | `03_mirror_base_kit.md` | Once per build target, after the base kit is approved |
-| `04_accept_handoff.md` | **Gate 1d.** Accept or reject the dev-ready file |
-| `05_tokens.md` | **Gate 2a.** Extract once, sync by reviewed diff |
+| `04_accept_handoff.md` | **Gate 1d.** Accept or reject the dev-ready file, and extract the token contract. **The only step that needs Figma**, and it needs no staging site |
+| `05_tokens.md` | **Gate 2a.** Sync the contract into the build by reviewed diff. Needs the build target, **not Figma** |
 | `06_build_page.md` | **Gates 2b and 2c.** One page at a time, tokens only |
 | `07_qa_and_launch.md` | **Gates 3a to 3c.** QA, UAT triage, launch |
 
