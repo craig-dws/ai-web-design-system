@@ -71,11 +71,23 @@ DIRECTIVES:
    - WRITE IT TO A FILE in the project and commit it, as the canonical token contract.
      The build reads this file, not Figma.
 
-6. Tell me what else the builder will need, and whether it exists yet:
-   - Frame exports (PNG) per frame per breakpoint, if the person building has no Figma
-     seat. Without them there is nothing to verify the build against.
+6. SAVE THE REFERENCE SCREENSHOTS YOURSELF. You have the Figma MCP; do not ask me to
+   export anything by hand.
+   - First LOOK: if reference images are already in the project (`design/frames/`), use
+     them and only fill what is missing.
+   - For each approved frame, at each breakpoint, call get_screenshot and save it to
+     `design/frames/<page>-<breakpoint>.png`. Commit them.
+   - These are reference pictures of the DESIGN, for checking a built page against. They
+     are never uploaded to the site. Content images are a separate thing and do not come
+     from here (see below).
+   - Report which frames you saved and any you could not.
+
+7. Confirm the rest of the pack exists, and say plainly what is missing:
    - DESIGN.md, verified against Figma (Pass B complete, not DRAFT).
    - The breakpoint values and the responsive notes, in writing.
+   - Any assets the designer exported, and where they are. If none, that is fine and
+     expected: content images are handled after the build by the image-sourcing pass,
+     not pulled from Figma.
 
 CONSTRAINTS:
 - Read-only on Figma. Change nothing, build nothing.
@@ -87,15 +99,21 @@ CONSTRAINTS:
 
 ## What acceptance produces (the handover pack)
 
-Record the acceptance, then confirm these exist and are committed:
+This step **produces** the pack, it does not ask anyone to assemble it. On
+acceptance the project should contain, committed:
 
-1. **The canonical token contract** (from directive 5). The build reads this.
-2. **`DESIGN.md`**, verified against Figma, marked READY not DRAFT.
-3. **Frame exports (PNG)** per breakpoint, if the builder has no Figma seat.
+1. **The canonical token contract** (directive 5). The build reads this, not Figma.
+2. **Reference screenshots** in `design/frames/` (directive 6), saved by this step.
+3. **`DESIGN.md`**, verified against Figma, marked READY not DRAFT.
 4. **Breakpoints and responsive notes**, in writing.
 
-With those four, the build runs with **no Figma access**. See
+With those, the build runs with **no Figma access**. See
 `.claude/reference/building-without-figma.md`.
+
+**Content images are not part of this.** They are not pulled from Figma. Pages are
+built with placeholders and the real images are sourced afterwards from the client
+gallery, or stock, or generated, then optimised and uploaded
+(`prompts/source-images.md`).
 
 Then move to `05_tokens.md`, which syncs the contract into the build target and
 needs no Figma.
