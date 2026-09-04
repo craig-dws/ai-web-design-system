@@ -62,6 +62,7 @@ The user asked for a full investigation and a complete, versioned system split i
 | 25_end_to_end_lifecycle.md | The team-facing life cycle: PM, Design, Develop, UAT, with gates and where changes happen |
 | 26_vendor_capability_matrix.md | **The single home for volatile vendor facts**, dated and sourced. Never restate a vendor limit in another document; link here instead |
 | 27_breakdance_write_test.md | The decisive Target A write test: the runnable procedure that decides whether the native Breakdance 3.0 MCP (tested first) or a fallback bridge is viable, before any client build |
+| 28_class_naming_convention.md | The CSS class scope prefixes (`sw-`, `gb-`, `wg-`, `pg-`, `sc-`), why the prefix states a class's blast radius, and why it comes from the global blocks register rather than per-page taste. Both targets |
 | 28_design_md_workflow.md | How the Designer creates, verifies and maintains the client DESIGN.md without displacing Figma or the canonical token contract |
 
 ### Pilot and measurement

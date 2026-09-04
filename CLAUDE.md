@@ -110,6 +110,7 @@ Gates in full: `docs/12`. The most important and most-skipped gate is **approvin
 9. No vendor tool name hardcoded in a skill; call the capability.
 10. No automatic content sync that can overwrite local work.
 11. No new script in ZilvaEdge without the operator's approval; extend an existing one with a flag first. Exception, 2026-08-19: where an approved plan names the new file, create it. The plan naming it is the approval, and reuse-by-default otherwise drives an agent to edit a live collector rather than add a new one.
+12. No class without a scope prefix, and no prefix that lies. `sw-` sitewide, `gb-` global block, `wg-` widget, `pg-` page only, `sc-` section only. Widening a class's reach is a rename (`docs/28`).
 
 ## House style
 
@@ -129,6 +130,7 @@ British and Australian English. No em dashes, no en dashes, no double hyphens in
 | Prompts, including setup | `docs/14_prompt_library.md` |
 | Build runbooks | `docs/19` (Target A), `docs/19b` (Target B) |
 | Best practices | `docs/23_best_practices.md` |
+| Class naming convention | `docs/28_class_naming_convention.md` |
 
 ## Talking to the operator
 
