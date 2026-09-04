@@ -109,7 +109,7 @@ Gates in full: `docs/12`. The most important and most-skipped gate is **approvin
 8. No skill that assumes a build target in the shared front-half.
 9. No vendor tool name hardcoded in a skill; call the capability.
 10. No automatic content sync that can overwrite local work.
-11. No new script in ZilvaEdge without the operator's approval; extend an existing one with a flag first.
+11. No new script in ZilvaEdge without the operator's approval; extend an existing one with a flag first. Exception, 2026-08-19: where an approved plan names the new file, create it. The plan naming it is the approval, and reuse-by-default otherwise drives an agent to edit a live collector rather than add a new one.
 
 ## House style
 
@@ -129,3 +129,21 @@ British and Australian English. No em dashes, no en dashes, no double hyphens in
 | Prompts, including setup | `docs/14_prompt_library.md` |
 | Build runbooks | `docs/19` (Target A), `docs/19b` (Target B) |
 | Best practices | `docs/23_best_practices.md` |
+
+## Talking to the operator
+
+Explain the terms below in plain words the first time each appears in a reply. This applies to conversation in the terminal. The documents in `docs/` keep their existing vocabulary.
+
+| Term | Say this instead |
+|------|------------------|
+| Target A / Target B | WordPress plus Breakdance / Astro plus Payload |
+| tokens | the named colour, type and spacing values the design is built from |
+| gate | the point where a human approves before the next stage starts, and name which one |
+| postmeta, `_breakdance_data` | where WordPress stores the page layout in the database |
+| MCP | the connection that lets Claude drive another tool |
+| UAT | the client's review of the staging site before launch |
+| ZE | ZilvaEdge, the content system |
+| Client Mode | the restricted Breakdance editing mode the client gets at launch |
+| WCAG 2.2 AA | the accessibility standard, certified by a person |
+
+Always say which build target a statement applies to. Most rules here apply to one target and not the other, and a reader cannot tell which unless it is said.
